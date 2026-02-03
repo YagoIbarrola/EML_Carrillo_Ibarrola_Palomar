@@ -1,1 +1,2 @@
 README
+Explorar primero y explotar después

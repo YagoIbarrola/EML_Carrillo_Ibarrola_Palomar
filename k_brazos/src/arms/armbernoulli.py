@@ -1,87 +1,55 @@
 """
 Module: arms/armbernoulli.py
-Description: Contains the implementation of the ArmBernoulli class for the Bernoulli distribution arm.
-
-Author: Luis Daniel Hernández Molinero
-Email: ldaniel@um.es
-Date: 2025/01/29
-
-This software is licensed under the GNU General Public License v3.0 (GPL-3.0),
-with the additional restriction that it may not be used for commercial purposes.
-
-For more details about GPL-3.0: https://www.gnu.org/licenses/gpl-3.0.html
+Description: Contains the implementation of the ArmBernoulli class.
 """
 
-
 import numpy as np
+from arms.armbinomial import ArmBinomial
 
-from arms import Arm
-
-
-class ArmNormal(Arm):
-    def __init__(self, mu: float, sigma: float):
+class ArmBernoulli(ArmBinomial):
+    def __init__(self, p: float):
         """
-        Inicializa el brazo con distribución normal.
+        Inicializamos el brazo de Bernoulli como un caso concreto de Binomial con n=1.
 
-        :param mu: Media de la distribución.
-        :param sigma: Desviación estándar de la distribución.
+        :param p: Probabilidad de éxito (entre 0 y 1).
         """
-        assert sigma > 0, "La desviación estándar sigma debe ser positiva."
-
-        self.mu = mu
-        self.sigma = sigma
-
-    def pull(self):
-        """
-        Genera una recompensa siguiendo una distribución normal.
-
-        :return: Recompensa obtenida del brazo.
-        """
-        reward = np.random.normal(self.mu, self.sigma)
-        return reward
-
-    def get_expected_value(self) -> float:
-        """
-        Devuelve el valor esperado de la distribución normal.
-
-        :return: Valor esperado de la distribución.
-        """
-
-        return self.mu
+        # Llamamos al constructor de la clase padre fijando n=1
+        super().__init__(n=1, p=p)
 
     def __str__(self):
         """
-        Representación en cadena del brazo normal.
+        Representación en cadena del brazo Bernoulli.
 
-        :return: Descripción detallada del brazo normal.
+        :return: Descripción del brazo con su probabilidad p.
         """
-        return f"ArmNormal(mu={self.mu}, sigma={self.sigma})"
+        return f"ArmBernoulli(p={self.p:.2f})"
+
+    # Nota: No necesitamos reescribir pull() ni get_expected_value()
+    # porque la lógica de ArmBinomial ya funciona correctamente para n=1.
 
     @classmethod
-    def generate_arms(cls, k: int, mu_min: float = 1, mu_max: float = 10.0):
+    def generate_arms(cls, k: int, p_min: float = 0.1, p_max: float = 0.9):
         """
-        Genera k brazos con medias únicas en el rango [mu_min, mu_max].
+        Generamos k brazos de Bernoulli con probabilidades únicas en el rango [p_min, p_max].
 
         :param k: Número de brazos a generar.
-        :param mu_min: Valor mínimo de la media.
-        :param mu_max: Valor máximo de la media.
-        :return: Lista de brazos generados.
+        :param p_min: Probabilidad mínima.
+        :param p_max: Probabilidad máxima.
+        :return: Lista de brazos Bernoulli generados.
         """
         assert k > 0, "El número de brazos k debe ser mayor que 0."
-        assert mu_min < mu_max, "El valor de mu_min debe ser menor que mu_max."
+        assert 0 <= p_min < p_max <= 1, "El rango de probabilidades [p_min, p_max] no es válido."
 
-        # Generar k- valores únicos de mu con decimales
-        mu_values = set()
-        while len(mu_values) < k:
-            mu = np.random.uniform(mu_min, mu_max)
-            mu = round(mu, 2)
-            mu_values.add(mu)
+        # Generamos k valores únicos de p
+        p_values = set()
+        while len(p_values) < k:
+            p = np.random.uniform(p_min, p_max)
+            p = round(p, 4)
+            p_values.add(p)
 
-        mu_values = list(mu_values)
-        sigma = 1.0
+        p_values = list(p_values)
 
-        arms = [ArmNormal(mu, sigma) for mu in mu_values]
+        # Creamos la lista de brazos instanciando la clase actual (ArmBernoulli)
+        arms = [cls(p) for p in p_values]
 
         return arms
-
-

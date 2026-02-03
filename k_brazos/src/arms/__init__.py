@@ -16,9 +16,11 @@ For more details about GPL-3.0: https://www.gnu.org/licenses/gpl-3.0.html
 # Importación de módulos o clases
 from .arm import Arm
 from .armnormal import ArmNormal
+from .armbinomial import ArmBinomial
+from .armbernoulli import ArmBernoulli
 from .bandit import Bandit
 
 # Lista de módulos o clases públicas
-__all__ = ['Arm', 'ArmNormal', 'Bandit']
+__all__ = ['Arm', 'ArmNormal', 'ArmBinomial', 'ArmBernoulli', 'Bandit']
 
 
