@@ -20,7 +20,7 @@ class EpsilonGreedy(Algorithm):
 
     def __init__(self, k: int, epsilon: float = 0.1):
         """
-        Inicializamos el algoritmo epsilon-greedy.
+        Inicializa el algoritmo epsilon-greedy.
 
         :param k: Número de brazos.
         :param epsilon: Probabilidad de exploración (seleccionar un brazo al azar).
@@ -33,23 +33,31 @@ class EpsilonGreedy(Algorithm):
 
     def select_arm(self) -> int:
         """
-        Seleccionamos un brazo basado en la política epsilon-greedy.
-        Aseguramos que todos los brazos se prueben al menos una vez antes de explotar.
+        Selecciona un brazo basado en la política epsilon-greedy.
+        Asegura que todos los brazos se prueben al menos una vez antes de explotar.
 
         :return: índice del brazo seleccionado.
         """
 
-        # Primero comprobamos si queda algún brazo sin explorar.
+ # Observa que para para epsilon=0 solo selecciona un brazo y no hace un primer recorrido por todos ellos. -----> Con epsilon=0.1 tampoco
+ # ¿Podrías modificar el código para que funcione correctamente para epsilon=0?
+
+        # Primero comprueba si queda algún brazo sin explorar.
         for arm in range(self.k):
             if self.counts[arm] == 0:
                 return arm
-
-        # Una vez que todos los brazos tienen al menos una muestra, aplicamos la lógica estándar
+        
+        #-----> ALTERNATIVA Seleccionar brazos no visitados
+        # unplayed_arms = np.where(self.counts == 0)[0]
+        # if len(unplayed_arms) > 0:
+        #     return np.random.choice(unplayed_arms)
+            
+        # Una vez que todos los brazos tienen al menos una muestra, aplica la lógica estándar
         if np.random.random() < self.epsilon:
-            # Seleccionamos un brazo al azar (Exploración)
+            # Selecciona un brazo al azar (Exploración)
             chosen_arm = np.random.choice(self.k)
         else:
-            # Seleccionamos el brazo con la recompensa promedio estimada más alta (Explotación)
+            # Selecciona el brazo con la recompensa promedio estimada más alta (Explotación)
             # Nota: np.argmax devuelve el primer índice en caso de empate.
             chosen_arm = np.argmax(self.values)
 

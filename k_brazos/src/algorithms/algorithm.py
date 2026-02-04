@@ -50,6 +50,7 @@ class Algorithm(ABC):
 
         # Actualización incremental de la recompensa promedio
         # value = value + (reward - value) / n
+        # Qt(a) = Q_{t-1}(a) + 1/k * (Rt - Q_{t-1}(a))
 
         self.values[chosen_arm] = value + (reward - value) / n
 

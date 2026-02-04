@@ -4,6 +4,7 @@ Description: Contains the implementation of the ArmBinomial class for the Binomi
 """
 
 import numpy as np
+
 from arms import Arm
 
 class ArmBinomial(Arm):

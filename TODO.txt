@@ -1,2 +1,11 @@
 README
 Explorar primero y explotar después
+
+Ver 2 apuntes en epsilon greedy y no usar plural
+
+RECOMENDACIÓN DE PROFESOR: epsilon decaimiento no PONERLO A 0.0
+
+Hacer UCB1 como UCB2 (pasar por todos los brazos una vez, quitar el denomindaor no cero...)
+o usar en USB2 t = np.sum(self.counts)
++1 en arm_statistics
+ver regret instantáneo

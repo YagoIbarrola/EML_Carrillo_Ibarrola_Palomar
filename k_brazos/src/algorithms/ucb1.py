@@ -22,6 +22,7 @@ class UCB1(Algorithm):
         super().__init__(k)
         self.c = c
 
+    # BASÁNDONOS en epsilon_greedy.py y la fórmula de la 37
     def select_arm(self) -> int:
         """
         Selecciona un brazo basado en la política UCB1.

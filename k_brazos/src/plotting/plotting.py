@@ -33,6 +33,7 @@ def get_algorithm_label(algo: Algorithm) -> str:
     label = type(algo).__name__
     if isinstance(algo, EpsilonGreedy):
         label += f" (epsilon={algo.epsilon})"
+    # Añadimos casos para otros algoritmos
     elif isinstance(algo, EpsilonDecaimiento):
         label += f" (epsilon_0={algo.epsilon_0}, decaimiento={algo.lambda_decay}, epsilon_min={algo.epsilon_min})"
     elif isinstance(algo, UCB1):
@@ -69,10 +70,10 @@ def plot_average_rewards(steps: int, rewards: np.ndarray, algorithms: List[Algor
     plt.tight_layout()
     plt.show()
 
-
+# Nuevo
 def plot_optimal_selections(steps: int, optimal_selections: np.ndarray, algorithms: List[Algorithm]):
     """
-    Genera la gráfica de Porcentaje de Selección del Brazo Óptimo vs Pasos de Tiempo.
+    Genera la gráfica de porcentaje de selección del brazo óptimo vs pasos de tiempo.
 
     :param steps: Número de pasos de tiempo.
     :param optimal_selections: Matriz de porcentaje de selecciones óptimas.
@@ -87,13 +88,13 @@ def plot_optimal_selections(steps: int, optimal_selections: np.ndarray, algorith
         plt.plot(range(steps), optimal_selections[idx], label=label, linewidth=2)
 
     plt.xlabel('Pasos de Tiempo', fontsize=14)
-    plt.ylabel('Porcentaje de Selección del Brazo Óptimo (%)', fontsize=14)
-    plt.title('Porcentaje de Selección del Brazo Óptimo vs Pasos de Tiempo', fontsize=16)
+    plt.ylabel('Porcentaje de selección del brazo óptimo (%)', fontsize=14)
+    plt.title('Porcentaje de selección del brazo óptimo vs pasos de tiempo', fontsize=16)
     plt.legend(title='Algoritmos')
     plt.tight_layout()
     plt.show()
 
-def plot_arm_statistics(arm_stats: list, algorithms: List[Algorithm], optimal_arm_index: int = None):
+def plot_arm_statistics(arms_stats: list, algorithms: List[Algorithm], optimal_arm_index: int = None):
     """
     Genera gráficas de estadísticas por brazo para cada algoritmo.
     Muestra el promedio de recompensas por brazo y cuántas veces fue seleccionado.
@@ -103,7 +104,7 @@ def plot_arm_statistics(arm_stats: list, algorithms: List[Algorithm], optimal_ar
     
     n_algos = len(algorithms)
     
-    # Mantenemos una altura generosa por subplot
+    # Mantenemos una altura razonable por subplot
     fig, axes = plt.subplots(n_algos, 1, figsize=(12, 6 * n_algos), sharex=False)
     
     if n_algos == 1:
@@ -111,7 +112,7 @@ def plot_arm_statistics(arm_stats: list, algorithms: List[Algorithm], optimal_ar
         
     for idx, algo in enumerate(algorithms):
         ax = axes[idx]
-        stats = arm_stats[idx]
+        stats = arms_stats[idx]
         
         counts = stats.get('counts')
         avg_rewards = stats.get('average_rewards')
@@ -172,8 +173,8 @@ def plot_regret(steps: int, regret_accumulated: np.ndarray, algorithms: List[Alg
         plt.plot(range(steps), regret_accumulated[idx], label=label, linewidth=2)
 
     plt.xlabel('Pasos de Tiempo', fontsize=14)
-    plt.ylabel('Regret Acumulado', fontsize=14)
-    plt.title('Evolución del Regret Acumulado', fontsize=16)
+    plt.ylabel('Regret acumulado', fontsize=14)
+    plt.title('Evolución del regret acumulado', fontsize=16)
     plt.legend(title='Algoritmos')
     plt.tight_layout()
     plt.show()

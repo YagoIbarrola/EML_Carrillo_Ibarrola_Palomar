@@ -4,6 +4,7 @@ Description: Contains the implementation of the ArmBernoulli class.
 """
 
 import numpy as np
+
 from arms.armbinomial import ArmBinomial
 
 class ArmBernoulli(ArmBinomial):
