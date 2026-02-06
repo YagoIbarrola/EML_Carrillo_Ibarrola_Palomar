@@ -86,12 +86,7 @@ def plot_optimal_selections(steps: int, optimal_selections: np.ndarray, algorith
     for idx, algo in enumerate(algorithms):
         label = get_algorithm_label(algo)
         # Damos diferentes formas a las líneas según el algoritmo para mejorar la distinción visual
-        if idx == 0:
-            plt.plot(range(steps), optimal_selections[idx], label=label, linewidth=2, alpha=0.8, linestyle='-')
-        elif idx == 1:
-            plt.plot(range(steps), optimal_selections[idx], label=label, linewidth=2, alpha=0.8, linestyle='--')
-        elif idx == 2:
-            plt.plot(range(steps), optimal_selections[idx], label=label, linewidth=2, alpha=0.8, linestyle='-.')
+        plt.plot(range(steps), optimal_selections[idx], label=label, linewidth=2, alpha=0.8, linestyle='-')
 
     plt.xlabel('Pasos de Tiempo', fontsize=14)
     plt.ylabel('Porcentaje de selección del brazo óptimo (%)', fontsize=14)
