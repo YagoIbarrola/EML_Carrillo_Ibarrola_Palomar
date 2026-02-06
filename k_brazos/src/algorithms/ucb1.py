@@ -32,10 +32,10 @@ class UCB1(Algorithm):
         # Selecciona el brazo con la recompensa promedio estimada más alta
         # UCB1: Q_t(a) + c * sqrt(ln(t) / N_t(a))
         t = np.sum(self.counts)
-        if t == 0:
-            chosen_arm = np.random.choice(self.k)
+        if t < self.k: # Selecciona cada acción una vez al principio.
+            chosen_arm = t
         else:
-            ucb_values = self.values + self.c * np.sqrt(np.log(t) / (self.counts + 1e-8))  # Evitar división por cero
+            ucb_values = self.values + self.c * np.sqrt(np.log(t) / self.counts)
             chosen_arm = np.argmax(ucb_values)
 
         return chosen_arm
