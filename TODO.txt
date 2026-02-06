@@ -9,3 +9,5 @@ Hacer UCB1 como UCB2 (pasar por todos los brazos una vez, quitar el denomindaor 
 o usar en USB2 t = np.sum(self.counts)
 +1 en arm_statistics
 ver regret instantáneo
+
+UCB2 está mal implementao casi seguro, resultados muy raros, es muy cabezón

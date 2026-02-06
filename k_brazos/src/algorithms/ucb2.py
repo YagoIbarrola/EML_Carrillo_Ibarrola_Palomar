@@ -24,9 +24,6 @@ class UCB2(Algorithm):
         # ka: número de épocas (rondas de selección) para cada brazo
         self.ka = np.zeros(k, dtype=int)
         
-        # t: contador total de pasos
-        self.total_steps = 0
-        
         # Estado interno para gestionar las épocas (batches)
         self.current_batch_arm = None  # Brazo que se está ejecutando en la época actual
         self.batch_remaining = 0       # Cuántas veces falta tirar de este brazo
@@ -49,8 +46,9 @@ class UCB2(Algorithm):
             """
             
             # Selecciona cada acción una vez al principio.
-            if self.total_steps < self.k:
-                return self.total_steps
+            t = np.sum(self.counts)
+            if t < self.k: # Selecciona cada acción una vez al principio.
+                return t
 
             # Si todavía quedan tiradas en el bloque actual, seguimos con el mismo brazo.
             if self.batch_remaining > 0:
@@ -68,7 +66,7 @@ class UCB2(Algorithm):
                 r = self.ka[a]
                 tau_ka = self._tau(r)
                 
-                numerator = (1 + self.alpha) * np.log((np.e * self.total_steps) / tau_ka)
+                numerator = (1 + self.alpha) * np.log((np.e * t) / tau_ka)
                 denominator = 2 * tau_ka
                 
                 ucb_values[a] = mean_reward + np.sqrt(numerator / denominator)
@@ -90,9 +88,10 @@ class UCB2(Algorithm):
             
             return selected_arm
 
-    def update(self, chosen_arm: int, reward: float):
-        """
-        Actualiza las estadísticas.
-        """
-        super().update(chosen_arm, reward)
-        self.total_steps += 1
+    # def update(self, chosen_arm: int, reward: float):
+    #     """
+    #     Actualiza las estadísticas.
+    #     """
+    #     super().update(chosen_arm, reward)
+    #     self.total_steps += 1
+    #     print(f"UCB2 Update: chosen_arm={chosen_arm}, reward={reward}, total_steps={self.total_steps}, ka={self.ka}, batch_remaining={self.batch_remaining}")
