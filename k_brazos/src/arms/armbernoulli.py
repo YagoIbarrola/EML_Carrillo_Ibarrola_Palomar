@@ -8,14 +8,14 @@ import numpy as np
 from arms.armbinomial import ArmBinomial
 
 class ArmBernoulli(ArmBinomial):
-    def __init__(self, p: float):
+    def __init__(self, p: float, scale: float = 1.0):
         """
         Inicializamos el brazo de Bernoulli como un caso concreto de Binomial con n=1.
 
         :param p: Probabilidad de éxito (entre 0 y 1).
         """
         # Llamamos al constructor de la clase padre fijando n=1
-        super().__init__(n=1, p=p)
+        super().__init__(n=1, p=p, scale=scale)
 
     def __str__(self):
         """
@@ -29,7 +29,7 @@ class ArmBernoulli(ArmBinomial):
     # porque la lógica de ArmBinomial ya funciona correctamente para n=1.
 
     @classmethod
-    def generate_arms(cls, k: int, p_min: float = 0.1, p_max: float = 0.9):
+    def generate_arms(cls, k: int, p_min: float = 0.1, p_max: float = 1.0, scale: float = 1.0):
         """
         Generamos k brazos de Bernoulli con probabilidades únicas en el rango [p_min, p_max].
 
@@ -51,6 +51,6 @@ class ArmBernoulli(ArmBinomial):
         p_values = list(p_values)
 
         # Creamos la lista de brazos instanciando la clase actual (ArmBernoulli)
-        arms = [cls(p) for p in p_values]
+        arms = [cls(p, scale = scale) for p in p_values]
 
         return arms

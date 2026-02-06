@@ -128,8 +128,9 @@ def main():
     steps = 1000  # Número de pasos
     runs = 500  # Número de ejecuciones
 
-    bandit = Bandit(arms=ArmNormal.generate_arms(k))
-    #bandit = Bandit(arms=ArmBernoulli.generate_arms(k))  # Bandit(arms=ArmBinomial.generate_arms(k))
+    #bandit = Bandit(arms=ArmNormal.generate_arms(k))
+    # bandit = Bandit(arms=ArmBernoulli.generate_arms(k, scale = 10))  
+    bandit = Bandit(arms=ArmBinomial.generate_arms(k, n=10, scale = 1))
     print(bandit)
 
     # Obtenemos el brazo óptimo para pasarlo a la gráfica

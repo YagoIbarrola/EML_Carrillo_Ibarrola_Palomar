@@ -61,7 +61,7 @@ def plot_average_rewards(steps: int, rewards: np.ndarray, algorithms: List[Algor
     plt.figure(figsize=(14, 7))
     for idx, algo in enumerate(algorithms):
         label = get_algorithm_label(algo)
-        plt.plot(range(steps), rewards[idx], label=label, linewidth=2)
+        plt.plot(range(steps), rewards[idx], label=label, linewidth=2, alpha=0.8)
 
     plt.xlabel('Pasos de Tiempo', fontsize=14)
     plt.ylabel('Recompensa Promedio', fontsize=14)
@@ -85,7 +85,13 @@ def plot_optimal_selections(steps: int, optimal_selections: np.ndarray, algorith
     plt.figure(figsize=(14, 7))
     for idx, algo in enumerate(algorithms):
         label = get_algorithm_label(algo)
-        plt.plot(range(steps), optimal_selections[idx], label=label, linewidth=2)
+        # Damos diferentes formas a las líneas según el algoritmo para mejorar la distinción visual
+        if idx == 0:
+            plt.plot(range(steps), optimal_selections[idx], label=label, linewidth=2, alpha=0.8, linestyle='-')
+        elif idx == 1:
+            plt.plot(range(steps), optimal_selections[idx], label=label, linewidth=2, alpha=0.8, linestyle='--')
+        elif idx == 2:
+            plt.plot(range(steps), optimal_selections[idx], label=label, linewidth=2, alpha=0.8, linestyle='-.')
 
     plt.xlabel('Pasos de Tiempo', fontsize=14)
     plt.ylabel('Porcentaje de selección del brazo óptimo (%)', fontsize=14)
@@ -170,7 +176,7 @@ def plot_regret(steps: int, regret_accumulated: np.ndarray, algorithms: List[Alg
 
     for idx, algo in enumerate(algorithms):
         label = get_algorithm_label(algo)
-        plt.plot(range(steps), regret_accumulated[idx], label=label, linewidth=2)
+        plt.plot(range(steps), regret_accumulated[idx], label=label, linewidth=2, alpha=0.8)
 
     plt.xlabel('Pasos de Tiempo', fontsize=14)
     plt.ylabel('Regret acumulado', fontsize=14)

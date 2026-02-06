@@ -8,7 +8,7 @@ import numpy as np
 from arms import Arm
 
 class ArmBinomial(Arm):
-    def __init__(self, n: int, p: float):
+    def __init__(self, n: int, p: float, scale: float = 1.0):
         """
         Inicializamos el brazo con distribución binomial.
 
@@ -21,6 +21,7 @@ class ArmBinomial(Arm):
 
         self.n = n
         self.p = p
+        self.scale = scale
 
     def pull(self):
         """
@@ -29,7 +30,7 @@ class ArmBinomial(Arm):
         :return: Recompensa obtenida del brazo.
         """
         # Obtenemos una muestra aleatoria de la distribución binomial
-        reward = np.random.binomial(self.n, self.p)
+        reward = self.scale * np.random.binomial(self.n, self.p)
         return reward
 
     def get_expected_value(self) -> float:
@@ -38,7 +39,7 @@ class ArmBinomial(Arm):
 
         :return: Valor esperado (n * p).
         """
-        return self.n * self.p
+        return self.n * self.p * self.scale
 
     def __str__(self):
         """
@@ -46,10 +47,10 @@ class ArmBinomial(Arm):
 
         :return: Descripción detallada del brazo.
         """
-        return f"ArmBinomial(n={self.n}, p={self.p:.2f})"
+        return f"ArmBinomial(n={self.n}, p={self.p:.2f}, scale={self.scale})"
 
     @classmethod
-    def generate_arms(cls, k: int, n: int, p_min: float = 0.1, p_max: float = 0.9):
+    def generate_arms(cls, k: int, n: int = 1, p_min: float = 0.1, p_max: float = 1.0, scale:float = 1.0):
         """
         Generamos k brazos con probabilidades únicas p en el rango [p_min, p_max]
         y un n fijo para todos.
@@ -73,6 +74,6 @@ class ArmBinomial(Arm):
         p_values = list(p_values)
         
         # Creamos la lista de brazos con el n fijo y los p variables
-        arms = [cls(n, p) for p in p_values]
+        arms = [cls(n, p, scale = scale) for p in p_values]
 
         return arms

@@ -58,7 +58,7 @@ class ArmNormal(Arm):
         return f"ArmNormal(mu={self.mu}, sigma={self.sigma})"
 
     @classmethod
-    def generate_arms(cls, k: int, mu_min: float = 1, mu_max: float = 10.0):
+    def generate_arms(cls, k: int, mu_min: float = 1.0, mu_max: float = 10.0):
         """
         Genera k brazos con medias únicas en el rango [mu_min, mu_max].
 
