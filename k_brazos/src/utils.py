@@ -73,7 +73,7 @@ def run_experiment(bandit: Bandit, algorithms: List[Algorithm], steps: int, runs
         for idx, algo in enumerate(algorithms):
             # Asumimos que el algoritmo tiene atributos .counts y .values
             acc_counts[idx] += algo.counts 
-            acc_values[idx] += algo.values
+            acc_values[idx] += algo.values * algo.counts
 
     # Promediar las recompensas y el regret sobre todas las ejecuciones
     rewards /= runs
@@ -85,8 +85,9 @@ def run_experiment(bandit: Bandit, algorithms: List[Algorithm], steps: int, runs
 
     # ARM 3. Preparamos la estructura de datos para plot_arm_statistics
     # Promediamos conteos y valores acumulados
+    avg_values = acc_values / acc_counts
     avg_counts = acc_counts / runs
-    avg_values = acc_values / runs
+    
     
     arms_stats = []
     for idx in range(len(algorithms)):
