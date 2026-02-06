@@ -39,18 +39,13 @@ class EpsilonGreedy(Algorithm):
         :return: índice del brazo seleccionado.
         """
 
- # Observa que para para epsilon=0 solo selecciona un brazo y no hace un primer recorrido por todos ellos. -----> Con epsilon=0.1 tampoco
+ # Observa que para para epsilon=0 solo selecciona un brazo y no hace un primer recorrido por todos ellos.
  # ¿Podrías modificar el código para que funcione correctamente para epsilon=0?
 
         # Primero comprueba si queda algún brazo sin explorar.
         for arm in range(self.k):
             if self.counts[arm] == 0:
                 return arm
-        
-        #-----> ALTERNATIVA Seleccionar brazos no visitados
-        # unplayed_arms = np.where(self.counts == 0)[0]
-        # if len(unplayed_arms) > 0:
-        #     return np.random.choice(unplayed_arms)
             
         # Una vez que todos los brazos tienen al menos una muestra, aplica la lógica estándar
         if np.random.random() < self.epsilon:

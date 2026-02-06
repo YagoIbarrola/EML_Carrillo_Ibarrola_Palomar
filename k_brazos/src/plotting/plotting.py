@@ -122,13 +122,13 @@ def plot_arm_statistics(arms_stats: list, algorithms: List[Algorithm], optimal_a
         if optimal_arm_index is not None and 0 <= optimal_arm_index < k_arms:
             colors[optimal_arm_index] = '#55a868'
             
-        bars = ax.bar(range(k_arms), avg_rewards, color=colors, alpha=0.8)
+        bars = ax.bar(range(1,k_arms+1), avg_rewards, color=colors, alpha=0.8)
         
         algo_name = get_algorithm_label(algo)
         ax.set_title(f'Estadísticas por Brazo: {algo_name}', fontsize=16, pad=15) 
         ax.set_ylabel('Recompensa Promedio Estimada', fontsize=12)
         ax.set_xlabel('Índice del Brazo', fontsize=12)
-        ax.set_xticks(range(k_arms))
+        ax.set_xticks(range(1,k_arms+1))
         
         # Ajustamos límite Y para las etiquetas
         max_height = max(avg_rewards) if len(avg_rewards) > 0 else 1.0

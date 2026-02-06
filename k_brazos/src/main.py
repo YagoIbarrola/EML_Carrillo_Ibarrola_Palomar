@@ -19,7 +19,7 @@ from typing import List
 import numpy as np
 
 from algorithms import Algorithm, EpsilonGreedy, EpsilonDecaimiento, UCB1, UCB2, Softmax
-from arms import ArmNormal, Bandit
+from arms import ArmNormal, ArmBernoulli, ArmBinomial, Bandit
 from plotting import plot_average_rewards, plot_optimal_selections, plot_arm_statistics, plot_regret
 
 
@@ -32,7 +32,8 @@ def run_experiment(bandit: Bandit, algorithms: List[Algorithm], steps: int, runs
     :param runs: Número de ejecuciones independientes.
     :return: Tuple de tres elementos: recompensas promedio, porcentaje de selecciones óptimas, y estadísticas de brazos.
     :rtype: Tuple of (np.ndarray, np.ndarray, list)
-    Ahora devolvemos también estadísticas agregadas de los brazos.
+    
+    Ahora devuelve también estadísticas agregadas de los brazos.
     """
     k = bandit.k
     optimal_arm = bandit.optimal_arm
@@ -81,6 +82,7 @@ def run_experiment(bandit: Bandit, algorithms: List[Algorithm], steps: int, runs
 
                 # REG 3. Calcular regret instantáneo: (Valor óptimo - Valor del elegido)
                 # IMPORTANTE: Usamos .get_expected_value(), no la 'reward' con ruido
+
                 chosen_arm_expected_value = current_bandit.get_expected_value(chosen_arm)
                 regret[idx, step] += (optimal_expected_value - chosen_arm_expected_value)
 
@@ -127,7 +129,7 @@ def main():
     runs = 500  # Número de ejecuciones
 
     bandit = Bandit(arms=ArmNormal.generate_arms(k))
-    # bandit = Bandit(arms=ArmBernoulli.generate_arms(k))  # Bandit(arms=ArmBinomial.generate_arms(k))
+    #bandit = Bandit(arms=ArmBernoulli.generate_arms(k))  # Bandit(arms=ArmBinomial.generate_arms(k))
     print(bandit)
 
     # Obtenemos el brazo óptimo para pasarlo a la gráfica
@@ -139,11 +141,11 @@ def main():
                     EpsilonGreedy(k=k, epsilon=0), 
                     EpsilonGreedy(k=k, epsilon=0.01), 
                     EpsilonGreedy(k=k, epsilon=0.1), 
-                    EpsilonDecaimiento(k=k, epsilon_0=1.0, lambda_decay=0.01, epsilon_min=0.01), 
-                    UCB1(k=k, c=1.0), 
-                    UCB2(k=k, alpha=0.1), 
-                    Softmax(k=k, temperature=0.1), 
-                    Softmax(k=k, temperature=1.0)
+                    #EpsilonDecaimiento(k=k, epsilon_0=1.0, lambda_decay=0.01, epsilon_min=0.01), 
+                    #UCB1(k=k, c=1.0), 
+                    #UCB2(k=k, alpha=0.1), 
+                    #Softmax(k=k, temperature=0.1), 
+                    #Softmax(k=k, temperature=1.0)
                 ]
 
     # Ejecutar el experimento y obtener las recompensas promedio y selecciones óptimas
