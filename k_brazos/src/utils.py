@@ -67,7 +67,7 @@ def run_experiment(bandit: Bandit, algorithms: List[Algorithm], steps: int, runs
                 # IMPORTANTE: Usamos .get_expected_value(), no la 'reward' con ruido
 
                 chosen_arm_expected_value = current_bandit.get_expected_value(chosen_arm)
-                regret[idx, step] += (optimal_expected_value - chosen_arm_expected_value)
+                regret[idx, step] += (optimal_expected_value - reward)
 
         # ARM 2. Al finalizar los pasos de este 'run', acumulamos el estado final de cada algoritmo
         for idx, algo in enumerate(algorithms):

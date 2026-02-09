@@ -82,5 +82,20 @@ class ArmNormal(Arm):
         arms = [ArmNormal(mu, sigma) for mu in mu_values]
 
         return arms
+    
+    @classmethod
+    def generate_arms_with_fixed_means(cls, means: list, sigma: float = 1.0):
+        """
+        Genera brazos con medias fijas proporcionadas en la lista.
+
+        :param means: Lista de medias para cada brazo.
+        :param sigma: Desviación estándar de la distribución.
+        :return: Lista de brazos generados.
+        """
+        assert len(means) > 0, "La lista de medias no puede estar vacía."
+
+        arms = [ArmNormal(mu, sigma) for mu in means]
+
+        return arms
 
 

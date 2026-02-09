@@ -9,7 +9,7 @@ from algorithms.algorithm import Algorithm
 
 class Softmax(Algorithm):
 
-    def __init__(self, k: int, temperature: float = 1.0):
+    def __init__(self, k: int, temperature: float = 1.0, exploring: bool = False):
         """
         Inicializamos el algoritmo Softmax.
 
@@ -21,7 +21,7 @@ class Softmax(Algorithm):
 
         super().__init__(k)
         self.temperature = temperature
-
+        self.exploring = exploring
     def select_arm(self) -> int:
         """
         Seleccionamos un brazo basado en la distribución de probabilidad de Boltzmann (Softmax).
@@ -35,7 +35,12 @@ class Softmax(Algorithm):
         # Obtenemos los valores Q actuales (self.values)
         # Aplicamos la fórmula: e^(Q(a)/tau)
         # Nota: Para estabilidad numérica, a veces se resta el max(Q) antes de exponenciar, 
-        
+        if self.exploring:
+            # Hacemos una primera exploración inicial de todos los brazos (solo en la primera llamada a select_arm)
+            for arm in range(self.k):
+                if self.counts[arm] == 0:  # Si el brazo no ha sido seleccionado aún
+                    return arm  # Seleccionamos ese brazo para explorarlo
+                
         exp_values = np.exp(self.values / self.temperature)
         
         # Calculamos el denominador: suma de todos los exponenciales
