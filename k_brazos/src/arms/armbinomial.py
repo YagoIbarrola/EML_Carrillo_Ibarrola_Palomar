@@ -77,3 +77,19 @@ class ArmBinomial(Arm):
         arms = [cls(n, p, scale = scale) for p in p_values]
 
         return arms
+    
+    @classmethod
+    def generate_arms_with_fixed_means(cls, means: list, n: int = 1, scale: float = 1.0):
+        """
+        Genera brazos con medias fijas proporcionadas en la lista.
+
+        :param means: Lista de medias para cada brazo.
+        :param n: Número de ensayos fijo para todos los brazos.
+        :param scale: Escala de los brazos generados.
+        :return: Lista de brazos generados.
+        """
+        assert len(means) > 0, "La lista de medias no puede estar vacía."
+
+        arms = [cls(n, p, scale = scale) for p in means]
+
+        return arms

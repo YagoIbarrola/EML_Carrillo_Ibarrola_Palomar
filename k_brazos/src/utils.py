@@ -29,8 +29,10 @@ def run_experiment(bandit: Bandit, algorithms: List[Algorithm], steps: int, runs
     optimal_selections = np.zeros((len(algorithms), steps))
     # REG 2. Matriz para el Regret
     regret = np.zeros((len(algorithms), steps))
-    # ARM 1. Inicializamos matrices para acumular estadísticas finales de los brazos (para plot_arm_statistics)
-    # Acumularemos counts y values (Q) de cada 'run'
+    
+    # Registro de los brazos elegidos por paso y algoritmo
+    chosen_arms = np.zeros((len(algorithms), k, steps), dtype=int)
+
     acc_counts = np.zeros((len(algorithms), k))
     acc_values = np.zeros((len(algorithms), k))
 
@@ -58,7 +60,8 @@ def run_experiment(bandit: Bandit, algorithms: List[Algorithm], steps: int, runs
                 algo.update(chosen_arm, reward)
 
                 rewards[idx, step] += reward
-                #total_rewards_per_algo[idx] += reward
+                
+                chosen_arms[idx, chosen_arm, step] += 1
 
                 if chosen_arm == optimal_arm:
                     optimal_selections[idx, step] += 1
@@ -81,7 +84,7 @@ def run_experiment(bandit: Bandit, algorithms: List[Algorithm], steps: int, runs
     
     # REG 4. Promediar el regret instantáneo y luego hacer la suma acumulativa
     regret /= runs
-    regret_accumulated = np.cumsum(regret, axis=1) # Acumulamos el regret a lo largo del tiempo (para cada t) para cada algoritmo
+    regret_accumulated = np.cumsum(regret, axis=1)
 
     # ARM 3. Preparamos la estructura de datos para plot_arm_statistics
     # Promediamos conteos y valores acumulados
@@ -93,7 +96,8 @@ def run_experiment(bandit: Bandit, algorithms: List[Algorithm], steps: int, runs
     for idx in range(len(algorithms)):
         arms_stats.append({
             'counts': avg_counts[idx],
-            'average_rewards': avg_values[idx]
+            'average_rewards': avg_values[idx],
+            'chosen_arms': chosen_arms[idx].tolist() # Lista de brazos por step
         })
 
-    return rewards, optimal_selections, arms_stats, regret_accumulated # es interesante ver regret
+    return rewards, optimal_selections, arms_stats, regret_accumulated
