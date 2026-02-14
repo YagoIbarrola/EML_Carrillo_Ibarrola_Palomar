@@ -22,7 +22,7 @@ class UCB2(Algorithm):
         self.alpha = alpha
 
         # ka: número de épocas (rondas de selección) para cada brazo
-        self.ka = np.zeros(k, dtype=int)
+        self.num_epoch_arm = np.zeros(k, dtype=int)
         
         # Estado interno para gestionar las épocas (batches)
         self.current_batch_arm = None  # Brazo que se está ejecutando en la época actual
@@ -62,29 +62,28 @@ class UCB2(Algorithm):
                 # Q(a) es self.values[a]
                 mean_reward = self.values[a]
                 
-                # Recuperamos ka (número de épocas actuales para el brazo a)
-                r = self.ka[a]
-                tau_ka = self._tau(r)
+                # Obtenemos tau del número de épocas actuales para el brazo a
+                tau_r = self._tau(self.num_epoch_arm[a])
                 
-                numerator = (1 + self.alpha) * np.log((np.e * t) / tau_ka)
-                denominator = 2 * tau_ka
+                numerator = (1 + self.alpha) * np.log((np.e * t) / tau_r)
+                denominator = 2 * tau_r
                 
                 ucb_values[a] = mean_reward + np.sqrt(numerator / denominator)
 
             # Seleccionar la acción con el índice máximo
             selected_arm = np.argmax(ucb_values)
             
-            # Calcular duración de la nueva época. Duración = tau(ka + 1) - tau(ka)
-            ka_current = self.ka[selected_arm]
-            duration = int(np.ceil(self._tau(ka_current + 1) - self._tau(ka_current)))
+            # Calcular duración de la nueva época. Duración = tau(r + 1) - tau(r)
+            r = self.num_epoch_arm[selected_arm]
+            duration = int(np.ceil(self._tau(r + 1) - self._tau(r)))
             
             # Actualizamos estado interno para mantener este brazo durante 'duration' pasos
             self.current_batch_arm = selected_arm
             # Restamos 1 porque vamos a devolver el brazo ahora mismo
             self.batch_remaining = max(0, duration - 1)
             
-            # Actualizar ka
-            self.ka[selected_arm] += 1
+            # Actualizar num_epoch_arm
+            self.num_epoch_arm[selected_arm] += 1
             
             return selected_arm
 
