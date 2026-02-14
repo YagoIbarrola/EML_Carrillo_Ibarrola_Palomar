@@ -20,22 +20,22 @@ class UCB2(Algorithm):
 
         super().__init__(k)
         self.alpha = alpha
-
-        # ka: número de épocas (rondas de selección) para cada brazo
-        self.num_epoch_arm = np.zeros(k, dtype=int)
+        self.k = k
+        # Número de épocas para cada brazo
+        self.num_epoch_arm = np.zeros(self.k, dtype=int)
         
-        # Estado interno para gestionar las épocas (batches)
+        # Estado interno para gestionar las épocas
         self.current_batch_arm = None  # Brazo que se está ejecutando en la época actual
         self.batch_remaining = 0       # Cuántas veces falta tirar de este brazo
 
     # BASÁNDONOS en epsilon_greedy.py, el pseudocódigo de la diapositiva 38 y la fórmula de la 38
 
-    def _tau(self, r: int) -> int:
+    def _tau(self, r: int):
         """
-        Calcula la función tau(ka) = ceiling((1 + alpha)^r). Siendo r = ka
+        Calcula la función tau(r) = (1 + alpha)^r.
         Determina el tamaño acumulado de las épocas.
         """
-        return int(np.ceil((1 + self.alpha) ** r))
+        return (1 + self.alpha) ** r
 
     def select_arm(self) -> int:
             """
@@ -44,7 +44,6 @@ class UCB2(Algorithm):
             Si estamos dentro de una época (batch), devuelve el mismo brazo.
             Si no, calcula UCB2 para todos, selecciona el mejor y calcula la duración de la nueva época.
             """
-            
             # Selecciona cada acción una vez al principio.
             t = np.sum(self.counts)
             if t < self.k: # Selecciona cada acción una vez al principio.
@@ -64,7 +63,7 @@ class UCB2(Algorithm):
                 
                 # Obtenemos tau del número de épocas actuales para el brazo a
                 tau_r = self._tau(self.num_epoch_arm[a])
-                
+
                 numerator = (1 + self.alpha) * np.log((np.e * t) / tau_r)
                 denominator = 2 * tau_r
                 
@@ -87,10 +86,14 @@ class UCB2(Algorithm):
             
             return selected_arm
 
-    # def update(self, chosen_arm: int, reward: float):
-    #     """
-    #     Actualiza las estadísticas.
-    #     """
-    #     super().update(chosen_arm, reward)
-    #     self.total_steps += 1
-    #     print(f"UCB2 Update: chosen_arm={chosen_arm}, reward={reward}, total_steps={self.total_steps}, ka={self.ka}, batch_remaining={self.batch_remaining}")
+    def reset(self):
+        """
+        Reinicia el algoritmo.
+        """
+        super().reset()
+        # Número de épocas para cada brazo
+        self.num_epoch_arm = np.zeros(self.k, dtype=int)
+        
+        # Estado interno para gestionar las épocas
+        self.current_batch_arm = None  # Brazo que se está ejecutando en la época actual
+        self.batch_remaining = 0       # Cuántas veces falta tirar de este brazo
