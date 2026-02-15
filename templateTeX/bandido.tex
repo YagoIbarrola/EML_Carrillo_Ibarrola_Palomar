@@ -46,7 +46,7 @@ problema del bandido de $k$-brazos. Los objetivos específicos son:
     con distintas distribuciones de recompensa (Normal, Bernoulli y Binomial), siempre 
     considerando las mismas recompensas de cada brazo para garantizar una comparación justa.
     \item \textbf{Evaluación de Métricas:} Analizar la eficacia de los agentes mediante las métricas de 
-    Recompensa Promedia, Porcentaje de Selección del Brazo Óptimo y Rechazo Acumulado.
+    Recompensa Promedio, Porcentaje de Selección del Brazo Óptimo, Estadísticas por Brazo y Regret Acumulado.
     \item \textbf{Estudio de Hiperparámetros:} Investigar cómo afectan parámetros como la tasa 
     de exploración $\epsilon$ o la temperatura $\tau$ en el comportamiento de convergencia y estabilidad 
     de los agentes.
@@ -63,7 +63,7 @@ El resto del presente documento se estructura de la siguiente manera:
     de los algoritmos implementados.
     \item La \textbf{Sección 4} presenta los resultados experimentales obtenidos, para lo cual 
     se incluyen gráficos y métricas, junto con un análisis crítico de los mismos. También se realizan comparaciones
-    en el caso de $\epsilon$-Greedy con $epsilon$-decaimiento y UCB1 con UCB2.
+    en el caso de $\epsilon$-Greedy con $\epsilon$-decaimiento y UCB1 con UCB2.
     \item Finalmente, en la \textbf{Sección 5}, se exponen las conclusiones principales derivadas del estudio.
 \end{itemize}
 
@@ -93,7 +93,7 @@ La literatura del aprendizaje por refuerzo clasifica las estrategias de resoluci
 Los enfoques clásicos se dividen en:
 \begin{itemize}
     \item \textbf{Métodos Voraces (Greedy) y $\epsilon$-Greedy:} Son los enfoques más simples, donde el agente alterna entre explotar el conocimiento actual con probabilidad $1-\epsilon$ y explorar aleatoriamente con probabilidad $\epsilon$. Aunque efectivos, no consideran la varianza de las estimaciones.
-    \item \textbf{Métodos de Intervalo de Confianza (UCB):} Basados en el principio de \"optimismo ante la incertidumbre\", estos algoritmos (como UCB1) seleccionan acciones basándose en el límite superior de un intervalo de confianza, favoreciendo acciones poco exploradas de manera determinista.
+    \item \textbf{Métodos de Intervalo de Confianza (UCB):} Basados en el principio de ``optimismo ante la incertidumbre'', estos algoritmos (como UCB1) seleccionan acciones basándose en el límite superior de un intervalo de confianza, favoreciendo acciones poco exploradas de manera determinista.
     \item \textbf{Métodos de Gradiente y Softmax:} A diferencia de los anteriores, que estiman valores de acción, 
     estos métodos aprenden una preferencia numérica $H_t(a)$ para cada acción o 
     utilizan una distribución de probabilidad de Boltzmann (Softmax) dependiente de 
@@ -120,6 +120,16 @@ Este método mantiene estimaciones $Q_t(a)$ del valor de cada brazo mediante pro
     \end{cases}
 \end{equation}
 Se han realizado experimentos variando $\epsilon$ para analizar su impacto en la convergencia.
+
+
+
+\subsubsection{Algoritmo $\epsilon$-decaimiento}
+Como variante del anterior, se ha implementado una versión de $\epsilon$-Greedy con decaimiento inversamente proporcional al tiempo, lo que permite una exploración más intensa en las etapas iniciales y una mayor explotación a medida que se acumula información:
+\begin{equation}
+    \epsilon_t = \max\left(\epsilon_{min}, \frac{\epsilon_0}{1 + \lambda_{decay} t}\right)
+\end{equation}
+donde $\epsilon_0$ es el valor inicial de exploración, $\lambda_{decay}$ controla la velocidad de decaimiento y $\epsilon_{min}$ garantiza un nivel mínimo de exploración a largo plazo.
+
 
 \subsubsection{Algoritmo Softmax (Distribución de Gibbs)}
 Este método selecciona acciones basándose en probabilidades calculadas mediante una distribución de Boltzmann. La probabilidad de seleccionar la acción $a$ en el tiempo $t$ viene dada por:
@@ -182,7 +192,7 @@ El algoritmo $\epsilon$-Greedy es la estrategia base por excelencia en el aprend
 \subsubsection{Descripción y Justificación}
 A diferencia de $\epsilon$-Greedy, el algoritmo Softmax asigna probabilidades de selección 
 proporcionales al valor estimado de cada brazo. Se justifica su inclusión porque representa 
-una estrategia más sofisticada que penaliza las acciones con un rendimiento más ponre, concentrando 
+una estrategia más sofisticada que penaliza las acciones con un rendimiento más pobre, concentrando 
 la exploración en las acciones que son casi tan buenas como la óptima, evitando así probar 
 iteradamente las peores opciones, como sí hace $epsilon$-greedy. La temperatura $\tau$ regula la sensibilidad de estas 
 probabilidades ante las diferencias en los valores $Q$.
@@ -280,7 +290,93 @@ ya que presentaba una convergencia más lenta), promediando los resultados sobre
     \item \textbf{Estadísticas por Brazo:} Histograma de selecciones que permite visualizar si el agente convergió al brazo óptimo o quedó atrapado en óptimos locales.
 \end{enumerate}
 
+
 \subsection{Resultados: Familia $\epsilon$-Greedy}
+
+Se evaluó el algoritmo $\epsilon$-Greedy para valores $\epsilon \in \{0, 0.01, 0.1\}$, así como su variante con decaimiento ($\epsilon$-decaimiento). A diferencia de Softmax, esta familia incluye una fase de exploración inicial explícita.
+
+Para todas las distribuciones se observó que:
+
+\begin{itemize}
+    \item \textbf{$\epsilon = 0$ (Explotación pura):} Tras la exploración inicial forzada, el agente selecciona siempre el brazo con mayor recompensa estimada. 
+    En el experimento base con distribución Normal ($\sigma = 1$), este enfoque obtuvo un rendimiento muy alto, ya que en la mayoría de las ejecuciones la estimación inicial fue suficientemente representativa como para identificar correctamente el brazo óptimo desde el principio. 
+    No obstante, su comportamiento es extremadamente sensible al ruido: cuando la estimación inicial es errónea, el algoritmo queda atrapado en un brazo subóptimo durante toda la ejecución. Hechos que quedaron evidenciados al aumentar la desviación típica a $\sigma = 10$, donde el rendimiento se desplomó debido a la alta probabilidad de obtener muestras iniciales no representativas.
+
+    \item \textbf{$\epsilon = 0.01$ (Exploración baja):} Introduce una exploración moderada (1\% de las veces), lo que permite corregir posibles errores iniciales sin penalizar excesivamente la explotación. 
+    Su convergencia es más lenta que la de $\epsilon=0.1$ en las primeras etapas, pero a largo plazo alcanza recompensas promedio muy cercanas al óptimo, ya que la probabilidad de seleccionar brazos subóptimos es muy reducida.
+
+    \item \textbf{$\epsilon = 0.1$ (Exploración alta):} Aprende con mayor rapidez durante las primeras iteraciones, ya que explora con mayor frecuencia y detecta antes el brazo óptimo. 
+    Sin embargo, su recompensa promedio se estabiliza por debajo del óptimo teórico, debido a que mantiene permanentemente una probabilidad del 10\% de seleccionar brazos subóptimos.
+
+    \item \textbf{$\epsilon$-decaimiento:} Comienza con una exploración elevada ($\epsilon_0 = 1.0$) y la reduce progresivamente según la función 
+    $$
+    \epsilon(t) = \frac{\epsilon_0}{1 + \lambda t},
+    $$
+    con un mínimo $\epsilon_{min}=0.01$. 
+    Este esquema combina una exploración intensiva inicial con una explotación dominante a largo plazo, logrando el mejor compromiso global entre rapidez de aprendizaje y rendimiento final.
+\end{itemize}
+
+La Figura~\ref{fig:egreedy_reward_normal} muestra la evolución de la recompensa promedio en el caso base con distribución Normal ($\sigma=1$).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{resources/egreedy_reward_normal_sigma1.png}
+    \caption{Recompensa promedio en función del número de pasos para la familia $\epsilon$-Greedy bajo distribución Normal con $\sigma=1$.}
+    \label{fig:egreedy_reward_normal}
+\end{figure}
+
+% En términos de \textbf{regret acumulado}, todos los algoritmos presentan inicialmente un crecimiento rápido debido a la fase de exploración. Sin embargo:
+
+% \begin{itemize}
+%     \item Para $\epsilon=0$, el regret se estabiliza rápidamente si la estimación inicial fue correcta, pero puede crecer linealmente en las ejecuciones donde el algoritmo se estanca en un brazo subóptimo.
+%     \item Para $\epsilon>0$, el regret crece de manera aproximadamente lineal a largo plazo, debido a la exploración constante.
+%     \item El algoritmo $\epsilon$-decaimiento presenta el crecimiento más controlado, ya que la exploración disminuye con el tiempo, reduciendo progresivamente la contribución al regret.
+% \end{itemize}
+
+\paragraph{Impacto de la varianza en la distribución Normal.}
+
+Al aumentar la desviación típica a $\sigma = 10$, se observó una degradación significativa en el rendimiento de $\epsilon=0$. 
+La elevada varianza hace que las muestras iniciales sean poco representativas de la media real de cada brazo, incrementando la probabilidad de seleccionar incorrectamente un brazo subóptimo y explotarlo durante toda la ejecución.
+
+En contraste, los algoritmos con exploración ($\epsilon=0.01$, $\epsilon=0.1$ y $\epsilon$-decaimiento) logran corregir estas estimaciones erróneas gracias a la exploración continua, superando claramente al caso puramente explotador.
+
+Por el contrario, al reducir la desviación típica a $\sigma = 0.1$, las muestras iniciales se vuelven altamente representativas. En este escenario, $\epsilon=0$ alcanza el 100\% de selección del brazo óptimo en todas las ejecuciones, convirtiéndose en la mejor estrategia.
+
+Este efecto puede observarse claramente en la Figura~\ref{fig:egreedy_variance_effect}, donde se observa cómo afecta al porcentaje de selección del brazo óptimo el hecho de que la desviación típica sea $\sigma=10$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{resources/egreedy_variance_comparison.png}
+    \caption{Porcentaje de selección del brazo óptimo para $\sigma=10$ en la familia $\epsilon$-Greedy.}
+    \label{fig:egreedy_variance_effect}
+\end{figure}
+
+\paragraph{Resultados en la distribución de Bernoulli.}
+
+En la distribución de Bernoulli (recompensas 0 o 10), el ruido discreto introduce numerosos empates en las estimaciones iniciales y una elevada varianza en las primeras fases. Esto afecta especialmente a $\epsilon=0$ y $\epsilon=0.01$, que pueden quedar temporalmente atrapados en brazos subóptimos si el brazo óptimo falla en las primeras muestras, como se puede observar en la Figura~\ref{fig:egreedy_discrete}.
+
+No obstante, conforme aumenta el número de observaciones, las medias estimadas se estabilizan y todos los algoritmos mejoran progresivamente su porcentaje de selección del brazo óptimo.
+
+En este entorno, el algoritmo $\epsilon$-decaimiento mostró el comportamiento más robusto, ya que su fuerte exploración inicial le permite identificar correctamente el brazo óptimo incluso cuando las primeras observaciones son desfavorables.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{resources/egreedy_bernoulli_binomial.png}
+    \caption{Porcentaje de selección del brazo óptimo en distribuciones Bernoulli para los algoritmos $\epsilon$-Greedy.}
+    \label{fig:egreedy_discrete}
+\end{figure}
+
+\paragraph{Resultados en la distribución Binomial.}
+
+En la distribución Binomial ($n=10$), la varianza es menor que en la Bernoulli pura, ya que cada recompensa es la suma de varios ensayos independientes. Esto reduce los empates y estabiliza las estimaciones más rápidamente.
+
+Como consecuencia, el comportamiento observado es muy similar al caso Normal: todos los algoritmos logran identificar el brazo óptimo con el tiempo, siendo $\epsilon$-decaimiento y $\epsilon=0.01$ los que presentan el mejor rendimiento global a largo plazo.
+
+En conjunto, los resultados muestran que el desempeño de la familia $\epsilon$-Greedy depende críticamente del equilibrio entre exploración y explotación y de la varianza de la distribución de recompensas. 
+Una exploración constante elevada acelera el aprendizaje inicial pero penaliza el rendimiento final, mientras que la ausencia total de exploración solo es adecuada cuando las estimaciones iniciales son fiables. 
+La estrategia con decaimiento emerge como la opción más robusta y eficiente en entornos con incertidumbre moderada o alta.
+
+
 
 
 \subsection{Resultados: Familia Softmax}
@@ -338,7 +434,7 @@ Bernoulli (recompensas de 0 o 10).
     (fracaso), el promedio estimado de dicho brazo cae drásticamente.
     \item Debido a la baja temperatura, esta caída en el valor $Q$ reduce la probabilidad de selección del 
     brazo a casi cero de forma inmediata.
-    \item Los "ceros" actúan como un mecanismo de seguridad que fuerza al algoritmo a abandonar los óptimos 
+    \item Los ``ceros'' actúan como un mecanismo de seguridad que fuerza al algoritmo a abandonar los óptimos 
     locales y seguir explorando, mitigando el riesgo de estancamiento típico de las políticas voraces.
 \end{enumerate}
 
@@ -380,14 +476,51 @@ con una fase de exploración inicial que garantice una cobertura mínima de toda
 
 
 \subsection{Análisis Comparativo Global}
-Finalmente, se realizó un experimento conjunto ('Competición de Algoritmos') utilizando la distribución Normal para enfrentar las mejores configuraciones de cada familia: $\epsilon$-Greedy (con decaimiento), Softmax ($\tau$ óptimo) y UCB1.
+
+Se realizó un experimento conjunto utilizando una distribución Normal con $\mu \in [1,10]$, $\sigma=1$, $k=10$ brazos, 500 ejecuciones y 1000 pasos, comparando cinco algoritmos: $\epsilon$-Greedy ($\epsilon=0.01$), $\epsilon$-decaimiento ($\epsilon_0=1$, $\lambda=0.01$, $\epsilon_{min}=0.01$), UCB1 ($c=1$), UCB2 ($\alpha=0.1$) y Softmax ($\tau=0.1$).
 
 \subsubsection{Discusión de Resultados}
+
 \begin{itemize}
-    \item \textbf{Convergencia:} UCB1 mostró la convergencia más segura y estable, dominando en las etapas iniciales gracias a su exploración dirigida.
-    \item \textbf{Rendimiento Final:} Softmax, con la temperatura adecuada, logró en ocasiones superar levemente a UCB1 en recompensa final promedio, aunque a costa de un mayor riesgo de inestabilidad si los parámetros no se ajustan perfectamente.
-    \item \textbf{Conclusión:} Mientras que Softmax puede ofrecer picos de rendimiento superiores bajo un ajuste fino (tuning) preciso, UCB1 se presenta como la opción más fiable y consistente para entornos desconocidos donde no es posible realizar una búsqueda de hiperparámetros previa.
+    \item \textbf{Convergencia y selección óptima:} UCB2 mostró el mejor comportamiento global, alcanzando aproximadamente un 99\% de selección del brazo óptimo, seguido muy de cerca por UCB1 (98\%). Ambos métodos presentan una convergencia rápida y estable gracias a su exploración dirigida basada en incertidumbre. Softmax (95\%) y $\epsilon=0.01$ (89\%) mantienen una exploración residual constante, lo que limita su convergencia al 100\%. A $\epsilon$-decaimiento (91\%) le ocurre lo mismo, y además, su elevada exploración inicial disminuye su recompensa promedio al principio.
+
+    La comparación directa del porcentaje de selección óptima se presenta en la Figura~\ref{fig:global_optimal_selection}.
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{resources/global_optimal_selection.png}
+    \caption{Porcentaje de selección del brazo óptimo en el experimento comparativo global.}
+    \label{fig:global_optimal_selection}
+    \end{figure}
+
+
+    \item \textbf{Rendimiento en recompensa promedio:} Salvo $\epsilon$-decaimiento, todos los algoritmos convergen rápidamente hacia la media del brazo óptimo (9.56 en esta instancia). UCB1, UCB2, Softmax y $\epsilon=0.01$ alcanzan prácticamente el mismo valor final. El $\epsilon$-decaimiento presenta un crecimiento más lento debido al coste inicial de exploración, aunque con un horizonte mayor tendería al mismo nivel.
+
+    La evolución de la recompensa promedio puede observarse en la Figura~\ref{fig:global_reward}.
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{resources/global_reward_comparison.png}
+    \caption{Recompensa promedio acumulada en el experimento comparativo global.}
+    \label{fig:global_reward}
+    \end{figure}
+
+
+    \item \textbf{Regret acumulado:} UCB1 y UCB2 mantienen el menor regret global. Softmax y $\epsilon=0.01$ presentan un crecimiento moderado debido a su exploración constante. $\epsilon$-decaimiento acumula mayor regret en las primeras fases, lo que afecta su rendimiento observable en horizontes finitos.
+
+    El comportamiento del regret acumulado se muestra en la Figura~\ref{fig:global_regret}.
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{resources/global_regret_comparison.png}
+    \caption{Regret acumulado en el experimento comparativo global.}
+    \label{fig:global_regret}
+    \end{figure}
+
+
+    \item \textbf{Conclusión:} En este experimento concreto, UCB2 se posiciona como la estrategia más eficiente y robusta, combinando rápida convergencia, máxima selección óptima y bajo regret. UCB1 ofrece resultados prácticamente equivalentes. Softmax y $\epsilon$-Greedy con $\epsilon$ pequeño son competitivos en recompensa promedio, pero estructuralmente menos eficientes en términos de identificación de brazon óptimo. El esquema con decaimiento resulta más sensible al horizonte temporal considerado.
 \end{itemize}
+
 
     
 

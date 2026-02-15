@@ -1,0 +1,51 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{\numberline {1}Problema del Bandido de $k$-brazos}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Introducción}{3}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Descripción del problema y relevancia}{3}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Motivación del trabajo}{3}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}Objetivos del informe}{3}{subsection.1.1.3}%
+\contentsline {subsection}{\numberline {1.1.4}Organización del documento}{3}{subsection.1.1.4}%
+\contentsline {section}{\numberline {1.2}Desarrollo}{3}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Definición Formal del Problema}{3}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Enfoques Existentes y Estado del Arte}{4}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}Contexto y Aplicaciones Específicas}{4}{subsection.1.2.3}%
+\contentsline {subsection}{\numberline {1.2.4}Métodos Utilizados}{4}{subsection.1.2.4}%
+\contentsline {subsubsection}{Algoritmo $\epsilon $-Greedy}{4}{subsubsection*.2}%
+\contentsline {subsubsection}{Algoritmo $\epsilon $-decaimiento}{4}{subsubsection*.3}%
+\contentsline {subsubsection}{Algoritmo Softmax (Distribución de Gibbs)}{4}{subsubsection*.4}%
+\contentsline {subsubsection}{Algoritmo UCB1 (Upper Confidence Bound)}{4}{subsubsection*.5}%
+\contentsline {subsubsection}{Algoritmo UCB2}{4}{subsubsection*.6}%
+\contentsline {section}{\numberline {1.3}Algoritmos}{5}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Algoritmo $\epsilon $-Greedy}{5}{subsection.1.3.1}%
+\contentsline {subsubsection}{Descripción y Justificación}{5}{subsubsection*.7}%
+\contentsline {subsubsection}{Pseudocódigo}{5}{subsubsection*.8}%
+\contentsline {subsection}{\numberline {1.3.2}Algoritmo Softmax (Distribución de Gibbs)}{5}{subsection.1.3.2}%
+\contentsline {subsubsection}{Descripción y Justificación}{5}{subsubsection*.9}%
+\contentsline {subsubsection}{Pseudocódigo}{5}{subsubsection*.10}%
+\contentsline {subsection}{\numberline {1.3.3}Algoritmo UCB1 (Upper Confidence Bound)}{5}{subsection.1.3.3}%
+\contentsline {subsubsection}{Descripción y Justificación}{5}{subsubsection*.11}%
+\contentsline {subsubsection}{Pseudocódigo}{5}{subsubsection*.12}%
+\contentsline {section}{\numberline {1.4}Evaluación y Experimentos}{5}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Configuración Experimental}{5}{subsection.1.4.1}%
+\contentsline {subsubsection}{Entornos de Prueba}{6}{subsubsection*.13}%
+\contentsline {subsubsection}{Herramientas y Reproducibilidad}{6}{subsubsection*.14}%
+\contentsline {subsubsection}{Métricas de Desempeño}{6}{subsubsection*.15}%
+\contentsline {subsection}{\numberline {1.4.2}Resultados: Familia $\epsilon $-Greedy}{6}{subsection.1.4.2}%
+\contentsline {paragraph}{Impacto de la varianza en la distribución Normal.}{7}{paragraph*.16}%
+\contentsline {paragraph}{Resultados en la distribución de Bernoulli.}{7}{paragraph*.17}%
+\contentsline {paragraph}{Resultados en la distribución Binomial.}{7}{paragraph*.18}%
+\contentsline {subsection}{\numberline {1.4.3}Resultados: Familia Softmax}{7}{subsection.1.4.3}%
+\contentsline {paragraph}{Resultados distintos en la distribución de Bernoulli}{8}{paragraph*.19}%
+\contentsline {subsubsection}{Experimento Adicional: Impacto de la Exploración Inicial}{8}{subsubsection*.20}%
+\contentsline {subsection}{\numberline {1.4.4}Resultados: Familia UCB (Upper Confidence Bound)}{9}{subsection.1.4.4}%
+\contentsline {subsection}{\numberline {1.4.5}Análisis Comparativo Global}{9}{subsection.1.4.5}%
+\contentsline {subsubsection}{Discusión de Resultados}{9}{subsubsection*.21}%
+\contentsline {section}{\numberline {1.5}Conclusiones}{10}{section.1.5}%
+\contentsline {chapter}{\numberline {2}Aprendizaje en Entornos Complejos}{11}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Introducción }{11}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Desarrollo}{11}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Trabajos Relacionados}{11}{subsection.2.2.1}%
+\contentsline {subsubsection}{Más subsecciones}{11}{subsubsection*.22}%
+\contentsline {section}{\numberline {2.3}Algoritmos}{11}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Evaluación/Experimentos}{11}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Conclusiones}{12}{section.2.5}%
