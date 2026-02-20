@@ -474,6 +474,98 @@ con una fase de exploración inicial que garantice una cobertura mínima de toda
 
 \subsection{Resultados: Familia UCB (Upper Confidence Bound)}
 
+Se evaluaron los algoritmos UCB1 y UCB2, en el caso de UCB1 variando el parámetro de exploración $C \in \{0.5, 1, 2\}$ y en el de UCB2 variando la duración de épocas $\alpha \in \{0.1, 0.01, 0.001\}$.
+
+Para todas las distribuciones, se observó que:
+\begin{itemize}
+    \item \textbf{UCB1:} El agente presenta siempre un buen aprovechamiento de la información previamente adquirida, 
+    con una curva de aprendizaje muy pronunciada. La variación de $C$ modifica de manera suave el equilibrio entre 
+    exploración y explotación. Con $C=2.0$, el agente se comporta de manera más exploradora, mientras que con $C=0.5$
+    se vuelve más voraz, como se puede observar en la Figura \ref{fig:ucb_histograma1}.
+    \item \textbf{UCB2}: También es un algoritmo muy eficaz, alcanzando en rendimientos similares y en algunos casos 
+    superiores a UCB1. Al trabajar con épocas, los agentes presentan un comportamiento oscilatorio entre explotación 
+    del brazo óptimo y exploración de brazos subóptimos, que depende del parámetro $\alpha$. El valor $\alpha=0.1$ 
+    mostró el mejor rendimiento en nuestros experimentos, seguido usualmente por $\alpha=0.001$. Sin embargo, para el 
+    valor intermedio de $\alpha=0.01$ las oscilaciones mencionadas tenían un periodo de orden de magnitud similar al 
+    horizonte temporal del experimento, lo que causaba una caída considerable en el rendimiento en la mitad de cada 
+    ejecución, como se puede observar en la Figura \ref{fig:ucb_histograma2}. 
+\end{itemize}
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{resources/softmax_histograma.png}
+\caption{Histograma de selección de brazos con distribución Normal para el algoritmo Softmax con temperatura $tau = 0.1$.}
+\label{fig:softmax_histograma1}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{resources/softmax_histograma2.png}
+\caption{Histograma de selección de brazos con distribución Normal para el algoritmo Softmax con temperatura $tau = 5.0$.}
+\label{fig:softmax_histograma2}
+\end{figure}
+
+Además, se observó que el regret acumulado crece de manera lineal para todas las distribuciones, a diferencia de 
+los algoritmos de la familia UCB que presentan un crecimiento logarítmico. Esto lo podemos ver por ejemplo para la 
+distribución Normal en la Figura \ref{fig:softmax_regret}, pero es un comportamiento que se repite para las otras distribuciones.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{resources/softmax_regret.png}
+\caption{Evolución del regret acumulado para el algoritmo Softmax con distribución Normal.}
+\label{fig:softmax_regret}
+\end{figure}
+
+\paragraph{Resultados distintos en la distribución de Bernoulli}
+Al analizar los resultados en la distribución de Bernoulli , se detectó una anomalía 
+positiva en el rendimiento de la temperatura baja ($\tau=0.1$). A diferencia del caso Normal, 
+donde $\tau=0.1$ fallaba estrepitosamente, en el entorno binario su rendimiento mejoró notablemente, 
+acercándose al de $\tau=5.0$.
+
+Este fenómeno se atribuye a la naturaleza discreta y penalizadora de la distribución 
+Bernoulli (recompensas de 0 o 10).
+\begin{enumerate}
+    \item Cuando el algoritmo voraz ($\tau=0.1$) selecciona un brazo subóptimo y recibe una recompensa de 0 
+    (fracaso), el promedio estimado de dicho brazo cae drásticamente.
+    \item Debido a la baja temperatura, esta caída en el valor $Q$ reduce la probabilidad de selección del 
+    brazo a casi cero de forma inmediata.
+    \item Los ``ceros'' actúan como un mecanismo de seguridad que fuerza al algoritmo a abandonar los óptimos 
+    locales y seguir explorando, mitigando el riesgo de estancamiento típico de las políticas voraces.
+\end{enumerate}
+
+Esto se puede ver en la gráfica de la Figura \ref{fig:softmax_bernoulli} donde se observa que la 
+recompensa promedio obtenida con $\tau=0.1$ es muy similar a la obtenida con $\tau=5.0$:
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{resources/softmax_bernoulli.png}
+\caption{Evolución de la recompensa promedio para el algoritmo Softmax con distribución de Bernoulli.}
+\label{fig:softmax_bernoulli}
+\end{figure}
+
+\subsubsection{Experimento Adicional: Impacto de la Exploración Inicial}
+
+Dado que la configuración de baja temperatura ($\tau = 0.1$) tiende a converger prematuramente a 
+óptimos locales debido a su comportamiento voraz, se diseñó un experimento adicional para 
+mitigar este defecto. Se introdujo una fase de \textbf{exploración inicial forzada}, obligando
+al agente a seleccionar cada uno de los $k$ brazos una vez antes de aplicar la política Softmax estándar, al igual
+que se realiza en el algoritmo $epsilon$-greedy. Estos resultados se encuentran en la Figura \ref{fig:softmax_exploracion_inicial}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{resources/softmax_exploracion_inicial.png}
+\caption{Evolución del porcentaje de selección del brazo óptimo para el algoritmo Softmax con distribución Normal con fase de exploración inicial forzada.}
+\label{fig:softmax_exploracion_inicial}
+\end{figure}
+
+\textbf{Resultados obtenidos:}
+\begin{itemize}
+    \item \textbf{Mejora Crítica en $\tau=0.1$:} Esta primera pasada transformó radicalmente el rendimiento de esta configuración. Al garantizar una estimación inicial de todas las medias, el agente pudo identificar y explotar el brazo óptimo casi inmediatamente.
+    \item \textbf{Aceleración de la Convergencia:} Se observó una reducción drástica en el tiempo de estabilización del algoritmo, pasando de aproximadamente 3000 pasos (en la versión estándar) a converger cerca de los 500 pasos.
+    \item \textbf{Impacto Marginal en $\tau \ge 1.0$:} Para temperaturas medias y altas, la exploración inicial no aportó mejoras significativas, dado que la propia entropía de la distribución de Gibbs con estos valores ya garantiza una exploración suficiente por sí misma.
+\end{itemize}
+
+Este experimento confirma que las políticas casi-voraces ($\tau \to 0$) son viables y altamente eficientes si se combinan
+con una fase de exploración inicial que garantice una cobertura mínima de todas las acciones.
+
 
 \subsection{Análisis Comparativo Global}
 

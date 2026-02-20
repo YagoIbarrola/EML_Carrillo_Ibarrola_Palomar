@@ -1,13 +1,9 @@
 README
-Explorar primero y explotar después
 
 Ver 2 apuntes en epsilon greedy y no usar plural
 
 RECOMENDACIÓN DE PROFESOR: epsilon decaimiento no PONERLO A 0.0
 
-Hacer UCB1 como UCB2 (pasar por todos los brazos una vez, quitar el denomindaor no cero...)
-o usar en USB2 t = np.sum(self.counts)
-+1 en arm_statistics
-ver regret instantáneo
-
-UCB2 está mal implementao casi seguro, resultados muy raros, es muy cabezón
+No sé si pondría que UCB2 es el más robusto en las conclusiones, es un poco rarete y tiquismiquis.
+Falta Pseudocódigo UCB2
+Faltan figuras UCB
