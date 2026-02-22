@@ -2,44 +2,58 @@ import numpy as np
 import gymnasium as gym
 from agents.agent import Agent
 
-
 class TaxiAgentMontecarloOffPolicy(Agent):
     def __init__(
         self,
         env: gym.Env,
         epsilon: float = 0.4,
-        initial_epsilon: float = 1.0,
         epsilon_decay: float = 0.01,
         final_epsilon: float = 0.01,
         discount_factor: float = 1.0,
     ):
-        # Llamamos al constructor de la clase padre
         super().__init__(
             env=env,
             epsilon=epsilon,
-            initial_epsilon=initial_epsilon,
             epsilon_decay=epsilon_decay,
             final_epsilon=final_epsilon,
             discount_factor=discount_factor
         )
 
-        # Inicializamos la tabla Q y la matriz C (pesos acumulados)
+        # Inicializamos las estructuras de datos (Q, C y pi)
         self.Q = np.zeros([env.observation_space.n, env.action_space.n])
         self.C = np.zeros([env.observation_space.n, env.action_space.n])
+        
+        # Guardamos la politica optima de forma explicita (pi)
+        self.pi = np.zeros(env.observation_space.n, dtype=int)
+        
+        # Asignamos una accion aleatoria inicial para cada estado rompiendo el empate a cero
+        for s in range(env.observation_space.n):
+            self.pi[s] = self._random_argmax(self.Q[s])
 
-        # Preparamos una memoria temporal para almacenar las transiciones
+        # Preparamos nuestra memoria temporal para almacenar el episodio
         self.episode = []
-
-    def get_action(self, obs) -> int:
+        
+    def _random_argmax(self, q_values: np.ndarray) -> int:
+        # Encontramos el valor maximo actual
+        max_val = np.max(q_values)
+        
+        # Extraemos todos los indices que comparten exactamente ese valor maximo
+        indices_empate = np.flatnonzero(np.isclose(q_values, max_val))
+        
+        # Elegimos uno de los indices empatados al azar
+        return int(np.random.choice(indices_empate))
+    
+    def get_action(self, obs) -> tuple[int, bool]:
         """
-        Política de comportamiento (b): epsilon-greedy.
+        Politica de comportamiento (b): Cualquier politica suave (soft policy).
+        Usamos epsilon-greedy basandonos en nuestra politica objetivo pi.
         """
-        # Exploramos tomando una acción aleatoria con probabilidad epsilon
+        # Exploramos tomando una accion completamente aleatoria
         if np.random.random() < self.epsilon:
-            return self.env.action_space.sample()
-        # Explotamos eligiendo la mejor acción conocida
+            return self.env.action_space.sample(), True
+        # Explotamos tomando la accion que dicta nuestra politica optima
         else:
-            return int(np.argmax(self.Q[obs, :]))
+            return int(self.pi[obs]), False
 
     def update(
         self,
@@ -50,45 +64,45 @@ class TaxiAgentMontecarloOffPolicy(Agent):
         next_obs
     ):
         """
-        Adaptación de Monte Carlo Off-Policy para la interfaz paso a paso.
+        Implementacion estricta de Off-Policy MC control segun la literatura.
         """
-        # Guardamos la transición actual en nuestra memoria
+        # Anadimos el paso actual a nuestra memoria del episodio
         self.episode.append((obs, action, reward))
 
-        # Ejecutamos el aprendizaje Off-Policy solo cuando el episodio termina
+        # Procesamos todo el episodio una vez finalizado
         if terminated:
-            # Hacemos una copia de la tabla Q para calcular el error al finalizar
+            # Hacemos una copia de nuestra tabla Q para calcular el error posteriormente
             old_q = np.copy(self.Q)
 
             G = 0.0
             W = 1.0
             
-            # Recorremos el episodio hacia atrás
+            # Recorremos el episodio desde el estado final hasta el estado inicial
             for state, act, rew in reversed(self.episode):
                 G = rew + self.discount_factor * G
                 
-                # Actualizamos la matriz de pesos acumulados C
+                # Sumamos el peso al acumulador
                 self.C[state, act] += W
                 
-                # Actualizamos el valor Q usando la ponderación W/C
+                # Actualizamos nuestra estimacion de la tabla Q
                 self.Q[state, act] += (W / self.C[state, act]) * (G - self.Q[state, act])
                 
-                # Obtenemos la acción óptima según nuestra política objetivo (pi)
-                best_action = int(np.argmax(self.Q[state, :]))
+                # Actualizamos nuestra politica objetivo para este estado concreto
+                self.pi[state] = self._random_argmax(self.Q[state, :])
                 
-                # Rompemos el bucle si la acción tomada no coincide con la óptima
-                if act != best_action:
+                # Comprobamos si la accion tomada en el episodio diverge de nuestra politica optima
+                if act != self.pi[state]:
                     break
                     
-                # Calculamos la probabilidad de nuestra política de comportamiento (b)
+                # Calculamos la probabilidad de tomar esta accion bajo nuestra politica de comportamiento (b)
                 prob_b = (1.0 - self.epsilon) + (self.epsilon / self.env.action_space.n)
                 
-                # Ajustamos el peso W multiplicando por pi(A|S) / b(A|S)
+                # Ajustamos el peso multiplicandolo por 1 / b(A_t | S_t)
                 W = W * (1.0 / prob_b)
 
-            # Calculamos el error de entrenamiento y lo guardamos
+            # Calculamos el error maximo de entrenamiento para este paso
             error = np.max(np.abs(self.Q - old_q))
             self.training_error.append(error)
 
-            # Limpiamos la memoria para el siguiente episodio
+            # Vaciamos nuestra memoria de transiciones para el siguiente ciclo
             self.episode = []
