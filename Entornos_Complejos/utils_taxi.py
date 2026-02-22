@@ -37,14 +37,14 @@ def graficar_entrenamiento(env, agent, rolling_length=500):
     axs[1].set_xlabel("Episode")
 
     # Configuramos y graficamos el error de entrenamiento
-    axs[2].set_title("Training Error")
+    axs[2].set_title("Training Evolution")
     training_error_moving_average = get_moving_avgs(
         agent.training_error,
         rolling_length,
         "same"
     )
     axs[2].plot(range(len(training_error_moving_average)), training_error_moving_average)
-    axs[2].set_ylabel("Temporal Difference Error")
+    axs[2].set_ylabel("Temporal Difference")
     # Eje Y logarítmico para visualizar mejor la evolución del error a lo largo del entrenamiento
     axs[2].set_yscale("log")
     axs[2].set_xlabel("Step")

@@ -9,7 +9,6 @@ class TaxiAgentMontecarloOnPolicy(Agent):
         self,
         env: gym.Env,
         epsilon: float = 0.4,
-        initial_epsilon: float = 1.0,
         epsilon_decay: float = 0.01,
         final_epsilon: float = 0.01,
         discount_factor: float = 1.0,
@@ -18,7 +17,6 @@ class TaxiAgentMontecarloOnPolicy(Agent):
         super().__init__(
             env=env,
             epsilon=epsilon,
-            initial_epsilon=initial_epsilon,
             epsilon_decay=epsilon_decay,
             final_epsilon=final_epsilon,
             discount_factor=discount_factor,
@@ -29,16 +27,16 @@ class TaxiAgentMontecarloOnPolicy(Agent):
         self.n_visits = np.zeros([env.observation_space.n, env.action_space.n])
         self.episode = []  # Para almacenar las transiciones del episodio actual
 
-    def get_action(self, obs) -> int:
+    def get_action(self, obs) -> tuple[int, bool]:
         """
         Política epsilon-greedy: 
         Con probabilidad epsilon, exploramos tomando una acción aleatoria.
         Con probabilidad (1 - epsilon), explotamos tomando la mejor acción conocida.
         """
         if np.random.random() < self.epsilon:
-            return self.env.action_space.sample()
+            return self.env.action_space.sample(), True
         else:
-            return int(np.argmax(self.Q[obs, :]))
+            return int(np.argmax(self.Q[obs, :])), False
 
     def update(
         self,
