@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 import gymnasium as gym
-
+import numpy as np
 
 class Agent(ABC):
     def __init__(
@@ -61,3 +61,36 @@ class Agent(ABC):
         Reduce exploration rate after each episode.
         """
         self.epsilon = max(self.final_epsilon, self.epsilon - self.epsilon_decay)
+
+
+    def test(self, env, num_episodes=1000):
+        """Test agent performance without learning or exploration."""
+        total_rewards = []
+
+        # Temporarily disable exploration for testing
+        old_epsilon = self.epsilon
+        self.epsilon = 0.0  # Pure exploitation
+
+        for _ in range(num_episodes):
+            obs, info = env.reset()
+            episode_reward = 0
+            done = False
+
+            while not done:
+                action, _ = self.get_action(obs)
+                obs, reward, terminated, truncated, info = env.step(action)
+                episode_reward += reward
+                done = terminated or truncated
+
+            total_rewards.append(episode_reward)
+
+        # Restore original epsilon
+        self.epsilon = old_epsilon
+
+        win_rate = np.mean(np.array(total_rewards) > 0)
+        average_reward = np.mean(total_rewards)
+
+        print(f"Test Results over {num_episodes} episodes:")
+        print(f"Win Rate: {win_rate:.1%}")
+        print(f"Average Reward: {average_reward:.3f}")
+        print(f"Standard Deviation: {np.std(total_rewards):.3f}")
