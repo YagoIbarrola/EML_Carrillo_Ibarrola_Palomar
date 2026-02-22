@@ -26,12 +26,11 @@ class TaxiAgentSARSA(Agent):
         """
 
         super().__init__(
-            env,
-            learning_rate,
-            initial_epsilon,
-            epsilon_decay,
-            final_epsilon,
-            discount_factor,
+            env=env,
+            epsilon=initial_epsilon,
+            epsilon_decay=epsilon_decay,
+            final_epsilon=final_epsilon,
+            discount_factor=discount_factor,
         )
 
         #Additional attributes
@@ -76,3 +75,18 @@ class TaxiAgentSARSA(Agent):
         )
 
         self.training_error.append(temporal_difference)
+
+    def get_current_policy(self):
+        """
+        Extrae la política actual del agente evaluando el mejor Q-value para todos los estados posibles.
+        """
+        # Creamos un array vacío de tamaño 500 para guardar la mejor acción de cada estado
+        n_states = 500
+        policy = np.zeros(n_states, dtype=int)
+
+        for state in range(n_states):
+            # np.argmax nos da el índice de la acción con el valor más alto.
+            # Al consultar agent.q_values[state], el defaultdict creará una entrada de ceros 
+            # automáticamente si el estado nunca fue visitado (devolviendo 0 por defecto).
+            policy[state] = int(np.argmax(self.q_values[state]))
+        return policy

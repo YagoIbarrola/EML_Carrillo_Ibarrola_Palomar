@@ -81,3 +81,29 @@ def plot_training_metrics(
 
     plt.tight_layout()
     plt.show()
+
+
+
+def save_state(agent, is_exploring, obs, episode_history):
+    policy = agent.get_current_policy()
+    passenger_loc = (obs // 4) % 5  # Extraemos la ubicación del pasajero del estado
+    destination_idx = obs % 4           # Extraemos el destino del estado
+    tabla_acciones = get_policy_grid(agent.env, policy, passenger_loc, destination_idx)
+    episode_history.append((obs, is_exploring, tabla_acciones))
+
+def get_policy_grid(env, policy, passenger_loc, destination_idx):
+    """
+    Extrae una cuadrícula de 5x5 con las acciones óptimas asumiendo una 
+    ubicación fija para el pasajero y el destino.
+    """
+    grid = np.zeros((5, 5), dtype=int)
+    
+    for row in range(5):
+        for col in range(5):
+            # Calculamos el número de estado (0-499) para esta combinación exacta
+            state = env.unwrapped.encode(row, col, passenger_loc, destination_idx)
+            
+            # Guardamos la acción preferida en nuestra cuadrícula
+            grid[row][col] = policy[state]
+            
+    return grid

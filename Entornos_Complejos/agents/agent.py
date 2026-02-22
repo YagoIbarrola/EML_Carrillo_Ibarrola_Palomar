@@ -54,6 +54,14 @@ class Agent(ABC):
         """
         pass
 
+    @abstractmethod
+    def get_current_policy(self):
+        """
+        Return the current policy (e.g., action with highest Q-value for each state).
+        Must be implemented by subclasses.
+        """
+        pass
+    
     def decay_epsilon(self):
         """
         Reduce exploration rate after each episode.
