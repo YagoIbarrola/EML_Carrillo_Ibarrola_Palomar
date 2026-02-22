@@ -7,7 +7,6 @@ class Agent(ABC):
         self,
         env: gym.Env,
         epsilon: float,
-        initial_epsilon: float,
         epsilon_decay: float,
         final_epsilon: float,
         discount_factor: float,
@@ -28,7 +27,6 @@ class Agent(ABC):
 
         # Exploration parameters
         self.epsilon = epsilon
-        self.inital_epsilon = initial_epsilon
         self.epsilon_decay = epsilon_decay
         self.final_epsilon = final_epsilon
 

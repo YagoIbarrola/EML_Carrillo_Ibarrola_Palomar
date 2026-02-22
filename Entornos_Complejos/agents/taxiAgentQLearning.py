@@ -9,15 +9,15 @@ class TaxiAgentQLearning(Agent):
         self,
         env: gym.Env,
         learning_rate: float,
-        initial_epsilon: float,
+        epsilon: float,
         epsilon_decay: float,
         final_epsilon: float,
-        discount_factor: float = 1.0,
+        discount_factor: float = 0.95,
     ):
         super().__init__(
             env,
             learning_rate,
-            initial_epsilon,
+            epsilon,
             epsilon_decay,
             final_epsilon,
             discount_factor,
@@ -34,11 +34,11 @@ class TaxiAgentQLearning(Agent):
         """
         # Exploration
         if np.random.random() < self.epsilon:
-            return self.env.action_space.sample()
+            return self.env.action_space.sample(), True
 
         # Exploitation
         q_values = self.q_values[obs]
-        return int(np.argmax(q_values))
+        return int(np.argmax(q_values)), False
 
     def update(
         self,
