@@ -36,13 +36,9 @@ def animar_estados_taxi_gif(secuencia_estados, nombre_archivo="secuencia_taxi.gi
             frame[:, :grosor] = color_rojo
             frame[:, -grosor:] = color_rojo
             
-            '''
-            # OPCIÓN ALTERNATIVA: Tinte rojizo semitransparente en toda la imagen
-            # Descomenta esto y comenta lo del borde si prefieres este estilo
             frame_float = frame.astype(np.float32)
             frame_float[:, :, 0] = np.clip(frame_float[:, :, 0] + 80, 0, 255) # Aumentar rojo
             frame = frame_float.astype(np.uint8)
-            '''
 
         # Anadimos a nuestra lista
         fotogramas.append(frame)

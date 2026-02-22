@@ -38,11 +38,12 @@ class TaxiAgentSARSA(Agent):
         self.lr = learning_rate
         self.q_values = defaultdict(lambda: np.zeros(env.action_space.n))
 
-    def get_action(self, obs: int) -> int:
+    def get_action(self, obs: int) -> tuple[int, bool]:
         """Choose an action using epsilon-greedy strategy.
 
         Returns:
             action: An integer representing the chosen action.
+            is_exploring: A boolean indicating if the action was exploratory.
         """
         # Exploration
         if np.random.random() < self.epsilon:

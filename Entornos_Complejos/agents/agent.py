@@ -63,10 +63,10 @@ class Agent(ABC):
         self.epsilon = max(self.final_epsilon, self.epsilon - self.epsilon_decay)
 
 
-    def test(self, env, num_episodes=1000):
+    def test(self, num_episodes=1000):
         """Test agent performance without learning or exploration."""
         total_rewards = []
-
+        env = self.env
         # Temporarily disable exploration for testing
         old_epsilon = self.epsilon
         self.epsilon = 0.0  # Pure exploitation
