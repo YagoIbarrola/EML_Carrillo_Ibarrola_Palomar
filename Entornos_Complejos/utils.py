@@ -42,6 +42,7 @@ def plot_training_metrics(
 
     fig, axs = plt.subplots(ncols=3, figsize=(12, 5))
 
+
     # Episode rewards (win/loss performance)
     axs[0].set_title("Episode rewards")
     reward_moving_average = get_moving_avgs(
@@ -65,7 +66,7 @@ def plot_training_metrics(
     axs[1].set_xlabel("Episode")
 
     # Training error (how much we're still learning)
-    axs[2].set_title("Training Error")
+    axs[2].set_title("Delta_Q")
     training_error_moving_average = get_moving_avgs(
         training_errors,
         rolling_length,
@@ -74,6 +75,9 @@ def plot_training_metrics(
     axs[2].plot(training_error_moving_average)
     axs[2].set_ylabel("Temporal Difference Error")
     axs[2].set_xlabel("Step")
+
+    for i, ax in enumerate(axs):
+        ax.tick_params(axis='x', labelrotation=30)
 
     plt.tight_layout()
     plt.show()

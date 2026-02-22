@@ -16,12 +16,11 @@ class TaxiAgentDoubleQLearning(Agent):
         discount_factor: float = 0.95,
     ):
         super().__init__(
-            env,
-            learning_rate,
-            epsilon,
-            epsilon_decay,
-            final_epsilon,
-            discount_factor,
+            env=env,
+            epsilon=epsilon,
+            epsilon_decay=epsilon_decay,
+            final_epsilon=final_epsilon,
+            discount_factor=discount_factor,
         )
 
         # Two Q-tables
