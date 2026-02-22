@@ -12,7 +12,7 @@ class TaxiAgentQLearning(Agent):
         initial_epsilon: float,
         epsilon_decay: float,
         final_epsilon: float,
-        discount_factor: float = 0.95,
+        discount_factor: float = 1.0,
     ):
         super().__init__(
             env,

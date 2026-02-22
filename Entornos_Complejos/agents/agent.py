@@ -1,7 +1,5 @@
 from abc import ABC, abstractmethod
-from collections import defaultdict
 import gymnasium as gym
-import numpy as np
 
 
 class Agent(ABC):
