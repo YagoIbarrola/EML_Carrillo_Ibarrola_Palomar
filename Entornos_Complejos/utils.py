@@ -118,24 +118,15 @@ def get_policy_grid(env, policy, passenger_loc, destination_idx):
 
 def save_training_metrics(rewards, lengths, training_errors, filename):
     """
-    Guarda las métricas de entrenamiento en un archivo CSV.
+    Guarda las métricas de entrenamiento en un archivo Numpy (.npz).
 
     Args:
         rewards: Lista de recompensas por episodio
         lengths: Lista de longitudes de episodio
         training_errors: Lista de errores de entrenamiento (TD error)
-        filename: Nombre del archivo CSV para guardar las métricas
+        filename: Nombre del archivo Numpy (.npz) para guardar las métricas
     """
-    import pandas as pd
-
-    df = pd.DataFrame({
-        'Episode': range(1, len(rewards) + 1),
-        'Reward': rewards,
-        'Length': lengths,
-        'TD_Error': training_errors
-    })
-
-    df.to_csv(filename, index=False)
+    np.savez(filename, rewards=rewards, lengths=lengths, training_errors=training_errors)
 
 def load_training_metrics(filename):
     """
@@ -147,11 +138,9 @@ def load_training_metrics(filename):
     Returns:
         Tuple of lists: (rewards, lengths, training_errors)
     """
-    import pandas as pd
-
-    df = pd.read_csv(filename)
-    rewards = df['Reward'].tolist()
-    lengths = df['Length'].tolist()
-    training_errors = df['TD_Error'].tolist()
+    data = np.load(filename)
+    rewards = data['rewards']
+    lengths = data['lengths']
+    training_errors = data['training_errors']
 
     return rewards, lengths, training_errors
