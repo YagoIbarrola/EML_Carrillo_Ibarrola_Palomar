@@ -91,6 +91,45 @@ def plot_training_metrics(
     plt.show()
 
 
+def plot_training_metrics_multi(
+    rewards_list,
+    lengths_list,
+    training_errors_list,
+    labels,
+    rolling_length=500
+):
+    fig, axs = plt.subplots(ncols=3, figsize=(12, 5))
+
+    # Recompensas
+    axs[0].set_title("Episode rewards")
+    for rewards, label in zip(rewards_list, labels):
+        axs[0].plot(get_moving_avgs(rewards, rolling_length, "valid"), label=label)
+    axs[0].set_ylabel("Average Reward")
+    axs[0].set_xlabel("Episode")
+    axs[0].legend()
+
+    # Longitudes
+    axs[1].set_title("Episode lengths")
+    for lengths, label in zip(lengths_list, labels):
+        axs[1].plot(get_moving_avgs(lengths, rolling_length, "valid"), label=label)
+    axs[1].set_ylabel("Average Episode Length")
+    axs[1].set_xlabel("Episode")
+    axs[1].legend()
+
+    # Errores
+    axs[2].set_title("Delta_Q")
+    for errors, label in zip(training_errors_list, labels):
+        axs[2].plot(get_moving_avgs(errors, rolling_length, "same"), label=label)
+    axs[2].set_ylabel("Temporal Difference Error")
+    axs[2].set_xlabel("Step")
+    axs[2].legend()
+
+    for ax in axs:
+        ax.tick_params(axis='x', labelrotation=30)
+
+    plt.tight_layout()
+    plt.show()
+
 
 def save_state(agent, is_exploring, obs, episode_history):
     policy = agent.get_current_policy()

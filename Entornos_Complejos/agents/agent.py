@@ -100,3 +100,4 @@ class Agent(ABC):
         print(f"Win Rate: {win_rate:.1%}")
         print(f"Average Reward: {average_reward:.3f}")
         print(f"Standard Deviation: {np.std(total_rewards):.3f}")
+        return win_rate, average_reward, np.std(total_rewards)

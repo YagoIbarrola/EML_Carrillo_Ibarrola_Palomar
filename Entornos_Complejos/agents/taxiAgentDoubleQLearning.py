@@ -72,3 +72,18 @@ class TaxiAgentDoubleQLearning(Agent):
             self.q2_values[obs][action] += self.lr * td_error
 
         self.training_error.append(td_error)
+    
+    def get_current_policy(self):
+        """
+        Extrae la política actual del agente evaluando el mejor Q-value para todos los estados posibles.
+        """
+        # Creamos un array vacío de tamaño 500 para guardar la mejor acción de cada estado
+        n_states = 500
+        policy = np.zeros(n_states, dtype=int)
+
+        for state in range(n_states):
+            # np.argmax nos da el índice de la acción con el valor más alto.
+            # Al consultar agent.q_values[state], el defaultdict creará una entrada de ceros 
+            # automáticamente si el estado nunca fue visitado (devolviendo 0 por defecto).
+            policy[state] = int(np.argmax(self.q1_values[state] + self.q2_values[state]))
+        return policy
