@@ -95,9 +95,10 @@ class Agent(ABC):
 
         win_rate = np.mean(np.array(total_rewards) > 0)
         average_reward = np.mean(total_rewards)
+        standard_deviation = np.std(total_rewards)
 
         print(f"Test Results over {num_episodes} episodes:")
         print(f"Win Rate: {win_rate:.1%}")
         print(f"Average Reward: {average_reward:.3f}")
-        print(f"Standard Deviation: {np.std(total_rewards):.3f}")
-        return win_rate, average_reward, np.std(total_rewards)
+        print(f"Standard Deviation: {standard_deviation:.3f}")
+        return win_rate, average_reward, standard_deviation
