@@ -38,12 +38,18 @@ class TaxiAgentMontecarloOnPolicy(Agent):
         else:
             return int(np.argmax(self.Q[obs, :])), False
 
+    def get_current_policy(self):
+        """
+        Devolvemos la política actual, que es la acción con el mayor valor Q para cada estado.
+        """
+        return np.argmax(self.Q, axis=1)
+    
     def update(
         self,
         obs,
         action: int,
         reward: float,
-        terminated: bool,
+        done: bool,
         next_obs,
     ):
         """
@@ -52,7 +58,7 @@ class TaxiAgentMontecarloOnPolicy(Agent):
         """
         self.episode.append((obs, action, reward))
         # Si el episodio termina, ejecutamos el algoritmo de Monte Carlo
-        if terminated:
+        if done:
             # Guardamos una copia exacta de la tabla Q antes de aprender
             old_q = np.copy(self.Q)
 
