@@ -29,6 +29,7 @@ def plot_training_metrics(
     lengths,
     training_errors,
     rolling_length: int = 500,
+    isMonteCarlo: bool = False,
 ):
     """
     Plot smoothed training statistics.
@@ -66,14 +67,21 @@ def plot_training_metrics(
     axs[1].set_xlabel("Episode")
 
     # Training error (how much we're still learning)
-    axs[2].set_title("Delta_Q")
+    if isMonteCarlo:
+        title = "Training Evolution"
+        ylabel = "Temporal Difference"
+        axs[2].set_yscale("log")
+    else:
+        title = "Delta_Q"
+        ylabel = "Temporal Difference Error"
+    axs[2].set_title(title)
     training_error_moving_average = get_moving_avgs(
         training_errors,
         rolling_length,
         "same",
     )
     axs[2].plot(training_error_moving_average)
-    axs[2].set_ylabel("Temporal Difference Error")
+    axs[2].set_ylabel(ylabel)
     axs[2].set_xlabel("Step")
 
     for i, ax in enumerate(axs):
@@ -107,3 +115,43 @@ def get_policy_grid(env, policy, passenger_loc, destination_idx):
             grid[row][col] = policy[state]
             
     return grid
+
+def save_training_metrics(rewards, lengths, training_errors, filename):
+    """
+    Guarda las métricas de entrenamiento en un archivo CSV.
+
+    Args:
+        rewards: Lista de recompensas por episodio
+        lengths: Lista de longitudes de episodio
+        training_errors: Lista de errores de entrenamiento (TD error)
+        filename: Nombre del archivo CSV para guardar las métricas
+    """
+    import pandas as pd
+
+    df = pd.DataFrame({
+        'Episode': range(1, len(rewards) + 1),
+        'Reward': rewards,
+        'Length': lengths,
+        'TD_Error': training_errors
+    })
+
+    df.to_csv(filename, index=False)
+
+def load_training_metrics(filename):
+    """
+    Carga las métricas de entrenamiento desde un archivo CSV.
+
+    Args:
+        filename: Nombre del archivo CSV que contiene las métricas
+
+    Returns:
+        Tuple of lists: (rewards, lengths, training_errors)
+    """
+    import pandas as pd
+
+    df = pd.read_csv(filename)
+    rewards = df['Reward'].tolist()
+    lengths = df['Length'].tolist()
+    training_errors = df['TD_Error'].tolist()
+
+    return rewards, lengths, training_errors
