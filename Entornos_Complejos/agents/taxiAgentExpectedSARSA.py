@@ -12,6 +12,7 @@ class TaxiAgentExpectedSARSA(TaxiAgentSARSA):
         epsilon_decay: float,
         final_epsilon: float,
         discount_factor: float = 0.95,
+        decay_type: str = "linear",
     ):
         """Initialize a Expected SARSA agent.
 
@@ -31,6 +32,7 @@ class TaxiAgentExpectedSARSA(TaxiAgentSARSA):
             epsilon_decay,
             final_epsilon,
             discount_factor,
+            decay_type,
         )
 
     def get_action_probabilities(self, obs: int) -> np.ndarray:

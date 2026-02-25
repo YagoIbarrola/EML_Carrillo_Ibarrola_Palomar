@@ -10,6 +10,7 @@ class Agent(ABC):
         epsilon_decay: float,
         final_epsilon: float,
         discount_factor: float,
+        decay_type: str = "linear",
     ):
         """
         Base class for tabular RL agents.
@@ -26,12 +27,19 @@ class Agent(ABC):
         self.discount_factor = discount_factor
 
         # Exploration parameters
+        self.initial_epsilon = epsilon
         self.epsilon = epsilon
         self.epsilon_decay = epsilon_decay
         self.final_epsilon = final_epsilon
 
         # Track learning progress
         self.training_error = []
+
+        if decay_type not in ["linear", "inverse"]:
+            raise ValueError("decay_type must be 'linear', or 'inverse'")
+        self.decay_type = decay_type
+
+        self.current_episode = 0
 
     def get_action(self, obs):
         """
@@ -64,9 +72,14 @@ class Agent(ABC):
     
     def decay_epsilon(self):
         """
-        Reduce exploration rate after each episode.
+        Reduce exploration rate after each episode linearly.
         """
-        self.epsilon = max(self.final_epsilon, self.epsilon - self.epsilon_decay)
+        if self.decay_type == "linear":
+            self.epsilon = max(self.final_epsilon, self.epsilon - self.epsilon_decay)
+        elif self.decay_type == "inverse":
+            self.epsilon = max(self.final_epsilon, self.epsilon / (1 + self.epsilon_decay * self.current_episode))
+        self.current_episode += 1
+
 
 
     def test(self, num_episodes=1000):
