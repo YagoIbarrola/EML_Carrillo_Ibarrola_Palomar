@@ -25,6 +25,7 @@ class Agent(ABC):
         """
         self.env = env
         self.discount_factor = discount_factor
+        self.env.action_space.seed(42)  # Reproducibilidad en la acción aleatoria
 
         # Exploration parameters
         self.initial_epsilon = epsilon
