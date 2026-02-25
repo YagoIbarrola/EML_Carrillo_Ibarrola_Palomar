@@ -12,6 +12,7 @@ class TaxiAgentMontecarloOnPolicy(Agent):
         epsilon_decay: float = 0.01,
         final_epsilon: float = 0.01,
         discount_factor: float = 1.0,
+        decay_type: str = "linear",
     ):
         # Inicializamos la clase padre llamando a super()
         super().__init__(
@@ -20,6 +21,7 @@ class TaxiAgentMontecarloOnPolicy(Agent):
             epsilon_decay=epsilon_decay,
             final_epsilon=final_epsilon,
             discount_factor=discount_factor,
+            decay_type=decay_type
         )
 
         # Inicializamos la tabla Q y el contador de visitas (N)
