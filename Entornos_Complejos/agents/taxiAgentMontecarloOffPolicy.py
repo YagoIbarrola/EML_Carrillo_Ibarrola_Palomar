@@ -10,13 +10,15 @@ class TaxiAgentMontecarloOffPolicy(Agent):
         epsilon_decay: float = 0.01,
         final_epsilon: float = 0.01,
         discount_factor: float = 1.0,
+        decay_type: str = "linear",
     ):
         super().__init__(
             env=env,
             epsilon=epsilon,
             epsilon_decay=epsilon_decay,
             final_epsilon=final_epsilon,
-            discount_factor=discount_factor
+            discount_factor=discount_factor,
+            decay_type=decay_type
         )
 
         # Inicializamos las estructuras de datos (Q, C y pi)
