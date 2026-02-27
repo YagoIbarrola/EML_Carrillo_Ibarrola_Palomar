@@ -8,7 +8,7 @@ from .taxiAgentSARSA import TaxiAgentSARSA
 from .taxiAgentExpectedSARSA import TaxiAgentExpectedSARSA
 from .taxiAgentMontecarloOnPolicyInvDecay import TaxiAgentMontecarloOnPolicyInvDecay
 from .lunarAgentSARSASemi import LunarAgentSARSA
-from .lunarLanderTileCoding import LunarLanderTileCoding
+from .lunarLanderTileCoding import TileCodingEnv
 
 # Lista de módulos o clases públicas
 __all__ = [
@@ -21,7 +21,7 @@ __all__ = [
     'TaxiAgentSARSA',
     'TaxiAgentExpectedSARSA',
     'LunarAgentSARSA',
-    'LunarLanderTileCoding'
+    'TileCodingEnv'
     ]
 
 

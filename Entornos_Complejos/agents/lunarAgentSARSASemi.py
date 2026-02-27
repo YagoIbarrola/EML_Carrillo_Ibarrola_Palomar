@@ -34,7 +34,14 @@ class LunarAgentSARSA(Agent):
         self.n_actions = env.action_space.n
         
         # Matriz de pesos W: [total_features, n_actions]
-        self.w = np.zeros((env.total_features, self.n_actions))
+        if hasattr(env, "total_features"):
+            total_features = env.total_features
+        elif hasattr(env.unwrapped, "total_features"):
+            total_features = env.unwrapped.total_features
+        else:
+            raise AttributeError("No se pudo determinar total_features del entorno")
+
+        self.w = np.zeros((total_features, self.n_actions))
         self.training_error = []
 
     def q_value(self, active_features, action):

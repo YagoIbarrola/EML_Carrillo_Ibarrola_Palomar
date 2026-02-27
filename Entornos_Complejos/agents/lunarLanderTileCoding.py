@@ -1,5 +1,6 @@
 import numpy as np
 import gymnasium as gym
+from gymnasium import ObservationWrapper
 
 #@title Extensión de la clase ObservationWrapper de Gymnasium para discretizar estados continuos
 
@@ -46,7 +47,7 @@ class TileCodingEnv(ObservationWrapper):
 
         # el vector de observación tendrá C componentes. Por ejemplo, para 2 dimensiones × 4 tilings = C = 8.
         self.observation_space = gym.spaces.MultiDiscrete(nvec=bins.tolist()*n)
-
+        self.total_features = self.tile_size * self.n_tilings
 
 
     def observation(self, obs):  # Es necesario sobreescribir este método de ObservationWrapper
@@ -65,16 +66,23 @@ class TileCodingEnv(ObservationWrapper):
         - indices: lista de tuplas de índices, una por cada tiling.
 
         """
-        indices = []  # Lista que almacenará los índices discretizados para cada tiling.
+        # indices = []  # Lista que almacenará los índices discretizados para cada tiling.
+        # for t in self.tilings:
+        #     # Para cada tiling 't', se calcula el índice en el que se encuentra cada componente de la observación.
+        #     tiling_indices = tuple(np.digitize(i, b) for i, b in zip(obs, t))
+        #     indices.append(tiling_indices)  # Se agrega la tupla de índices correspondiente a la tiling actual.
+
+        # # Calcula y guarda las features activas a partir de los índices obtenidos.
+        # self.last_active_features = self._get_active_features(indices)
+        # return indices # Retorna la lista de índices de todas las tilings.
+        indices = []
         for t in self.tilings:
-            # Para cada tiling 't', se calcula el índice en el que se encuentra cada componente de la observación.
             tiling_indices = tuple(np.digitize(i, b) for i, b in zip(obs, t))
-            indices.append(tiling_indices)  # Se agrega la tupla de índices correspondiente a la tiling actual.
+            indices.append(tiling_indices)
 
-        # Calcula y guarda las features activas a partir de los índices obtenidos.
         self.last_active_features = self._get_active_features(indices)
-        return indices # Retorna la lista de índices de todas las tilings.
-
+        return self.last_active_features  # ¡OJO! Cambia 'indices' por esto
+    
 
     def _get_active_features(self, tiles):
         """
