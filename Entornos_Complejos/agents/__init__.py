@@ -7,6 +7,8 @@ from .taxiAgentMontecarloOffPolicy import TaxiAgentMontecarloOffPolicy
 from .taxiAgentSARSA import TaxiAgentSARSA
 from .taxiAgentExpectedSARSA import TaxiAgentExpectedSARSA
 from .taxiAgentMontecarloOnPolicyInvDecay import TaxiAgentMontecarloOnPolicyInvDecay
+from .lunarAgentSARSASemi import LunarAgentSARSA
+from .lunarLanderTileCoding import LunarLanderTileCoding
 
 # Lista de módulos o clases públicas
 __all__ = [
@@ -17,7 +19,9 @@ __all__ = [
     'TaxiAgentMontecarloOnPolicyInvDecay',
     'TaxiAgentMontecarloOffPolicy',
     'TaxiAgentSARSA',
-    'TaxiAgentExpectedSARSA'
+    'TaxiAgentExpectedSARSA',
+    'LunarAgentSARSA',
+    'LunarLanderTileCoding'
     ]
 
 
