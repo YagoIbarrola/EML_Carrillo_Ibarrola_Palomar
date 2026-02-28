@@ -1,7 +1,8 @@
 from collections import defaultdict
+from agents.agent import Agent
 import gymnasium as gym
 import numpy as np
-from agents.agent import Agent
+
 
 class TaxiAgentQLearning(Agent):
 
@@ -27,7 +28,7 @@ class TaxiAgentQLearning(Agent):
         # Single Q-table
         self.lr = learning_rate
         self.q_values = defaultdict(lambda: np.zeros(env.action_space.n))
-
+        
 
     def get_action(self, obs):
         """
@@ -70,7 +71,7 @@ class TaxiAgentQLearning(Agent):
         Extrae la política actual del agente evaluando el mejor Q-value para todos los estados posibles.
         """
         # Creamos un array vacío de tamaño 500 para guardar la mejor acción de cada estado
-        n_states = 500
+        n_states = self.env.observation_space.n
         policy = np.zeros(n_states, dtype=int)
 
         for state in range(n_states):

@@ -31,6 +31,9 @@ class TaxiAgentDoubleQLearning(Agent):
         self.q2_values = defaultdict(lambda: np.zeros(env.action_space.n))
 
     def get_action(self, obs):
+        '''
+        Choose A with from S using epsilon-greedy policy in Q1 + Q2:
+        '''
         # Used by epsilon-greedy
                 # Exploration
         if np.random.random() < self.epsilon:
@@ -48,15 +51,17 @@ class TaxiAgentDoubleQLearning(Agent):
         terminated: bool,
         next_obs,
     ):
-
+        ''' 
+        With 0.5 Q_1(S,A) <- Q_1(S,A) + alpha(R + gamma Q_2(S', argmax_a Q_1(S',a)) - Q_1(S,A))
+        With 0.5 Q_2(S,A) <- Q_2(S,A) + alpha(R + gamma Q_1(S', argmax_a Q_2(S',a)) - Q_2(S,A))
+        '''
         if np.random.random() < 0.5:
             # Update Q1
             if terminated:
                 target = reward
             else:
                 best_action = np.argmax(self.q1_values[next_obs])
-                target = reward + self.discount_factor * \
-                         self.q2_values[next_obs][best_action]
+                target = reward + self.discount_factor * self.q2_values[next_obs][best_action]
 
             td_error = target - self.q1_values[obs][action]
             self.q1_values[obs][action] += self.lr * td_error
@@ -67,8 +72,7 @@ class TaxiAgentDoubleQLearning(Agent):
                 target = reward
             else:
                 best_action = np.argmax(self.q2_values[next_obs])
-                target = reward + self.discount_factor * \
-                         self.q1_values[next_obs][best_action]
+                target = reward + self.discount_factor * self.q1_values[next_obs][best_action]
 
             td_error = target - self.q2_values[obs][action]
             self.q2_values[obs][action] += self.lr * td_error
@@ -77,10 +81,10 @@ class TaxiAgentDoubleQLearning(Agent):
     
     def get_current_policy(self):
         """
-        Extrae la política actual del agente evaluando el mejor Q-value para todos los estados posibles.
+        Extract the current policy by evaluating the best sum of Q1 and Q2 values for all possible states.
         """
         # Creamos un array vacío de tamaño 500 para guardar la mejor acción de cada estado
-        n_states = 500
+        n_states = self.env.observation_space.n
         policy = np.zeros(n_states, dtype=int)
 
         for state in range(n_states):
