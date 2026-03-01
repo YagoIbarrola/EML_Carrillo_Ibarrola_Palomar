@@ -6,9 +6,9 @@ import numpy as np
 from agents.agent import Agent
 import gymnasium as gym
 
-class QNetwork(nn.Module):
+class QNetworkSARSA(nn.Module):
     def __init__(self, state_dim, action_dim, hidden_dim=128):
-        super(QNetwork, self).__init__()
+        super(QNetworkSARSA, self).__init__()
         self.fc1 = nn.Linear(state_dim, hidden_dim)
         self.fc2 = nn.Linear(hidden_dim, hidden_dim)
         self.fc3 = nn.Linear(hidden_dim, action_dim)
@@ -107,21 +107,7 @@ class SemiGradientSarsaAgent(Agent):
         self.training_error.append(loss.item())
 
     def get_current_policy(self):
-        """
-        Devuelve la acción greedy para cada estado.
-        Solo válido si el espacio es discreto y enumerable.
-        """
-
-        n_states = self.env.observation_space.n
-        policy = np.zeros(n_states, dtype=int)
-
-        for state in range(n_states):
-            state_tensor = torch.FloatTensor([state]).unsqueeze(0)
-            with torch.no_grad():
-                q_values = self.q_network(state_tensor)
-            policy[state] = int(torch.argmax(q_values).item())
-
-        return policy
+        pass
 
     # def decay_epsilon(self):
     #     if self.epsilon > self.epsilon_min:

@@ -83,7 +83,7 @@ class TaxiAgentSARSA(Agent):
         Extrae la política actual del agente evaluando el mejor Q-value para todos los estados posibles.
         """
         # Creamos un array vacío de tamaño 500 para guardar la mejor acción de cada estado
-        n_states = 500
+        n_states = self.env.observation_space.n
         policy = np.zeros(n_states, dtype=int)
 
         for state in range(n_states):
