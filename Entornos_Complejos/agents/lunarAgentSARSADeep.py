@@ -69,11 +69,10 @@ class SemiGradientSarsaAgent(Agent):
         self.state_dim = env.observation_space.shape[0]
         self.action_dim = env.action_space.n
 
+        torch.manual_seed(42)
         self.q_network = QNetworkSARSA(self.state_dim, self.action_dim, hidden_dim=hidden_dim)
         self.optimizer = optim.Adam(self.q_network.parameters(), lr=learning_rate) # alpha * grad loss = alpha * (r + gamma * q(S', A', w) - q(S, A, w)) * grad q(S, A, w)
         self.loss_fn = nn.MSELoss()
-
-        torch.manual_seed(42)
 
     def get_action(self, obs):
         """
@@ -97,6 +96,7 @@ class SemiGradientSarsaAgent(Agent):
         reward: float,
         terminated: bool,
         next_obs,
+        next_action: int,
     ):
         """
         Semi-gradient SARSA:
@@ -107,11 +107,11 @@ class SemiGradientSarsaAgent(Agent):
         next_state_tensor = torch.FloatTensor(next_obs).unsqueeze(0)
 
         # Elegimos next_action usando política actual (SARSA)
-        next_action, _ = self.get_action(next_obs)
+        # next_action, _ = self.get_action(next_obs)
 
         # 1. Calculamos q(S, A, w)
         q_values = self.q_network(state_tensor) # Devuelve un tensor con los Q-values para todas las acciones
-        q_sa = q_values[0][action] # Extraemos el Q-value específico para la acción tomada. El 0 es porque el tensor tiene forma [1, action_dim].
+        q_sa = q_values.squeeze(0)[action] # Extraemos el Q-value específico para la acción tomada. El 0 es porque el tensor tiene forma [1, action_dim].
 
         # 2. Calculamos el objetivo (Target): R + gamma * q(S', A', w)
         with torch.no_grad():
@@ -122,6 +122,7 @@ class SemiGradientSarsaAgent(Agent):
                 next_q_values = self.q_network(next_state_tensor)
                 next_q_sa = next_q_values[0][next_action]
                 target = reward_tensor + self.discount_factor * next_q_sa
+                target = target.squeeze()
 
         # 3. Calculamos la pérdida y actualizamos pesos (Descenso de gradiente)
         loss = self.loss_fn(q_sa, target) 
