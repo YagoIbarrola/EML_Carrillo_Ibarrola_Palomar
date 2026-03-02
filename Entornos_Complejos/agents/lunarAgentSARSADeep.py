@@ -111,18 +111,17 @@ class SemiGradientSarsaAgent(Agent):
 
         # 1. Calculamos q(S, A, w)
         q_values = self.q_network(state_tensor) # Devuelve un tensor con los Q-values para todas las acciones
-        q_sa = q_values.squeeze(0)[action] # Extraemos el Q-value específico para la acción tomada. El 0 es porque el tensor tiene forma [1, action_dim].
+        q_sa = q_values[0, action].unsqueeze(0) # Extraemos el Q-value específico para la acción tomada. El 0 es porque el tensor tiene forma [1, action_dim]. Quitar un
 
         # 2. Calculamos el objetivo (Target): R + gamma * q(S', A', w)
         with torch.no_grad():
-            reward_tensor = torch.tensor(reward, dtype=torch.float32)
+            reward_tensor = torch.tensor([reward], dtype=torch.float32) # Quitar un
             if terminated:
                 target = reward_tensor # w <- w + alpha [ r - Q(s,a,w) ] * gradient de Q(s,a,w) si el episodio terminó en el siguiente estado
             else:
                 next_q_values = self.q_network(next_state_tensor)
-                next_q_sa = next_q_values[0][next_action]
+                next_q_sa = next_q_values[0, next_action].unsqueeze(0) # Quitar un
                 target = reward_tensor + self.discount_factor * next_q_sa
-                target = target.squeeze()
 
         # 3. Calculamos la pérdida y actualizamos pesos (Descenso de gradiente)
         loss = self.loss_fn(q_sa, target) 
