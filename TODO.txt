@@ -8,4 +8,8 @@ No sé si pondría que UCB2 es el más robusto en las conclusiones, es un poco r
 Falta Pseudocódigo UCB2
 Faltan figuras UCB
 
-clone y cosas de colab ver que hacer con ellas
+clone y cosas de *colab* ver que hacer con ellas
+
+Hacer reproducible SARSA (grid search darle seed, ver Aaron)
+
+Borrar expected sarsa
