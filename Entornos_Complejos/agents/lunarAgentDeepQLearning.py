@@ -161,6 +161,8 @@ class LunarAgentDeepQLearning(Agent):
         self.optimizer.zero_grad()
         loss.backward()
         self.optimizer.step()
+        
+        self.training_error.append(loss.item())
 
         # Actualizamos la red objetivo mezclando suavemente sus pesos
         self.soft_update(self.qnetwork_local, self.qnetwork_target)
@@ -174,8 +176,9 @@ class LunarAgentDeepQLearning(Agent):
         # Decaimiento lineal de epsilon
         self.epsilon = max(self.final_epsilon, self.epsilon*self.epsilon_decay)
 
-    def test(self, env, n_episodes=5):
+    def test(self, n_episodes=5):
         total_wins = 0
+        env = self.env
         # Creamos una lista para almacenar las puntuaciones de todas las partidas
         all_scores = [] 
         
@@ -201,7 +204,7 @@ class LunarAgentDeepQLearning(Agent):
             if episode_reward >= 200.0: 
                 total_wins += 1
                 
-            print(f"Episodio {episode}: Recompensa = {episode_reward:.2f}")
+            # print(f"Episodio {episode}: Recompensa = {episode_reward:.2f}")
             
         # Calculamos la media real sumando todas las partidas
         media_real = sum(all_scores) / n_episodes
