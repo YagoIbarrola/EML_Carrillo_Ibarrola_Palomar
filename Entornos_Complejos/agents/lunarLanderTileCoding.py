@@ -1,16 +1,7 @@
 import numpy as np
 import gymnasium as gym
 from gymnasium import ObservationWrapper
-
-#@title Extensión de la clase ObservationWrapper de Gymnasium para discretizar estados continuos
-
-env = gym.make("MountainCar-v0", render_mode="rgb_array")
-env.reset(seed=10)
-
-# https://gymnasium.farama.org/tutorials/gymnasium_basics/implementing_custom_wrappers/
-
-
-# Definimos una clase que hereda de gym.ObservationWrapper, la cual nos permite modificar las observaciones que devuelve el entorno.
+import random
 
 class TileCodingEnv(ObservationWrapper):
     """
@@ -19,7 +10,7 @@ class TileCodingEnv(ObservationWrapper):
     permitiendo representar el espacio de estados de forma que se faciliten la generalización y el aprendizaje.
     """
 
-    def __init__(self, env, bins, low, high, n=4):
+    def __init__(self, env, bins, low, high, n_tilings=4):
         """
         Inicializa el entorno env con tile coding.
 
@@ -28,26 +19,19 @@ class TileCodingEnv(ObservationWrapper):
         - bins: array o lista con el número de intervalos (bins) que hay que particionar cada dimensión.
         - low: array con el límite inferior para cada dimensión.
         - high: array con el límite superior para cada dimensión.
-        - n: número de tilings (rejillas) a crear (por defecto 4).
+        - n_tilings: número de tilings (rejillas) a crear (por defecto 4).
 
         Se llama al método _create_tilings para generar las rejillas desplazadas.
         """
         super().__init__(env)  # Llama al constructor de la clase padre ObservationWrapper.
 
         # Guardamos atributos útiles para calcular las features solo una vez.
-        self.bins = bins              # Ej.: np.array([10, 10])
-        self.n_tilings = n            # Número de tilings.
-        self.tile_size = int(np.prod(bins))  # Número de celdas en cada tiling.
-        self.last_active_features = None     # Aquí se guardarán las features activas de la última observación
 
-        self._high = high
-        self._low = low
-
-        self.tilings = self._create_tilings() # (bins, high, low, n)  # Crea y almacena las tilings.
-
+        self.tilings = self._create_tilings(bins, high, low, n_tilings)  # Crea y almacena las tilings.
+        self.n_tilings = n_tilings
+        self.bins = bins
         # el vector de observación tendrá C componentes. Por ejemplo, para 2 dimensiones × 4 tilings = C = 8.
-        self.observation_space = gym.spaces.MultiDiscrete(nvec=bins.tolist()*n)
-        self.total_features = self.tile_size * self.n_tilings
+        self.observation_space = gym.spaces.MultiDiscrete(nvec=bins.tolist()*n_tilings)
 
 
     def observation(self, obs):  # Es necesario sobreescribir este método de ObservationWrapper
@@ -79,47 +63,12 @@ class TileCodingEnv(ObservationWrapper):
         for t in self.tilings:
             tiling_indices = tuple(np.digitize(i, b) for i, b in zip(obs, t))
             indices.append(tiling_indices)
+        return indices
 
-        self.last_active_features = self._get_active_features(indices)
-        return self.last_active_features  # ¡OJO! Cambia 'indices' por esto
+        
     
 
-    def _get_active_features(self, tiles):
-        """
-        Método privado para calcular los índices (features) activos en la función aproximada.
-
-        Parámetro:
-        - tiles: lista de tuplas (una por tiling) obtenida de observation(), donde cada tupla
-          contiene los índices discretizados para cada dimensión.
-
-        La función realiza lo siguiente:
-          1. Convierte cada tupla de índices a un índice plano usando np.ravel_multi_index(tile, bins).
-            - Dado que `tile` es una tupla de índices - por ejemplo, `(3, 5)` , y
-            - dado que `bins` indica las particiones en cada dimensión - por ejemplo `bins = [10, 10]``
-            - entonces `(3, 5)` se mapea a  3*10 + 5 = 35
-            - Este índice plano identifica de forma única una celda dentro de una tiling.
-
-          2. Asigna a cada tiling un bloque distinto en el vector de parámetros, de forma que:
-             feature = (índice del tiling * tile_size) + índice plano.
-             - Por ejemplo, con dos tilings, si en ambos se selecccionara el tile `(3, 5)`
-             - Para el tiling 0 (i = 0), el flat_index será 35 (como se ha calculado antes)
-             - Pero para el tiling 1 (i=1), el flat_index será 1*100+35=135
-
-        Retorna:
-        - features: lista de índices únicos (enteros) que indican las características activas.
-        """
-        features = []
-        for i, tile in enumerate(tiles):
-            # Convierte la tupla 'tile' a un índice plano.
-            flat_index = np.ravel_multi_index(tile, self.bins)
-            # Asigna a cada tiling un bloque único: para el tiling i, los índices van desde i*tile_size hasta (i+1)*tile_size - 1.
-            feature = i * self.tile_size + flat_index
-            features.append(feature)
-        return features
-
-
-
-    def _create_tilings(self): # , bins, high, low, n):
+    def _create_tilings(self , bins, high, low, n_tilings):
         """
         Crea 'n' tilings (rejillas) desplazadas para el tile coding.
 
@@ -148,15 +97,18 @@ class TileCodingEnv(ObservationWrapper):
         # displacement_vector se ajusta automáticamente generando un array de números impares
         # Estos valores se usan posteriormente para calcular los desplazamientos específicos en cada dimensión al crear las tilings (rejillas).
         # ¿Por qué esos valores? Porque son los recomendados: los primeros números impares.
-        displacement_vector = np.arange(1, 2 * len(self.bins), 2)
+        displacement_vector = np.arange(1, 2 * len(bins), 2)
 
 
         tilings = []  # Lista que almacenará todas las tilings generadas.
-        for i in range(0, self.n_tilings):
+        
+
+        
+        for i in range(1, n_tilings + 1):
             # Para cada tiling 'i', se calculan nuevos límites 'low_i' y 'high_i' con un desplazamiento aleatorio.
             # El desplazamiento aleatorio se basa en el 20% de los límites originales.
-            low_i = self._low  # - random.random() * 0.2 * low
-            high_i = self._high # + random.random() * 0.2 * high
+            low_i = low
+            high_i = high
 
             # Vamos a calcular el desplazamiento específico para cada dimensión y cada mosaico.
 
@@ -172,11 +124,13 @@ class TileCodingEnv(ObservationWrapper):
             # i = 2: [2, 2] = [1, 3] * 2 % 4 = [2, 6] % 4
             # i = 3: [3, 1] = [1, 3] * 3 % 4 = [3, 9] % 4
             # i = 4: [0, 0] = [1, 3] * 4 % 4 = [4, 12] % 4
-            displacements = displacement_vector * i % self.n_tilings
+            
+            displacements = displacement_vector * i % n_tilings + 1
 
             # Pero hay que escalar el desplazamiento a unidades reales en cada dimensión.
             # Para ello necesitamos calcular el tamaño de cada segmento (intervalo) en cada dimensión.
-            segment_sizes = (high_i - low_i) / self.bins
+            
+            segment_sizes = (high - low) / (bins - 1)
 
             # Entonces usamos una fracción del tamaño del segmento para desplazar cada mosaico.
             # La fracción del tamaño del segmento viene dado por el tamaño del segmento dividido por el número de mosaicos.
@@ -191,17 +145,57 @@ class TileCodingEnv(ObservationWrapper):
             # Tiling 2, [2, 2]: [2 * 0.125, 2 * 0.05] = [0.25, 0.10]
             # Tiling 3, [3, 1]: [3 * 0.125, 1 * 0.05] = [0.375, 0.05]
             # Tiling 4  [0, 0]: [0 * 0.125, 0 * 0.05] = [0, 0]
-            displacements = displacements * (segment_sizes / self.n_tilings)
+            
+            displacements = displacements * (segment_sizes/n_tilings)
 
             dlow_i = low_i + displacements
             dhigh_i = high_i + displacements
+            #dlow_i = low + displacements
+            #dhigh_i = high + displacements
             # print(f"Tiling {i}: Se aplican los desplazamientos {displacements} a los límites inferiores {low_i}->{dlow_i} y superiores {high_i}->{dhigh_i}.")
 
             # Para cada dimensión, se crean los buckets que dividen el intervalo de low_i a high_i en 'bins' partes,
             # generando 'l-1' puntos (límites) para cada dimensión.
-            buckets_i = [np.linspace(j, k, l - 1) for j, k, l in zip(dlow_i, dhigh_i, self.bins)]
+            buckets_i = [np.linspace(j, k, l - 1) for j, k, l in zip(dlow_i, dhigh_i, bins)]
 
             # Se añade la tiling actual (lista de buckets para cada dimensión) a la lista de tilings.
             tilings.append(buckets_i)
 
         return tilings  # Retorna la lista completa de tilings.
+
+
+if __name__ == "__main__":
+    env = gym.make("LunarLander-v3")
+    env.reset(seed=0)
+
+    tilings = 4
+    bins = np.array([4, 4, 4, 4, 4, 4, 2, 2])
+    low = env.observation_space.low
+    high = env.observation_space.high
+    tcenv = TileCodingEnv(env, bins=bins, low=low, high=high)
+    print("Se muestran los 4 mosaicos")
+    print(tcenv.tilings)
+
+    print(f"El espacio de observaciones original es: {env.observation_space}, \n\
+    Un estado para este espacio es: {env.step(env.action_space.sample())}")
+    print(f"El espacio de estados modificado es: {tcenv.observation_space}, \n\
+    Un estado para este nuevo espacio es: {tcenv.step(tcenv.action_space.sample())[0]} \n\
+    Cada pareja es la 'celda' correspondiente a cada mosaico")
+
+    #plot first 2 dimensions of the tilings in one plot (vertical and horizontal lines for region borders)
+    import matplotlib.pyplot as plt
+    c = ['r', 'g', 'b', 'm']
+    for i, tiling in enumerate(tcenv.tilings):
+        for b in tiling[0]: # vertical lines for dimension 1
+            plt.axvline(x=b, color=c[i], linestyle='--', label='Dim 1' if b == tiling[0][0] else "")
+        for b in tiling[1]: # horizontal lines for dimension 2
+            plt.axhline(y=b, color=c[i], linestyle='--', label='Dim 2' if b == tiling[1][0] else "")
+    plt.title("Tilings (buckets) para las primeras 2 dimensiones")
+    plt.xlabel("Dimensión 1")
+    plt.ylabel("Dimensión 2")
+    margin = 10
+    plt.xlim(low[0]-margin, high[0]+margin)
+    plt.ylim(low[1]-margin, high[1]+margin)
+    plt.legend()
+    plt.grid()
+    plt.show()
