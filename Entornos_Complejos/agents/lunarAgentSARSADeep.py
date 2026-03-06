@@ -143,8 +143,9 @@ class SemiGradientSarsaAgent(Agent):
         old_epsilon = self.epsilon
         self.epsilon = 0.0  # Pure exploitation
 
-        for _ in range(num_episodes):
-            obs, info = env.reset()
+        for t in range(num_episodes):
+            seed = num_episodes + t
+            obs, _ = env.reset(seed=seed)
             episode_reward = 0
             done = False
 
