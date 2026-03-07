@@ -24,7 +24,7 @@ def animar_estados_taxi_gif(
     iconos_cargados = {}
     for accion_id, filename in ICON_FILES.items():
         # Convertimos a RGBA para mantener el fondo transparente del PNG
-        iconos_cargados[accion_id] = PILImage.open("../data/icons_taxi" + filename).convert("RGBA")
+        iconos_cargados[accion_id] = PILImage.open("../data/icons_taxi/" + filename).convert("RGBA")
 
     # Inicializamos el entorno en modo grafico para obtener imagenes
     env = gym.make("Taxi-v3", render_mode="rgb_array")
