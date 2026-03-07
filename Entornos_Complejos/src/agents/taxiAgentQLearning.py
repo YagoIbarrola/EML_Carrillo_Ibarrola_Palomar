@@ -24,7 +24,7 @@ class TaxiAgentQLearning(Agent):
             discount_factor=discount_factor,
             decay_type=decay_type,
         )
-
+ 
         # Single Q-table
         self.lr = learning_rate
         self.q_values = defaultdict(lambda: np.zeros(env.action_space.n))

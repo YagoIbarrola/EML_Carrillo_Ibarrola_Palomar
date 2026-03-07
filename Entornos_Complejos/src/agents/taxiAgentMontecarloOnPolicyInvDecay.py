@@ -20,7 +20,7 @@ class TaxiAgentMontecarloOnPolicyInvDecay(Agent):
             final_epsilon=final_epsilon,
             discount_factor=discount_factor,
         )
-
+ 
         # Guardamos el epsilon inicial y creamos un contador para los episodios
         self.initial_epsilon = epsilon
         self.current_episode = 0

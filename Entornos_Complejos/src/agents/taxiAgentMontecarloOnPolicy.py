@@ -28,7 +28,7 @@ class TaxiAgentMontecarloOnPolicy(Agent):
         self.Q = np.zeros([env.observation_space.n, env.action_space.n])
         self.n_visits = np.zeros([env.observation_space.n, env.action_space.n])
         self.episode = []  # Para almacenar las transiciones del episodio actual
-
+ 
     def get_action(self, obs) -> tuple[int, bool]:
         """
         Política epsilon-greedy: 

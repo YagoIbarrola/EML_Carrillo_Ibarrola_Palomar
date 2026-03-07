@@ -25,7 +25,7 @@ class TaxiAgentSARSA(Agent):
             final_epsilon: Minimum exploration rate (usually 0.1)
             discount_factor: How much to value future rewards (0-1)
         """
-
+ 
         super().__init__(
             env=env,
             epsilon=initial_epsilon,
