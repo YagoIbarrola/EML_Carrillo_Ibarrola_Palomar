@@ -3,13 +3,8 @@
 - **Alumnos:** Carrillo, Ginés; Ibarrola, Yago; Palomar, Aarón
 - **Asignatura:** Extensiones de Machine Learning
 - **Curso:** 2025/2026
-- **Grupo:** NombreGrupo (p.e. ap1ap2ap3m, usando los apellidos)
+- **Grupo:** 1
 ## Descripción
-Máster en Inteligencia Artificial
-[Breve descripción del trabajo y sus objetivos]
-## Estructura
-[Explicación de la organización del repositorio]
-## Instalación y Uso
-[Instrucciones si son necesarias]
-## Tecnologías Utilizadas
-[Lista de lenguajes, frameworks, etc.]
+Leer los README.md de cada parte:
+- [README.md de la parte 1](k_brazos/README.md)
+- [README.md de la parte 2](entornos_complejos/README.md)
