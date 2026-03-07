@@ -97,7 +97,7 @@ class Agent(ABC):
             done = False
 
             while not done:
-                action = self.get_action(obs)
+                action, _ = self.get_action(obs)
                 obs, reward, terminated, truncated, info = env.step(action)
                 episode_reward += reward
                 done = terminated or truncated

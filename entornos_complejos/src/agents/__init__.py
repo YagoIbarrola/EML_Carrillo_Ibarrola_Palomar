@@ -9,8 +9,8 @@ from .taxiAgentExpectedSARSA import TaxiAgentExpectedSARSA
 from .taxiAgentMontecarloOnPolicyInvDecay import TaxiAgentMontecarloOnPolicyInvDecay
 from .lunarAgentSARSASemi import LunarAgentSARSA
 from .lunarLanderTileCoding import TileCodingEnv
-from .lunarAgentSARSADeep import SemiGradientSarsaDeepAgent, QNetworkSARSA
-from .lunarAgentDeepQLearning import LunarAgentDeepQLearning, DqnReplayBuffer, QNetwork
+#from .lunarAgentSARSADeep import SemiGradientSarsaDeepAgent, QNetworkSARSA
+#from .lunarAgentDeepQLearning import LunarAgentDeepQLearning, DqnReplayBuffer, QNetwork
 
 # Lista de módulos o clases públicas
 __all__ = [

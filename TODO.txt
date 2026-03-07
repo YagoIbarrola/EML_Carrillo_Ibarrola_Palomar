@@ -13,3 +13,5 @@ clone y cosas de *colab* ver que hacer con ellas
 Hacer reproducible SARSA (grid search darle seed, ver Aaron)
 
 Borrar expected sarsa
+
+Describir entorno para lunar lander en tile coding
