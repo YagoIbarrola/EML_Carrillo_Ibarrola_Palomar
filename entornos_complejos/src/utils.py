@@ -1,6 +1,6 @@
 import numpy as np
 from matplotlib import pyplot as plt
-
+import matplotlib.image as mpimg
 
 def get_moving_avgs(arr, window: int, convolution_mode: str = "valid"):
     """
@@ -91,12 +91,39 @@ def plot_training_metrics(
     plt.show()
 
 
+def plot_multi(
+    img1_filename,
+    img2_filename,
+    label1,
+    label2,
+):
+    img1 = mpimg.imread(img1_filename)
+    img2 = mpimg.imread(img2_filename)
+
+    # Create a figure with 1 row and 2 columns
+    fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+
+    # Display the first image
+    axes[0].imshow(img1)
+    axes[0].axis('off') # Hides the grid and axes numbers
+    axes[0].set_title(label1)
+
+    # Display the second image
+    axes[1].imshow(img2)
+    axes[1].axis('off')
+    axes[1].set_title(label2)
+
+    # Adjust layout to prevent overlap and display
+    plt.tight_layout()
+    plt.show()
+
 def plot_training_metrics_multi(
     rewards_list,
     lengths_list,
     training_errors_list,
     labels,
-    rolling_length=500
+    rolling_length=500,
+    isMonteCarlo=False,
 ):
     fig, axs = plt.subplots(ncols=3, figsize=(12, 5))
 
@@ -117,10 +144,17 @@ def plot_training_metrics_multi(
     axs[1].legend()
 
     # Errores
-    axs[2].set_title("Delta_Q")
+    if isMonteCarlo:
+        title = "Training Evolution"
+        ylabel = "Temporal Difference"
+        axs[2].set_yscale("log")
+    else:
+        title = "Delta_Q"
+        ylabel = "Temporal Difference Error"
+    axs[2].set_title(title)
     for errors, label in zip(training_errors_list, labels):
         axs[2].plot(get_moving_avgs(errors, rolling_length, "same"), label=label)
-    axs[2].set_ylabel("Temporal Difference Error")
+    axs[2].set_ylabel(ylabel)
     axs[2].set_xlabel("Step")
     axs[2].legend()
 
@@ -129,7 +163,6 @@ def plot_training_metrics_multi(
 
     plt.tight_layout()
     plt.show()
-
 
 def save_state(agent, is_exploring, obs, episode_history):
     policy = agent.get_current_policy()
