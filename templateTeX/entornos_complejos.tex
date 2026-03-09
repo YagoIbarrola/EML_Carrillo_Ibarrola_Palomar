@@ -1,8 +1,8 @@
-\chapter{Aprendizaje en Entornos Complejos: De Métodos Tabulares a Aproximaciones Profundas}
+\chapter{Aprendizaje en Entornos Complejos: De Métodos Tabulares a Aproximaciones}
 
 \section{Introducción}
 
-\subsection{Descripción del problema y su relevancia}
+\subsection{Descripción del problema y relevancia}
 En esta segunda parte, nos centramos en el estudio de entornos secuenciales, 
 donde la toma de decisiones no se limita a una única acción, sino que se extiende a lo largo del tiempo. 
 Estos entornos, formalizados como Procesos de Decisión de Markov (MDP), representan un desafío significativo
@@ -22,24 +22,32 @@ Esto hace que los enfoques clásicos resulten insuficientes debido a la limitaci
 memoria y tiempo de cómputo (la conocida ``maldición de la dimensionalidad''). 
 Nuestra motivación radica en documentar y comprender empíricamente la transición
  metodológica necesaria para saltar de un entorno puramente discreto y manejable, 
- como \textit{Taxi-v3}, a un entorno con dinámicas físicas y espacios continuos, 
- como \textit{LunarLander}.
+ como \textbf{Taxi-v3}, a un entorno con dinámicas físicas y espacios continuos, 
+ como \textbf{LunarLander}.
 
 \subsection{Objetivos del capítulo}
 El objetivo principal de este capítulo es implementar, evaluar y comparar diferentes algoritmos de Aprendizaje por Refuerzo capaces de manejar múltiples estados. De forma específica, buscamos:
 \begin{itemize}
+    \item Desarrollar agentes basados en Q-Learning, SARSA, Montecarlo y sus variantes.
     \item Evaluar el rendimiento y la velocidad de convergencia de métodos de Monte Carlo y Diferencias Temporales en un espacio discreto.
+    \item Investigar el impacto de hiperparámetros como el factor de descuento $\gamma$, la tasa de aprendizaje $\alpha$ y el parámetro de exploración $\epsilon$ en la convergencia y el rendimiento.
     \item Implementar técnicas de aproximación de funciones para superar las limitaciones tabulares en espacios continuos.
     \item Contrastar empíricamente las propiedades \textit{on-policy} y \textit{off-policy} a través de distintas familias de algoritmos.
 \end{itemize}
 
 \subsection{Organización del capítulo}
-El presente capítulo se estructura de la siguiente manera: la Sección 1 engloba esta introducción. La Sección 2 detalla el desarrollo y la formalización matemática del problema, junto con la literatura existente. La Sección 3 está dedicada a los métodos tabulares aplicados al entorno \textit{Taxi-v3}, abarcando Monte Carlo y Diferencias Temporales (SARSA, Expected-SARSA, Q-Learning y Double Q-Learning). Finalmente, la Sección 4 explora el control con aproximaciones en el entorno \textit{LunarLander}, donde implementamos SARSA semi-gradiente y Deep Q-Learning (DQN).
+El presente capítulo se estructura de la siguiente manera: 
+\begin{itemize}
+    \item La \textbf{Sección 1} engloba esta introducción.
+    \item La \textbf{Sección 2} detalla el desarrollo y la formalización matemática del problema, junto con la literatura existente.
+    \item La \textbf{Sección 3} está dedicada a los métodos tabulares aplicados al entorno \textbf{Taxi-v3}, abarcando Monte Carlo y Diferencias Temporales (SARSA, Expected-SARSA, Q-Learning y Double Q-Learning). 
+    \item  Finalmente, la \textbf{Sección 4} explora el control con aproximaciones en el entorno \textbf{LunarLander}, donde implementamos SARSA semi-gradiente y Deep Q-Learning (DQN). 
+\end{itemize}
 
 \section{Desarrollo}
 
 \subsection{Definición formal del problema}
-Para extender las ideas del bandido de $k$-brazos a situaciones secuenciales, formalizamos el problema de toma de decisiones como un Proceso de Decisión de Markov (MDP), definido por la tupla $\langle \mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \gamma \rangle$. A diferencia del capítulo anterior, en cada instante de tiempo $t$, el agente observa un estado $S_t \in \mathcal{S}$ y ejecuta una acción $A_t \in \mathcal{A}$. Como consecuencia, el entorno transita a un nuevo estado $S_{t+1}$ según la probabilidad de transición $\mathcal{P}(S_{t+1} | S_t, A_t)$ y emite una recompensa escalar $R_{t+1} \in \mathcal{R}$. Nuestro objetivo es encontrar una política $\pi(a|s)$ que maximice el retorno esperado descontado:
+Para extender las ideas del bandido de $k$-brazos a situaciones secuenciales, formalizamos el problema de toma de decisiones como un \textbf{Proceso de Decisión de Markov (MDP)}, definido por la tupla $\langle \mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \gamma \rangle$. A diferencia del capítulo anterior, en cada instante de tiempo $t$, el agente observa un estado $S_t \in \mathcal{S}$ y ejecuta una acción $A_t \in \mathcal{A}$. Como consecuencia, el entorno transita a un nuevo estado $S_{t+1}$ según la probabilidad de transición $\mathcal{P}(S_{t+1} | S_t, A_t)$ y emite una recompensa escalar $R_{t+1} \in \mathcal{R}$. Nuestro objetivo es encontrar una política $\pi(a|s)$ que maximice el retorno esperado descontado:
 \begin{equation}
     G_t = \sum_{k=0}^{\infty} \gamma^k R_{t+k+1}
 \end{equation}
@@ -47,22 +55,220 @@ donde $\gamma \in [0, 1]$ es el factor de descuento que pondera la importancia d
 
 % 
 
-\subsection{Enfoques existentes en la literatura}
+\subsection{Enfoques existentes y estado del arte}
 La literatura clásica de RL establece dos grandes ramas para la resolución de MDPs: los métodos tabulares y los métodos de aproximación. Para espacios discretos pequeños, algoritmos como Q-Learning y SARSA garantizan la convergencia a la política óptima construyendo un diccionario exacto de valores. Sin embargo, para entornos continuos o de alta dimensionalidad, la literatura reciente se apoya en aproximadores de funciones no lineales. La introducción de Deep Q-Networks (DQN) por Mnih et al. marcó un punto de inflexión al demostrar que las redes neuronales profundas pueden estabilizar el aprendizaje \textit{off-policy} mediante el uso de repetición de experiencia (\textit{Experience Replay}) y redes objetivo (\textit{Target Networks}).
 
-\subsection{Contexto y antecedentes necesarios}
+\subsection{Contexto y aplicaciones específicas} %antecedentes necesarios
 Para comprender la progresión de nuestro trabajo en este capítulo, es vital establecer las características de los dos entornos de prueba que utilizaremos para superar el nivel del bandido clásico:
 \begin{itemize}
     \item \textbf{Taxi-v3:} Un entorno discreto clásico con 500 estados posibles y 6 acciones discretas. Permite el uso de matrices exactas ($Q(s, a)$) para estimar el valor de cada par estado-acción.
     \item \textbf{LunarLander:} Un simulador físico donde el estado es un vector continuo de 8 dimensiones (coordenadas, velocidades, ángulos, etc.). Aquí, almacenar una tabla es imposible, lo que nos obliga a estimar la función de valor mediante pesos parametrizados: $\hat{q}(s, a, \mathbf{w}) \approx q_\pi(s, a)$.
 \end{itemize}
 
-\subsection{Explicación de los métodos utilizados}
+\subsection{Métodos utilizados}
 Para abordar estos retos, dividimos nuestra metodología en dos bloques principales:
 \begin{enumerate}
     \item \textbf{Métodos Tabulares:} Aplicamos Monte Carlo para aprender de episodios completos y Diferencias Temporales (TD) para aprender paso a paso sin esperar al final del episodio. Exploramos el control \textit{on-policy} (SARSA, Expected-SARSA) que optimiza la política de comportamiento, y el control \textit{off-policy} (Q-Learning, Double Q-Learning) que busca la política óptima independientemente de la exploración.
     \item \textbf{Aproximaciones:} Reemplazamos la tabla $Q$ por un modelo parametrizado. Iniciamos con SARSA semi-gradiente utilizando características construidas manualmente o combinaciones lineales, para finalmente evolucionar a Deep Q-Learning (DQN), delegando la extracción de características a una red neuronal profunda.
 \end{enumerate}
 
+
+\subsubsection{Aprendizaje por Diferencias Temporales (TD)}
+A diferencia de los métodos de Monte Carlo, los métodos TD permiten actualizar las estimaciones de valor basándose en otras estimaciones aprendidas, sin necesidad de esperar al final del episodio (bootstrapping). Hemos seleccionado dos enfoques fundamentales:
+\begin{itemize}
+\item \textbf{Q-Learning:} Un algoritmo \textit{off-policy} que aprende el valor de la política óptima independientemente de las acciones tomadas por el agente.
+\item \textbf{Double Q-Learning:} Una variante diseñada para mitigar el sesgo de sobreestimación de los valores $Q$ mediante el uso de dos tablas independientes.
+\end{itemize}
+
+\subsubsection{Control con Aproximación de Funciones}
+Para el entorno \textbf{LunarLander}, donde el espacio de estados es continuo ($S \in \mathbb{R}^8$), se sustituye la tabla por una red neuronal parametrizada por pesos $\mathbf{w}$.
+\begin{itemize}
+\item \textbf{SARSA Semi-gradiente:} Un método \textit{on-policy} que actualiza los pesos de la red utilizando el gradiente del error cuadrático entre la estimación actual y el objetivo TD, siguiendo la política de exploración en cada paso.
+\end{itemize}
+
+
 \subsection{Justificación y diferenciación del trabajo}
-A diferencia de estudios teóricos aislados, el presente capítulo destaca por su enfoque integrador y comparativo. Justificamos la estructura al demostrar empíricamente cómo las limitaciones metodológicas de los enfoques tabulares (analizados en \textit{Taxi-v3}) se resuelven mediante el uso de arquitecturas neuronales en \textit{LunarLander}. Al implementar las variaciones algorítmicas bajo un marco de pruebas unificado, aportamos una visión clara y cuantificable sobre el equilibrio entre la simplicidad de los métodos clásicos y la capacidad de generalización de los métodos profundos contemporáneos.
+A diferencia de estudios teóricos aislados, el presente capítulo destaca por su enfoque integrador y comparativo. Justificamos la estructura al demostrar empíricamente cómo las limitaciones metodológicas de los enfoques tabulares (analizados en \textbf{Taxi-v3}) se resuelven mediante el uso de arquitecturas neuronales en \textbf{LunarLander}. Al implementar las variaciones algorítmicas bajo un marco de pruebas unificado, aportamos una visión clara y cuantificable sobre el equilibrio entre la simplicidad de los métodos clásicos y la capacidad de generalización de los métodos profundos contemporáneos.
+
+\section{Algoritmos}
+
+En este capítulo se detallan los procedimientos algorítmicos seleccionados para abordar los problemas planteados en los entornos \textbf{Taxi-v3} y \textbf{LunarLander}. Para cada algoritmo, se presenta una descripción formal, su implementación específica y las consideraciones técnicas relevantes.
+
+\subsection{Algoritmos Tabulares (Entorno Taxi-v3)}
+
+En esta sección se detallan las estrategias aplicadas al entorno discreto, donde es posible mantener una estructura de datos de tipo `defaultdict` para representar la tabla $Q$.
+
+\subsubsection{Algoritmo Q-Learning}
+
+Es el algoritmo de aprendizaje por refuerzo más extendido. Se justifica su uso por su capacidad de convergencia teórica a la política óptima $\pi^*$ siempre que se exploren todos los pares estado-acción de forma suficiente. En nuestro experimento, se utiliza una política $\epsilon$-greedy con decaimiento lineal para equilibrar la exploración inicial del mapa del taxi con la explotación de las rutas más cortas.
+
+La actualización del valor de la acción $A_t$ en el estado $S_t$ se rige por:
+\begin{equation}
+Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \alpha \left[ R_{t+1} + \gamma \max_{a} Q(S_{t+1}, a) - Q(S_t, A_t) \right]
+\end{equation}
+Donde $\alpha$ es la tasa de aprendizaje y $\gamma$ el factor de descuento.
+
+\paragraph{Pseudocódigo}
+\begin{algorithm}
+\caption{Q-Learning para Taxi-v3}
+\begin{algorithmic}[1]
+\Require $\alpha, \gamma, \epsilon_{decay}$
+\State Inicializar $Q(s, a)$ arbitrariamente (ej. ceros)
+\For{cada episodio}
+\State $S \gets$ reset entorno
+\While{$S$ no es terminal}
+\State Elegir $A$ desde $S$ usando política $\epsilon$-greedy basada en $Q$
+\State Ejecutar $A$, observar $R, S'$
+\State $Q(S, A) \leftarrow Q(S, A) + \alpha [R + \gamma \max_a Q(S', a) - Q(S, A)]$
+\State $S \gets S'$
+\EndWhile
+\State $\epsilon \gets \max(\epsilon_{min}, \epsilon - \epsilon_{decay})$
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Algoritmo Double Q-Learning}
+
+Q-Learning tiende a sobreestimar los valores de las acciones debido al operador $\max$, que puede seleccionar ruidos positivos en lugar de valores reales altos. Double Q-Learning desacopla la selección de la acción de su evaluación utilizando dos tablas, $Q_1$ y $Q_2$. Es ideal para reducir la varianza en el aprendizaje y obtener una política más estable.
+
+Con probabilidad del $50\%$, actualizamos $Q_1$ usando $Q_2$ para evaluar el siguiente estado:
+\begin{equation}
+Q_1(S, A) \leftarrow Q_1(S, A) + \alpha \left( R + \gamma Q_2(S', \operatorname{argmax}_a Q_1(S', a)) - Q_1(S, A) \right)
+\end{equation}
+(Y viceversa para actualizar $Q_2$).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Algoritmos de Aproximación (Entorno LunarLander-v3)}
+
+Para manejar el aterrizaje lunar, donde los sensores devuelven valores reales continuos, implementamos métodos basados en gradiente.
+
+\subsubsection{SARSA Semi-gradiente con Redes Neuronales}
+
+En este enfoque, la función de valor $Q(s, a)$ se aproxima mediante una red neuronal $\hat{q}(s, a, \mathbf{w})$. Se elige SARSA (\textit{on-policy}) para asegurar que el agente aprenda el valor de la política que realmente está ejecutando, lo cual suele ser más estable en las etapas iniciales de un aterrizaje físico donde una acción errónea (exceso de motor) tiene consecuencias inmediatas.
+
+La red consta de una capa de entrada de 8 neuronas, dos capas ocultas de 128 con activación ReLU y una capa de salida de 4 neuronas. El objetivo es minimizar el error cuadrático medio (MSE) entre la salida de la red y el objetivo TD:
+\begin{equation}
+\mathcal{L}(\mathbf{w}) = \mathbb{E} \left[ \left( R + \gamma \hat{q}(S', A', \mathbf{w}) - \hat{q}(S, A, \mathbf{w}) \right)^2 \right]
+\end{equation}
+La actualización de los pesos se realiza mediante el descenso de gradiente:
+\begin{equation}
+\mathbf{w} \leftarrow \mathbf{w} + \alpha \delta \nabla_{\mathbf{w}} \hat{q}(S, A, \mathbf{w})
+\end{equation}
+donde $\delta$ es el error TD de SARSA.
+
+\paragraph{Pseudocódigo}
+\begin{algorithm}
+\caption{SARSA Semi-gradiente Deep}
+\begin{algorithmic}[1]
+\Require Tasa de aprendizaje $\alpha$, arquitectura $\hat{q}(\cdot, \mathbf{w})$
+\State Inicializar pesos $\mathbf{w}$ de la red neuronal
+\For{cada episodio}
+\State $S \gets$ reset entorno
+\State Seleccionar $A$ desde $S$ usando política $\epsilon$-greedy sobre $\hat{q}(S, \cdot, \mathbf{w})$
+\While{$S$ no es terminal}
+\State Ejecutar $A$, observar $R, S'$
+\State Seleccionar $A'$ desde $S'$ usando política $\epsilon$-greedy sobre $\hat{q}(S', \cdot, \mathbf{w})$
+\State \textbf{Target} $y \gets R + \gamma \hat{q}(S', A', \mathbf{w})$
+\State Actualizar $\mathbf{w}$ minimizando $(y - \hat{q}(S, A, \mathbf{w}))^2$ mediante Backpropagation
+\State $S \gets S', A \gets A'$
+\EndWhile
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+
+
+
+Aquí tienes el desarrollo de las secciones de **Evaluación y Experimentos** y **Conclusiones**, adaptadas específicamente a tus resultados con **Taxi-v3** y **LunarLander-v3**, siguiendo el estilo del ejemplo que proporcionaste.
+
+---
+
+\section{Evaluación y Experimentos}
+
+En este capítulo se detallan las pruebas realizadas para evaluar el desempeño de los algoritmos implementados en entornos de complejidad creciente: desde el espacio discreto de \textbf{Taxi-v3} hasta el espacio continuo de \textbf{LunarLander-v3}. El objetivo es analizar la convergencia, la estabilidad y el impacto de los hiperparámetros en la transición de métodos tabulares a aproximación de funciones.
+
+\subsection{Configuración Experimental}
+
+\subsubsection{Entornos de Prueba}
+\begin{itemize}
+\item \textbf{Taxi-v3 (Tabular):} Un MDP discreto con 500 estados y 6 acciones. El reto reside en aprender la secuencia óptima de navegación y transporte sin incurrir en penalizaciones por acciones ilegales.
+\item \textbf{LunarLander-v3 (Continuo):} Un entorno con un espacio de estados de 8 dimensiones continuas. Requiere la aproximación de la función $Q$ mediante redes neuronales para manejar la infinitud de estados posibles.
+\end{itemize}
+
+\subsubsection{Herramientas y Reproducibilidad}
+Todo el ecosistema experimental se ha desarrollado en Python utilizando la librería \textit{Gymnasium}. Para asegurar la reproducibilidad, se ha fijado una semilla aleatoria (\texttt{SEED = 42}) y se han utilizado envolturas (\textit{wrappers}) para monitorizar estadísticas de entrenamiento de forma consistente.
+
+\subsubsection{Métricas de Desempeño}
+Se han monitorizado tres métricas clave promediadas en ventanas móviles de 50 a 100 episodios:
+\begin{enumerate}
+\item \textbf{Recompensa Media por Episodio:} Indica la eficacia de la política. En Taxi-v3 el objetivo es aproximarse a 8-9, mientras que en LunarLander se considera resuelto al superar los 200 puntos.
+\item \textbf{Longitud del Episodio:} Mide la eficiencia temporal. Se busca una reducción progresiva que indique trayectorias más directas al objetivo.
+\item \textbf{Estabilidad TD (Error de entrenamiento):} En métodos tabulares representa el cambio en la tabla $Q$, y en aproximación, la pérdida (\textit{loss}) de la red neuronal.
+\end{enumerate}
+
+\subsection{Resultados en Entorno Tabular: Taxi-v3}
+
+Se compararon los algoritmos Q-Learning y Double Q-Learning bajo una política $\epsilon$-greedy con decaimiento lineal.
+
+\paragraph{Optimización de Hiperparámetros (Grid Search).}
+Tras evaluar tasas de aprendizaje $\alpha \in [0.016, 1]$ y horizontes de hasta 7000 episodios, se determinó que:
+\begin{itemize}
+\item Un $\alpha = 0.256$ ofrece el mejor equilibrio entre velocidad y estabilidad. Valores cercanos a 1 provocan inestabilidad catastrófica.
+\item El factor de descuento óptimo es $\gamma = 0.95$. Valores inferiores impiden que el agente valore correctamente la recompensa final de entrega.
+\end{itemize}
+
+\paragraph{Q-Learning vs. Double Q-Learning.}
+Aunque teóricamente Double Q-Learning mitiga el sesgo de sobreestimación, en este entorno discreto los resultados mostraron matices interesantes. Como se puede apreciar en la comparativa de la Figura~\ref{fig:q_vs_double}, Q-Learning convergió más rápido (aprox. 1000 episodios) que Double Q-Learning, que necesitó cerca de 4000 episodios para estabilizarse debido a la división de actualizaciones entre dos tablas.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{resources/QLearningvsDoubleQLearning.png}
+\caption{Comparación de recompensa acumulada y convergencia entre Q-Learning y Double Q-Learning en Taxi-v3.}
+\label{fig:q_vs_double}
+\end{figure}
+
+En fase de test, ambos lograron un \textit{Win Rate} superior al 99.5\%. La Figura~\ref{fig:taxi_policy} ilustra la política final aprendida por el agente Q-Learning, donde se observa cómo el taxi ha optimizado las rutas de recogida y entrega en los puntos clave del mapa.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{resources/taxi_politica_final_qlearning.png}
+\caption{Representación visual de la política óptima para el agente Q-Learning en el entorno Taxi-v3.}
+\label{fig:taxi_policy}
+\end{figure}
+
+\subsection{Resultados en Entorno Continuo: LunarLander-v3}
+
+En este entorno, se evaluó el algoritmo SARSA Semi-gradiente utilizando una arquitectura de red neuronal profunda (DNN).
+
+\paragraph{Impacto de la Exploración y el Aprendizaje.}
+\begin{itemize}
+\item \textbf{$\epsilon$-Greedy vs. $\epsilon$-Decay:} El uso de un decaimiento progresivo ($\epsilon_0=1.0 \to \epsilon_f=0.05$) fue crítico, elevando el \textit{Win Rate} del 78.9\% al 89.7\%. Esto confirma que en espacios continuos, una exploración inicial exhaustiva es fundamental para "mapear" la física del entorno. En la Figura~\ref{fig:lunar_metrics} se detallan las métricas de este experimento
+\item \textbf{Sensibilidad a $\alpha$}: A diferencia del caso tabular, LunarLander mostró una intolerancia extrema a tasas de aprendizaje altas. Un $\alpha = 0.01$ destruyó la convergencia (\textit{Win Rate} 5.3\%), mientras que $\alpha = 0.001$ permitió un aprendizaje suave y estable.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{resources/lunar_epsilon_decaimineto_graficas.png}
+\caption{Métricas de entrenamiento (Recompensa, Longitud y Error TD) bajo la política de decaimiento lineal en LunarLander-v3.}
+\label{fig:lunar_metrics}
+\end{figure}
+
+\paragraph{Arquitectura de la Red Neuronal.}
+Se experimentó con capas ocultas de 32, 64 y 128 neuronas. Aunque incluso las redes pequeñas lograron aterrizajes exitosos, la configuración de \textbf{128 neuronas} obtuvo la menor varianza y la política más robusta, demostrando que la complejidad del aterrizaje físico requiere una capacidad de representación suficiente para capturar las interacciones entre las 8 variables de estado. n ejemplo visual de la eficacia de este modelo se muestra en la Figura~\ref{fig:lunar_success}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{resources/lunar_aterrizaje_existoso.png}
+\caption{Fotograma de un aterrizaje exitoso realizado por el agente SARSA profundo con red de 128 neuronas.}
+\label{fig:lunar_success}
+\end{figure}
+
+
+\subsection{Análisis Comparativo Global}
+
+La siguiente tabla resume los hallazgos principales de los experimentos realizados:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusiones}
+
+Tras el desarrollo e implementación de los distintos algoritmos de aprendizaje por refuerzo, se extraen las siguientes conclusiones:
