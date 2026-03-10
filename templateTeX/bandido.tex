@@ -168,9 +168,10 @@ El algoritmo $\epsilon$-Greedy es la estrategia base por excelencia en el aprend
 \end{itemize}
 
 \subsubsection{Pseudocódigo}
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{Algoritmo $\epsilon$-Greedy}
 \begin{algorithmic}[1] 
+\small
 \Require $k$ (número de brazos), $\epsilon$ (probabilidad), $T$ (horizonte)
 \State Inicializar $Q(a) \gets 0$ y $N(a) \gets 0$ para todo $a \in \{1, \dots, k\}$
 \For{$t \gets 1$ \textbf{to} $T$}
@@ -201,6 +202,7 @@ probabilidades ante las diferencias en los valores $Q$.
 \begin{algorithm}
 \caption{Algoritmo Softmax}
 \begin{algorithmic}[1]
+\small
 \Require $k$, $\tau$ (temperatura), $T$ (horizonte)
 \State Inicializar $Q(a) \gets 0$ y $N(a) \gets 0$ para todo $a$
 \For{$t \gets 1$ \textbf{to} $T$}
@@ -220,9 +222,7 @@ probabilidades ante las diferencias en los valores $Q$.
 
 \subsubsection{Descripción y Justificación}
 El algoritmo UCB1 se no utiliza aleatoriedad, sino que selecciona acciones maximizando una cota superior 
-del intervalo de confianza. 
-
-La inclusión del algoritmo UCB1 y su variante UCB2 en este estudio comparativo  se justifica por dos factores críticos:
+del intervalo de confianza. La inclusión del algoritmo UCB1 y su variante UCB2 en este estudio comparativo  se justifica por dos factores críticos:
 
 \begin{itemize}
     \item \textbf{Garantías de Convergencia:} Auer et al. (2002) \cite{auer2002}  demostraron que UCB1 garantiza una cota 
@@ -231,15 +231,16 @@ La inclusión del algoritmo UCB1 y su variante UCB2 en este estudio comparativo 
     
     \item \textbf{Adaptabilidad Automática:} El algoritmo gestiona el compromiso exploración-explotación sin 
     requerir la disminución manual de parámetros (como es el caso del decaimiento de $\epsilon$ o $\tau$ en Softmax). 
-    El término de exploración $\sqrt{\frac{\ln t}{N_t(a)}}$ crece con el tiempo global ($t$) 
-    pero decrece con las visitas locales ($N_t(a)$), forzando al sistema a explorar brazos poco 
-    visitados inicialmente y a converger naturalmente hacia la explotación del brazo óptimo conforme se reduce la incertidumbre.
+    El término de exploración $\sqrt{\frac{\ln t}{N_t(a)}}$ crece con el tiempo global $t$
+    pero decrece con las visitas locales $N_t(a)$, forzando a explorar brazos poco 
+    visitados inicialmente y a converger hacia la explotación del brazo óptimo conforme se reduce la incertidumbre.
 \end{itemize}
 
 \subsubsection{Pseudocódigo}
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{Algoritmo UCB1}
 \begin{algorithmic}[1]
+\small
 \Require $k$, $T$ (horizonte)
 \State \Comment{Inicialización: probar cada brazo una vez}
 \For{$a \gets 1$ \textbf{to} $k$}
@@ -308,20 +309,18 @@ Para todas las distribuciones se observó que:
     \item \textbf{$\epsilon = 0.1$ (Exploración alta):} Aprende con mayor rapidez durante las primeras iteraciones, ya que explora con mayor frecuencia y detecta antes el brazo óptimo. 
     Sin embargo, su recompensa promedio se estabiliza por debajo del óptimo teórico, debido a que mantiene permanentemente una probabilidad del 10\% de seleccionar brazos subóptimos.
 
-    \item \textbf{$\epsilon$-decaimiento:} Comienza con una exploración elevada ($\epsilon_0 = 1.0$) y la reduce progresivamente según la función 
-    $$
-    \epsilon(t) = \frac{\epsilon_0}{1 + \lambda t},
-    $$
+    \item \textbf{$\epsilon$-decaimiento:} Comienza con una exploración elevada $\epsilon_0 = 1.0$ y la reduce progresivamente según la función 
+    $\epsilon(t) = \frac{\epsilon_0}{1 + \lambda t},$
     con un mínimo $\epsilon_{min}=0.01$. 
-    Este esquema combina una exploración intensiva inicial con una explotación dominante a largo plazo, logrando el mejor compromiso global entre rapidez de aprendizaje y rendimiento final.
+    Este esquema combina una exploración intensiva inicial con una explotación a largo plazo, logrando el mejor compromiso global entre rapidez de aprendizaje y rendimiento.
 \end{itemize}
 
 La Figura~\ref{fig:egreedy_reward_normal} muestra la evolución de la recompensa promedio en el caso base con distribución Normal ($\sigma=1$).
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{resources/egreedy_reward_normal_sigma1.png}
-    \caption{Recompensa promedio en función del número de pasos para la familia $\epsilon$-Greedy bajo distribución Normal con $\sigma=1$.}
+    \includegraphics[width=0.45\textwidth]{resources/egreedy_reward_normal_sigma1.png}
+    \caption{Recompensa promedio en función del número de pasos para $\epsilon$-Greedy bajo distribución Normal con $\sigma=1$.}
     \label{fig:egreedy_reward_normal}
 \end{figure}
 
@@ -346,7 +345,7 @@ Este efecto puede observarse claramente en la Figura~\ref{fig:egreedy_variance_e
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{resources/egreedy_variance_comparison.png}
+    \includegraphics[width=0.45\textwidth]{resources/egreedy_variance_comparison.png}
     \caption{Porcentaje de selección del brazo óptimo para $\sigma=10$ en la familia $\epsilon$-Greedy.}
     \label{fig:egreedy_variance_effect}
 \end{figure}
@@ -361,7 +360,7 @@ En este entorno, el algoritmo $\epsilon$-decaimiento mostró el comportamiento m
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{resources/egreedy_bernoulli_binomial.png}
+    \includegraphics[width=0.45\textwidth]{resources/egreedy_bernoulli_binomial.png}
     \caption{Porcentaje de selección del brazo óptimo en distribuciones Bernoulli para los algoritmos $\epsilon$-Greedy.}
     \label{fig:egreedy_discrete}
 \end{figure}
@@ -396,16 +395,16 @@ Para todas las distribuciones, se observó que:
     se observa en el histograma de la Figura \ref{fig:softmax_histograma2}, la selección de brazos se centra en el subconjunto 
     de estos que tienen recompensas más altas, lo cual es coherente con la naturaleza del algoritmo.
 \end{itemize}
-\begin{figure}
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{resources/softmax_histograma.png}
+\includegraphics[width=0.45\textwidth]{resources/softmax_histograma.png}
 \caption{Histograma de selección de brazos con distribución Normal para el algoritmo Softmax con temperatura $tau = 0.1$.}
 \label{fig:softmax_histograma1}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{resources/softmax_histograma2.png}
+\includegraphics[width=0.45\textwidth]{resources/softmax_histograma2.png}
 \caption{Histograma de selección de brazos con distribución Normal para el algoritmo Softmax con temperatura $tau = 5.0$.}
 \label{fig:softmax_histograma2}
 \end{figure}
@@ -414,9 +413,9 @@ Además, se observó que el regret acumulado crece de manera lineal para todas l
 los algoritmos de la familia UCB que presentan un crecimiento logarítmico. Esto lo podemos ver por ejemplo para la 
 distribución Normal en la Figura \ref{fig:softmax_regret}, pero es un comportamiento que se repite para las otras distribuciones.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{resources/softmax_regret.png}
+\includegraphics[width=0.45\textwidth]{resources/softmax_regret.png}
 \caption{Evolución del regret acumulado para el algoritmo Softmax con distribución Normal.}
 \label{fig:softmax_regret}
 \end{figure}
@@ -440,9 +439,9 @@ Bernoulli (recompensas de 0 o 10).
 
 Esto se puede ver en la gráfica de la Figura \ref{fig:softmax_bernoulli} donde se observa que la 
 recompensa promedio obtenida con $\tau=0.1$ es muy similar a la obtenida con $\tau=5.0$:
-\begin{figure}
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{resources/softmax_bernoulli.png}
+\includegraphics[width=0.45\textwidth]{resources/softmax_bernoulli.png}
 \caption{Evolución de la recompensa promedio para el algoritmo Softmax con distribución de Bernoulli.}
 \label{fig:softmax_bernoulli}
 \end{figure}
@@ -455,9 +454,9 @@ mitigar este defecto. Se introdujo una fase de \textbf{exploración inicial forz
 al agente a seleccionar cada uno de los $k$ brazos una vez antes de aplicar la política Softmax estándar, al igual
 que se realiza en el algoritmo $epsilon$-greedy. Estos resultados se encuentran en la Figura \ref{fig:softmax_exploracion_inicial}.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{resources/softmax_exploracion_inicial.png}
+\includegraphics[width=0.45\textwidth]{resources/softmax_exploracion_inicial.png}
 \caption{Evolución del porcentaje de selección del brazo óptimo para el algoritmo Softmax con distribución Normal con fase de exploración inicial forzada.}
 \label{fig:softmax_exploracion_inicial}
 \end{figure}
@@ -490,16 +489,16 @@ Para todas las distribuciones, se observó que:
     horizonte temporal del experimento, lo que causaba una caída considerable en el rendimiento en la mitad de cada 
     ejecución, como se puede observar en la Figura \ref{fig:ucb_histograma2}. 
 \end{itemize}
-\begin{figure}
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{resources/softmax_histograma.png}
+\includegraphics[width=0.45\textwidth]{resources/softmax_histograma.png}
 \caption{Histograma de selección de brazos con distribución Normal para el algoritmo Softmax con temperatura $tau = 0.1$.}
 \label{fig:softmax_histograma1}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{resources/softmax_histograma2.png}
+\includegraphics[width=0.45\textwidth]{resources/softmax_histograma2.png}
 \caption{Histograma de selección de brazos con distribución Normal para el algoritmo Softmax con temperatura $tau = 5.0$.}
 \label{fig:softmax_histograma2}
 \end{figure}
@@ -508,9 +507,9 @@ Además, se observó que el regret acumulado crece de manera lineal para todas l
 los algoritmos de la familia UCB que presentan un crecimiento logarítmico. Esto lo podemos ver por ejemplo para la 
 distribución Normal en la Figura \ref{fig:softmax_regret}, pero es un comportamiento que se repite para las otras distribuciones.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{resources/softmax_regret.png}
+\includegraphics[width=0.45\textwidth]{resources/softmax_regret.png}
 \caption{Evolución del regret acumulado para el algoritmo Softmax con distribución Normal.}
 \label{fig:softmax_regret}
 \end{figure}
@@ -534,9 +533,9 @@ Bernoulli (recompensas de 0 o 10).
 
 Esto se puede ver en la gráfica de la Figura \ref{fig:softmax_bernoulli} donde se observa que la 
 recompensa promedio obtenida con $\tau=0.1$ es muy similar a la obtenida con $\tau=5.0$:
-\begin{figure}
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{resources/softmax_bernoulli.png}
+\includegraphics[width=0.45\textwidth]{resources/softmax_bernoulli.png}
 \caption{Evolución de la recompensa promedio para el algoritmo Softmax con distribución de Bernoulli.}
 \label{fig:softmax_bernoulli}
 \end{figure}
@@ -549,9 +548,9 @@ mitigar este defecto. Se introdujo una fase de \textbf{exploración inicial forz
 al agente a seleccionar cada uno de los $k$ brazos una vez antes de aplicar la política Softmax estándar, al igual
 que se realiza en el algoritmo $epsilon$-greedy. Estos resultados se encuentran en la Figura \ref{fig:softmax_exploracion_inicial}.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{resources/softmax_exploracion_inicial.png}
+\includegraphics[width=0.45\textwidth]{resources/softmax_exploracion_inicial.png}
 \caption{Evolución del porcentaje de selección del brazo óptimo para el algoritmo Softmax con distribución Normal con fase de exploración inicial forzada.}
 \label{fig:softmax_exploracion_inicial}
 \end{figure}
@@ -580,7 +579,7 @@ Se realizó un experimento conjunto utilizando una distribución Normal con $\mu
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{resources/global_optimal_selection.png}
+    \includegraphics[width=0.45\textwidth]{resources/global_optimal_selection.png}
     \caption{Porcentaje de selección del brazo óptimo en el experimento comparativo global.}
     \label{fig:global_optimal_selection}
     \end{figure}
@@ -592,7 +591,7 @@ Se realizó un experimento conjunto utilizando una distribución Normal con $\mu
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{resources/global_reward_comparison.png}
+    \includegraphics[width=0.45\textwidth]{resources/global_reward_comparison.png}
     \caption{Recompensa promedio acumulada en el experimento comparativo global.}
     \label{fig:global_reward}
     \end{figure}
@@ -604,7 +603,7 @@ Se realizó un experimento conjunto utilizando una distribución Normal con $\mu
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{resources/global_regret_comparison.png}
+    \includegraphics[width=0.45\textwidth]{resources/global_regret_comparison.png}
     \caption{Regret acumulado en el experimento comparativo global.}
     \label{fig:global_regret}
     \end{figure}
@@ -616,37 +615,37 @@ Se realizó un experimento conjunto utilizando una distribución Normal con $\mu
 
     
 
-Es posible que para sus resultados use figuras y tablas como la Figura \ref{fig:1} o la Tabla \ref{tab:1}.
-Si la tabla fuera demasiado grande use \texttt{sidewaystable} y póngala al final del documento.
+% Es posible que para sus resultados use figuras y tablas como la Figura \ref{fig:1} o la Tabla \ref{tab:1}.
+% Si la tabla fuera demasiado grande use \texttt{sidewaystable} y póngala al final del documento.
 
-\begin{figure}[htb!]
-\centering
-\includegraphics[width=0.45\textwidth]{exponencial}
-\caption{Esto es un ejemplo de figura}\label{fig:1}
-\end{figure}
-
-
+% \begin{figure}[htb!]
+% \centering
+% \includegraphics[width=0.45\textwidth]{exponencial}
+% \caption{Esto es un ejemplo de figura}\label{fig:1}
+% \end{figure}
 
 
 
 
-\begin{table}[htb!]
-\caption{Ejemplo de Tabla}\label{tab:1}%
-\centering
-\begin{tabular}{@{}llll@{}}
-\toprule
-Column 1 & Column 2  & Column 3 & Column 4\\
-\midrule
-row 1    & data 1   & data 2  & data 3  \\
-row 2    & data 4   & data 5\footnotemark[1]  & data 6  \\
-row 3    & data 7   & data 8  & data 9\footnotemark[2]  \\
-\bottomrule
-\end{tabular}
-\begin{itemize}
-    \item[$^1$] tablefootnote 1
-    \item[$^2$] tablefootnote 2
-  \end{itemize}
-\end{table}
+
+
+% \begin{table}[htb!]
+% \caption{Ejemplo de Tabla}\label{tab:1}%
+% \centering
+% \begin{tabular}{@{}llll@{}}
+% \toprule
+% Column 1 & Column 2  & Column 3 & Column 4\\
+% \midrule
+% row 1    & data 1   & data 2  & data 3  \\
+% row 2    & data 4   & data 5\footnotemark[1]  & data 6  \\
+% row 3    & data 7   & data 8  & data 9\footnotemark[2]  \\
+% \bottomrule
+% \end{tabular}
+% \begin{itemize}
+%     \item[$^1$] tablefootnote 1
+%     \item[$^2$] tablefootnote 2
+%   \end{itemize}
+% \end{table}
 % Deben estar fuera del entorno flotante. % Si se quieren las marcas al pie de página
 %\footnotetext[1]{Ejemplo de footnote para una celda de tabla}
 %\footnotetext[2]{Ejemplo de footnote para una celda de tabla}
