@@ -3,6 +3,7 @@ import gymnasium as gym
 import imageio
 from IPython.display import Image as IPyImage, display
 from PIL import Image as PILImage  # Importamos Pillow para manejar las superposiciones
+from pathlib import Path
 
 ICON_FILES = {
         0 : "down.png",
@@ -12,6 +13,9 @@ ICON_FILES = {
         4 : "pick_up.png",
         5 : "drop_off.png"
     }
+
+# Ruta absoluta al directorio de iconos, independiente del directorio actual de ejecucion.
+ICONS_DIR = Path(__file__).resolve().parent.parent / "data" / "icons_taxi"
 
 def animar_estados_taxi_gif(
     episode_history, 
@@ -24,7 +28,8 @@ def animar_estados_taxi_gif(
     iconos_cargados = {}
     for accion_id, filename in ICON_FILES.items():
         # Convertimos a RGBA para mantener el fondo transparente del PNG
-        iconos_cargados[accion_id] = PILImage.open("../data/icons_taxi/" + filename).convert("RGBA")
+        icon_path = ICONS_DIR / filename
+        iconos_cargados[accion_id] = PILImage.open(icon_path).convert("RGBA")
 
     # Inicializamos el entorno en modo grafico para obtener imagenes
     env = gym.make("Taxi-v3", render_mode="rgb_array")
