@@ -3,3 +3,4 @@ seaborn~=0.13.2
 matplotlib~=3.10.0
 gymnasium[box2d]
 imageio
+tqdm

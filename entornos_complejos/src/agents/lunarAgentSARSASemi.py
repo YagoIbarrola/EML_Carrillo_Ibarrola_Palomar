@@ -42,12 +42,13 @@ class LunarAgentSARSA(Agent):
         #     raise AttributeError("No se pudo determinar total_features del entorno")
 
         self.action_values = np.zeros((env.n_tilings, *env.bins, env.action_space.n))
+        self.n_actions = env.action_space.n
         self.training_error = []
         self.learning_rate = learning_rate
 
     def get_action(self, obs):
         if np.random.random() < self.epsilon:
-            return np.random.randint(4) # Selecciona una acción al azar
+            return np.random.randint(self.n_actions)
         else:
             av_list = []
             for k, idx in enumerate(obs):
@@ -84,7 +85,7 @@ class LunarAgentSARSA(Agent):
         #     self.w[feature_idx, action] += self.lr * temporal_difference
 
         # self.training_error.append(temporal_difference)
-        for k, (state, next_state) in enumerate(zip(obs, next_obs)):
+        for k, (state, next_state) in enumerate (zip(obs, next_obs)):
             qsa = self.action_values[k][state][action]
             next_qsa = self.action_values[k][next_state][next_action]
             te = (reward + self.discount_factor * next_qsa - qsa)
