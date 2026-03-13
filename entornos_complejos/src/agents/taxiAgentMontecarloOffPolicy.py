@@ -57,6 +57,7 @@ class TaxiAgentMontecarloOffPolicy(Agent):
         else:
             return int(self.pi[obs]), False
 
+
     def get_current_policy(self):
         """
         Devolvemos la politica actual (pi) que es la accion con el mayor valor Q para cada estado.
