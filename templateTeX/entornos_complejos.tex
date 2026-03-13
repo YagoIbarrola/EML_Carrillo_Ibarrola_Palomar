@@ -307,11 +307,11 @@ usando una política $\epsilon$-greedy basada en la función de valor aproximada
 \State Inicializar pesos $\mathbf{w}$ para cada acción
 \For{cada episodio}
 \State $S \gets$ reset entorno
-\State Seleccionar $A$ desde $S$ usando política $\epsilon$-greedy sobre $\hat{q}(S, A) = 
+\State Seleccionar $A$ desde $S$ usando política $\epsilon$-greedy sobre $\hat{q}(S, A) = \text{mean}(\mathbf{w}_A[\phi(S)])$ con desempate aleatorio
 \State Ejecutar $A$, observar $R, S'$
-\State Seleccionar $A'$ desde $S'$ usando política $\epsilon$-greedy sobre $\hat{q}(S', A') = \mathbf{w}_{A'}^T \phi(S')$
-\State $\delta \gets R + \gamma \mathbf{w}_{A'}^T \phi(S') - \mathbf{w}_A^T \phi(S)$
-\State $\mathbf{w}_A \gets \mathbf{w}_A + \alpha \delta \phi(S)$
+\State Seleccionar $A'$ desde $S'$ usando política $\epsilon$-greedy sobre $\hat{q}(S', A') = \text{mean}(\mathbf{w}_{A'}[\phi(S')])$ con desempate aleatorio
+\State $\delta \gets R + \gamma \text{mean}(\mathbf{w}_{A'}[\phi(S')]) - \text{mean}(\mathbf{w}_A[\phi(S)])$
+\State $\mathbf{w}_A[\phi(S)] \gets \mathbf{w}_A[\phi(S)] + \alpha \delta$
 \State $S \gets S', A \gets A'$
 \EndWhile
 \EndFor
@@ -491,11 +491,32 @@ mientras que Off-Policy sí que consigue estabilizarse a mitad del entrenamiento
 Lo mismo ocurre con la longitud de los episodios, donde Montecarlo Off-Policy se acerca a la longitud óptima de alrededor de 13 pasos, 
 mientras que On-Policy es mucho más inestable y solo consigue llegar a una longitud de 50 pasos.
 
+\subsubsection{Resultados de SARSA y Expected-SARSA}
 
+En cada uno de los dos algoritmos se han realizado los siguientes experiementos:
 
+Un ajuste de hiperparámetros de learning rate y número de episodios, para encontrar una buena combinación de estos. 
+En los heatmaps de la Figura~\ref{fig:sarsa_heatmaps} se pueden observar los resultados obtenidos. En ellos se aprecia 
+que, aunque ambos algoritmos alcanzan recompensas similares y muy cercanas a las óptimas en los mejores casos, 
+Expected-SARSA muestra una mayor estabilidad en la convergencia (converge a la polñitica óptima de manera más consistente).
+Se ha relizado un entrenamiento con los parámetros escogidos y se han graficado las recompensas, longitudes de episodio y 
+errores diferenciales. Estas gráficas se pueden ver en la Figura~\ref{fig:sarsa_metrics}. En ellas se observa que ambos 
+algoritmos mejoran conforme avanza el entrenamiento, aunque Expected-SARSA lo hace de manera más rápida. La longitud de 
+los episodios disminuye a medida que el agente aprende a entregar el pasajero en menos pasos. El error TD muestra que la 
+función de valor se va estabilizando de cara al final del entrenamiento, aunque sin estabilizarse completamente.
 
-
-
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{resources/sarsa_heatmaps.png}
+\caption{Heatmaps de recompensa media para diferentes combinaciones de learning rate y número de episodios en SARSA y Expected-SARSA.}
+\label{fig:sarsa_heatmaps}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{resources/sarsa_metrics.png}
+\caption{Evolución de recompensa media, longitud de episodios y error TD durante el entrenamiento de SARSA y Expected-SARSA.}
+\label{fig:sarsa_metrics}
+\end{figure}
 
 
 \subsubsection{Resultados de Q-learning}
@@ -530,6 +551,15 @@ En fase de test, ambos lograron un \textit{Win Rate} superior al 99.5\%. La Figu
 
 \subsection{Resultados en Entorno Continuo: LunarLander-v3}
 \subsubsection{Resultados de SARSA Semi-gradiente con tile coding}
+Para evaluar el algoritmo SARSA Semi-gradiente con tile coding para la representación de los estados, 
+comenzamos realizando una búsqueda de hiperparámetros para encontrar la mejor combinación de número de 
+episodios frente al número de subdivisiones por dimensión continua. En la Figura~\ref{fig:tilecoding_heatmaps} 
+se pueden observar los resultados obtenidos, donde se aprecia que todas las combinaciones dan muy malos 
+resultados. Tras seleccionar la mejor combinación (a sabiendas de que la combinación ganadora es probablemente 
+fruto de la aleatoriedad, más que de los valores de los hiperparámetros), se realizó un entrenamiento con esta 
+configuración y se graficaron las métricas de recompensa, longitud de episodios y error TD. Estas gráficas se 
+pueden ver en la Figura~\ref{fig:tilecoding_metrics}. En ella se observa que la recompensa no solo no mejora 
+con el avance del entrenamiento, sino que disminuye. 
 
 \subsubsection{Resultados de SARSA Semi-gradiente con red neuronal}
 En este entorno, se evaluó el algoritmo SARSA Semi-gradiente utilizando una arquitectura de red neuronal profunda (DNN).
