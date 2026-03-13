@@ -1,4 +1,4 @@
-\babel@toc {spanish}{}\relax 
+\babel@toc {nil}{}\relax 
 \contentsline {chapter}{\numberline {1}Problema del Bandido de $k$-brazos}{3}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Introducción}{3}{section.1.1}%
 \contentsline {subsection}{\numberline {1.1.1}Descripción del problema y relevancia}{3}{subsection.1.1.1}%
@@ -24,14 +24,14 @@
 \contentsline {subsubsection}{Pseudocódigo}{5}{subsubsection*.10}%
 \contentsline {subsection}{\numberline {1.3.3}Algoritmo UCB1 (Upper Confidence Bound)}{5}{subsection.1.3.3}%
 \contentsline {subsubsection}{Descripción y Justificación}{5}{subsubsection*.11}%
-\contentsline {subsubsection}{Pseudocódigo}{5}{subsubsection*.12}%
+\contentsline {subsubsection}{Pseudocódigo}{6}{subsubsection*.12}%
 \contentsline {section}{\numberline {1.4}Evaluación y Experimentos}{6}{section.1.4}%
 \contentsline {subsection}{\numberline {1.4.1}Configuración Experimental}{6}{subsection.1.4.1}%
 \contentsline {subsubsection}{Entornos de Prueba}{6}{subsubsection*.13}%
 \contentsline {subsubsection}{Herramientas y Reproducibilidad}{6}{subsubsection*.14}%
 \contentsline {subsubsection}{Métricas de Desempeño}{6}{subsubsection*.15}%
 \contentsline {subsection}{\numberline {1.4.2}Resultados: Familia $\epsilon $-Greedy}{6}{subsection.1.4.2}%
-\contentsline {paragraph}{Impacto de la varianza en la distribución Normal.}{6}{paragraph*.16}%
+\contentsline {paragraph}{Impacto de la varianza en la distribución Normal.}{7}{paragraph*.16}%
 \contentsline {paragraph}{Resultados en la distribución de Bernoulli.}{7}{paragraph*.17}%
 \contentsline {paragraph}{Resultados en la distribución Binomial.}{7}{paragraph*.18}%
 \contentsline {subsection}{\numberline {1.4.3}Resultados: Familia Softmax}{7}{subsection.1.4.3}%
@@ -58,22 +58,29 @@
 \contentsline {subsubsection}{Control con Aproximación de Funciones}{13}{subsubsection*.25}%
 \contentsline {section}{\numberline {2.3}Algoritmos}{13}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Algoritmos Tabulares (Entorno Taxi-v3)}{13}{subsection.2.3.1}%
-\contentsline {subsubsection}{Algoritmo Q-Learning}{13}{subsubsection*.26}%
-\contentsline {paragraph}{Pseudocódigo}{14}{paragraph*.27}%
-\contentsline {subsubsection}{Algoritmo Double Q-Learning}{14}{subsubsection*.28}%
-\contentsline {subsection}{\numberline {2.3.2}Algoritmos de Aproximación (Entorno LunarLander-v3)}{14}{subsection.2.3.2}%
-\contentsline {subsubsection}{SARSA Semi-gradiente con Redes Neuronales}{14}{subsubsection*.29}%
+\contentsline {subsubsection}{Algoritmo de Montecarlo: On-Policy y Off-Policy}{13}{subsubsection*.26}%
+\contentsline {paragraph}{Montecarlo On-Policy}{14}{paragraph*.27}%
+\contentsline {paragraph}{Pseudocódigo}{14}{paragraph*.28}%
+\contentsline {paragraph}{Montecarlo Off-Policy}{14}{paragraph*.29}%
 \contentsline {paragraph}{Pseudocódigo}{14}{paragraph*.30}%
-\contentsline {section}{\numberline {2.4}Evaluación y Experimentos}{14}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Configuración Experimental}{14}{subsection.2.4.1}%
-\contentsline {subsubsection}{Entornos de Prueba}{14}{subsubsection*.31}%
-\contentsline {subsubsection}{Herramientas y Reproducibilidad}{15}{subsubsection*.32}%
-\contentsline {subsubsection}{Métricas de Desempeño}{15}{subsubsection*.33}%
-\contentsline {subsection}{\numberline {2.4.2}Resultados en Entorno Tabular: Taxi-v3}{15}{subsection.2.4.2}%
-\contentsline {paragraph}{Optimización de Hiperparámetros (Grid Search).}{15}{paragraph*.34}%
-\contentsline {paragraph}{Q-Learning vs. Double Q-Learning.}{15}{paragraph*.35}%
-\contentsline {subsection}{\numberline {2.4.3}Resultados en Entorno Continuo: LunarLander-v3}{15}{subsection.2.4.3}%
-\contentsline {paragraph}{Impacto de la Exploración y el Aprendizaje.}{15}{paragraph*.36}%
-\contentsline {paragraph}{Arquitectura de la Red Neuronal.}{16}{paragraph*.37}%
-\contentsline {subsection}{\numberline {2.4.4}Análisis Comparativo Global}{16}{subsection.2.4.4}%
-\contentsline {section}{\numberline {2.5}Conclusiones}{16}{section.2.5}%
+\contentsline {subsubsection}{Algoritmo Q-Learning}{14}{subsubsection*.31}%
+\contentsline {paragraph}{Pseudocódigo}{14}{paragraph*.32}%
+\contentsline {subsubsection}{Algoritmo Double Q-Learning}{15}{subsubsection*.33}%
+\contentsline {subsection}{\numberline {2.3.2}Algoritmos de Aproximación (Entorno LunarLander-v3)}{15}{subsection.2.3.2}%
+\contentsline {subsubsection}{SARSA Semi-gradiente con Redes Neuronales}{15}{subsubsection*.34}%
+\contentsline {paragraph}{Pseudocódigo}{15}{paragraph*.35}%
+\contentsline {section}{\numberline {2.4}Evaluación y Experimentos}{15}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Configuración Experimental}{15}{subsection.2.4.1}%
+\contentsline {subsubsection}{Entornos de Prueba}{15}{subsubsection*.36}%
+\contentsline {subsubsection}{Herramientas y Reproducibilidad}{16}{subsubsection*.37}%
+\contentsline {subsubsection}{Métricas de Desempeño}{16}{subsubsection*.38}%
+\contentsline {subsection}{\numberline {2.4.2}Resultados en Entorno Tabular: Taxi-v3}{16}{subsection.2.4.2}%
+\contentsline {subsubsection}{Resultados de Montecarlo}{16}{subsubsection*.39}%
+\contentsline {subsubsection}{Resultados de Q-learning}{16}{subsubsection*.40}%
+\contentsline {paragraph}{Optimización de Hiperparámetros (Grid Search).}{16}{paragraph*.41}%
+\contentsline {paragraph}{Q-Learning vs. Double Q-Learning.}{16}{paragraph*.42}%
+\contentsline {subsection}{\numberline {2.4.3}Resultados en Entorno Continuo: LunarLander-v3}{17}{subsection.2.4.3}%
+\contentsline {paragraph}{Impacto de la Exploración y el Aprendizaje.}{17}{paragraph*.43}%
+\contentsline {paragraph}{Arquitectura de la Red Neuronal.}{17}{paragraph*.44}%
+\contentsline {subsection}{\numberline {2.4.4}Análisis Comparativo Global}{17}{subsection.2.4.4}%
+\contentsline {section}{\numberline {2.5}Conclusiones}{18}{section.2.5}%
