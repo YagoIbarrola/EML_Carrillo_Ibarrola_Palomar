@@ -655,10 +655,26 @@ Se realizó un experimento conjunto utilizando una distribución Normal con $\mu
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
 \section{Conclusiones}
-    \begin{itemize}
-        \item Un resumen de los principales resultados obtenidos.
-        \item Limitaciones del estudio y posibles mejoras futuras.
-        \item Reflexión sobre la importancia del trabajo y su impacto en el campo del aprendizaje por refuerzo.
-        \item Líneas \textit{futuras} de estudio.
-    \end{itemize}
 
+A partir del análisis experimental realizado sobre el problema del bandido de $k$-brazos bajo distintas distribuciones de recompensa, se extraen las siguientes conclusiones fundamentales:
+
+\begin{itemize}
+    \item \textbf{Sensibilidad de los métodos básicos:} El rendimiento de la familia $\epsilon$-Greedy depende 
+    críticamente del nivel de ruido del entorno y del ajuste de $\epsilon$. Mientras que la explotación pura 
+    ($\epsilon=0$) es eficiente en entornos de muy baja varianza, fracasa estrepitosamente ante alta incertidumbre. 
+    La introducción de un $\epsilon$-decaimiento representa el enfoque más robusto dentro de esta familia, aunque 
+    la gran exploración con la que empieza en los primeros episodios penaliza la recompensa en horizontes temporales cortos.
+    
+    \item \textbf{Dependencia paramétrica y estancamiento en Softmax:} El algoritmo Softmax es altamente sensible a 
+    la selección de su temperatura $\tau$. Temperaturas bajas ($\tau=0.1$) provocan una convergencia prematura hacia 
+    óptimos locales debido a su naturaleza voraz. Este defecto solo logra mitigarse de forma natural en entornos 
+    binarios muy penalizadores (como la distribución de Bernoulli) o forzando explícitamente una pasada de 
+    exploración inicial empírica en el algoritmo. 
+    
+    \item \textbf{Superioridad de los métodos basados en incertidumbre (UCB):} Las estrategias UCB1 y 
+    UCB2 demostraron ser las más eficientes y autónomas del estudio. Al balancear automáticamente la exploración y la explotación sin depender de decaimientos manuales, logran estabilizarse rápidamente. En el análisis global comparativo, UCB2 se posicionó como la estrategia óptima, rozando un 99\% de precisión en la selección del brazo correcto y minimizando el \textit{regret} acumulado con un crecimiento logarítmico, lo cual confirma en la práctica las garantías teóricas establecidas en la literatura.
+\end{itemize}
+
+
+
+En definitiva, se concluye que, para entornos estacionarios con incertidumbre, los algoritmos basados en la cota superior de confianza (especialmente UCB2 gracias a su optimización mediante épocas) superan sistemáticamente a los métodos basados en probabilidad pura o exploración aleatoria constante.

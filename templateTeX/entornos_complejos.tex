@@ -116,7 +116,11 @@ posible mantener una estructura de datos de tipo tabla para representar $Q$.
 
 \subsubsection{Algoritmo de Montecarlo: On-Policy y Off-Policy}
 
-A diferencia de los métodos de Diferencia Temporal, los algoritmos de Montecarlo aprenden basándose en los retornos empíricos completos de los episodios. Esto requiere matemáticamente que las tareas sean episódicas, ya que las actualizaciones de los valores se calculan de forma retrospectiva desde el estado terminal. En nuestro estudio, implementamos y contrastamos dos variantes fundamentales para resolver el entorno: On-Policy y Off-Policy.
+A diferencia de los métodos de Diferencia Temporal, los algoritmos de Montecarlo aprenden 
+basándose en los retornos empíricos completos de los episodios. Esto requiere matemáticamente 
+que las tareas sean episódicas, ya que las actualizaciones de los valores se calculan de forma 
+retrospectiva desde el estado terminal. En nuestro estudio, implementamos y contrastamos dos 
+variantes fundamentales para resolver el entorno: On-Policy y Off-Policy.
 
 \paragraph{Montecarlo On-Policy}
 
@@ -192,6 +196,46 @@ $$
 \EndFor
 \end{algorithmic}
 \end{algorithm}
+\subsubsection{Algoritmos SARSA y Expected-SARSA}
+
+SARSA y Expected-SARSA son algoritmos de aprendizaje por refuerzo \textit{on-policy} 
+basados en Diferencias Temporales, por lo que actualizan su función de valor $Q$ tras 
+cada acción tomada, sin necesidad de esperar al final del episodio.
+
+\paragraph{SARSA}
+En SARSA, la actualización del valor de la acción $A_t$ en el estado $S_t$ se basa en 
+la acción realmente seleccionada en el siguiente estado $S_{t+1}$.
+
+\paragraph{Pseudocódigo}\mbox{}\\
+\begin{algorithm}[H]
+\caption{SARSA para Taxi-v3}
+\begin{algorithmic}[1]
+\small
+\Require $\alpha, \gamma, \epsilon$
+\State Inicializar $Q(s, a) \gets 0$
+\For{cada episodio}
+\State $S \gets$ reset entorno
+\State Seleccionar $A$ desde $S$ usando política $\epsilon$-greedy basada en $Q$
+\While{$S$ no es terminal}
+\State Ejecutar $A$, observar $R, S'$
+\State Seleccionar $A'$ desde $S'$ usando política $\epsilon$-greedy basada en $Q$
+\State $Q(S, A) \leftarrow Q(S, A) + \alpha [R + \gamma Q(S', A') - Q(S, A)]$
+\State $S \gets S', A \gets A'$
+\EndWhile
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+\paragraph{Expected-SARSA}
+
+Expected-SARSA es una variante que, en lugar de usar la acción seleccionada en el 
+siguiente estado, calcula el valor esperado sobre todas las acciones posibles, 
+ponderado por la política $\epsilon$-greedy. La actualización se define como:
+
+$$
+Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \alpha \Big[ R + \gamma \sum_{a} \pi(a|S_{t+1}) Q(S_{t+1}, a) - Q(S_t, A_t) \Big]
+$$
+
 \subsubsection{Algoritmo Q-Learning}
 
 Es uno de los algoritmos de aprendizaje por refuerzo más utilizados. Su uso se justifica por sus garantías teóricas de convergencia hacia la política óptima $\pi^*$, siempre que todos los pares estado-acción sean suficientemente explorados. En nuestro experimento, se utiliza una política $\epsilon$-greedy con decaimiento lineal para equilibrar la exploración inicial del mapa del taxi con la explotación de las rutas más cortas.
@@ -244,7 +288,35 @@ $$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Algoritmos de Aproximación (Entorno LunarLander-v3)}
 
-Para el aterrizaje lunar, donde los sensores devuelven valores reales continuos, implementamos métodos basados en gradiente.
+Para el aterrizaje lunar, donde los sensores devuelven valores reales continuos, 
+implementamos métodos basados en discretización de observaciones o en gradientes.
+
+\subsubsection{SARSA Semi-gradiente con Tile Coding}
+El método de tile coding es una técnica de discretización de observaciones que 
+divide el espacio de estados en múltiples tilings superpuestos. Cada tiling es 
+una partición del espacio de observaciones. Las observaciones continuas se 
+representan mediante un vector de caracteristicas, y se elige la siguiente acción 
+usando una política $\epsilon$-greedy basada en la función de valor aproximada.
+
+\paragraph{Pseudocódigo}\mbox{}\\
+\begin{algorithm}[H]
+\caption{SARSA Semi-gradiente con Tile Coding para LunarLander-v3}
+\begin{algorithmic}[1]
+\small
+\Require $\alpha, \gamma, \epsilon$
+\State Inicializar pesos $\mathbf{w}$ para cada acción
+\For{cada episodio}
+\State $S \gets$ reset entorno
+\State Seleccionar $A$ desde $S$ usando política $\epsilon$-greedy sobre $\hat{q}(S, A) = 
+\State Ejecutar $A$, observar $R, S'$
+\State Seleccionar $A'$ desde $S'$ usando política $\epsilon$-greedy sobre $\hat{q}(S', A') = \mathbf{w}_{A'}^T \phi(S')$
+\State $\delta \gets R + \gamma \mathbf{w}_{A'}^T \phi(S') - \mathbf{w}_A^T \phi(S)$
+\State $\mathbf{w}_A \gets \mathbf{w}_A + \alpha \delta \phi(S)$
+\State $S \gets S', A \gets A'$
+\EndWhile
+\EndFor
+\end{algorithmic}
+\end{algorithm}
 
 \subsubsection{SARSA Semi-gradiente con Redes Neuronales}
 
@@ -277,6 +349,64 @@ donde $\delta$ es el error TD de SARSA.
 \State Actualizar $\mathbf{w}$ minimizando $(y - \hat{q}(S, A, \mathbf{w}))^2$ mediante Backpropagation
 \State $S \gets S', A \gets A'$
 \EndWhile
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+
+\subsubsection{Deep Q-Learning (DQN) con Replay Buffer}
+
+A diferencia de SARSA, Deep Q-Learning es un algoritmo \textit{off-policy} que aproxima la función de valor óptima $Q^*(s, a)$ mediante una red neuronal profunda $\hat{q}(s, a, \mathbf{w})$. Para garantizar la estabilidad del entrenamiento y evitar la divergencia matemática que suele ocurrir al usar redes neuronales en aprendizaje por refuerzo, este enfoque introduce dos mecanismos fundamentales: un \textit{Replay Buffer} (memoria de experiencias) y una Red Objetivo (\textit{Target Network}).
+
+La arquitectura de nuestra red local consta de una capa de entrada correspondiente a las dimensiones del estado, dos capas ocultas de 64 neuronas con activación ReLU, y una capa de salida lineal con 4 neuronas (una para cada acción posible). 
+
+El \textit{Replay Buffer} almacena las transiciones $(S, S', A, R, \text{done})$ a medida que el agente interactúa con el entorno. Durante el aprendizaje, tomamos mini-lotes aleatorios de esta memoria para romper la 
+correlación temporal entre estados consecutivos. El objetivo es minimizar el 
+error cuadrático medio (MSE) entre las predicciones de la red local y los 
+objetivos TD calculados por la red objetivo, cuyos pesos $\mathbf{w}^-$ se actualizan de la siguiente manera:
+
+\begin{equation}
+\begin{aligned}
+\mathcal{L}(\mathbf{w}) &= \mathbb{E}_{(S, A, R, S') \sim U(D)} \Bigg[ \bigg( R + \gamma \max_{a'} \hat{q}(S', a', \mathbf{w}^-) \cdot (1 - \text{done}) \\
+&\quad - \hat{q}(S, A, \mathbf{w}) \bigg)^2 \Bigg]
+\end{aligned}
+\end{equation}
+
+Siendo $U(D)$ la distribución uniforme sobre el replay buffer $D$.
+
+La actualización de los pesos de la red local se realiza mediante el descenso de gradiente, y posteriormente, los pesos de la red objetivo se actualizan suavemente (\textit{soft-update}) usando un parámetro $\tau$:
+
+$$
+\mathbf{w}^- \leftarrow \tau \mathbf{w} + (1 - \tau) \mathbf{w}^-
+$$
+
+
+
+\paragraph{Pseudocódigo}\mbox{}\\
+\begin{algorithm}[H]
+\caption{Deep Q-Learning con Replay Buffer}
+\begin{algorithmic}[1]
+\small
+\Require Tasa de aprendizaje $\alpha$, factor de actualización suave $\tau$, tamaño de lote $B$, frecuencia de actualización $F$
+\State Inicializar pesos $\mathbf{w}$ de la red local y $\mathbf{w}^- \gets \mathbf{w}$ de la red objetivo
+\State Inicializar memoria de repetición $D$ con capacidad máxima
+\State $t_{step} \gets 0$
+\For{cada episodio}
+\State $S \gets$ reset entorno
+\While{$S$ no es terminal}
+\State Seleccionar $A$ usando política $\epsilon$-greedy sobre $\hat{q}(S, \cdot, \mathbf{w})$
+\State Ejecutar $A$, observar $R, S'$, y flag de finalización $done$
+\State Almacenar transición $(S, S', A, R, done)$ en $D$
+\State $t_{step} \gets t_{step} + 1$
+\If{$t_{step} \pmod{F} == 0$ \textbf{y} $|D| > B$}
+\State Extraer mini-lote aleatorio de $B$ transiciones de $D$
+\State Calcular objetivo $y \gets R + \gamma \max_{a'} \hat{q}(S', a', \mathbf{w}^-) \cdot (1 - done)$
+\State Actualizar $\mathbf{w}$ minimizando $(y - \hat{q}(S, A, \mathbf{w}))^2$ mediante Backpropagation
+\State Actualizar red objetivo: $\mathbf{w}^- \gets \tau \mathbf{w} + (1 - \tau)\mathbf{w}^-$
+\EndIf
+\State $S \gets S'$
+\EndWhile
+\State Actualizar $\epsilon$ según decaimiento lineal
 \EndFor
 \end{algorithmic}
 \end{algorithm}
@@ -399,7 +529,9 @@ En fase de test, ambos lograron un \textit{Win Rate} superior al 99.5\%. La Figu
 \end{figure}
 
 \subsection{Resultados en Entorno Continuo: LunarLander-v3}
+\subsubsection{Resultados de SARSA Semi-gradiente con tile coding}
 
+\subsubsection{Resultados de SARSA Semi-gradiente con red neuronal}
 En este entorno, se evaluó el algoritmo SARSA Semi-gradiente utilizando una arquitectura de red neuronal profunda (DNN).
 
 \paragraph{Impacto de la Exploración y el Aprendizaje.}
@@ -410,8 +542,8 @@ En este entorno, se evaluó el algoritmo SARSA Semi-gradiente utilizando una arq
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.45\textwidth]{resources/lunar_epsilon_decaimineto_graficas.png}
-\caption{Métricas de entrenamiento (Recompensa, Longitud y Error TD) bajo la política de decaimiento lineal en LunarLander-v3.}
+\includegraphics[width=0.45\textwidth]{resources/lunar_epsilon_decaimiento_graficas.png}
+\caption{Métricas de entrenamiento (Recompensa, Longitud y Error TD) bajo la política de decaimiento lineal en LunarLander-v3 con Deep-SARSA.}
 \label{fig:lunar_metrics}
 \end{figure}
 
@@ -427,6 +559,39 @@ Se experimentó con capas ocultas de 32, 64 y 128 neuronas. Aunque incluso las r
 \label{fig:lunar_success}
 \end{figure}
 
+
+\subsubsection{Resultados de Deep Q-learning}
+Probamos el algoritmo DQN con la misma arquitectura de red que en SARSA profundo, 
+con tamaño de capa oculta de 64 nueronas. 
+
+Volvemos a probar tanto $\epsilon$-greedy como $\epsilon$-decay y obtenemos que 
+no hay una diferencia significativa entre ambos, pues obtienen \textit{Win Rates} similares (93.1\% vs 96.7\%). 
+
+Podemos ver en la Figura~\ref{fig:dqn_lunar_metrics} la evolución de las métricas durante el entrenamiento para
+DQN con $\epsilon$-decay, 
+donde se observa una tendencia similar a la de SARSA profundo, aunque con 
+una convergencia más rápida como se verá en la sección de análisis comparativo.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{resources/dqn_lunar_epsilon_decaimiento_graficas.png}
+\caption{Métricas de entrenamiento (Recompensa, Longitud y Error TD) bajo la política de decaimiento lineal en LunarLander-v3 con DQN.}
+\label{fig:dqn_lunar_metrics}
+\end{figure} 
+
+Por último queremos ver la influencia del parámetro de factor de descuento en este problema, para lo cual probamos
+con los valores de $\gamma = 0.9, 0.99, 0.999$.
+
+Los resultados se encuentran en la Figura \ref{fig:dqn_gamma_comparativa}, donde se observa  
+que un $\gamma$ demasiado bajo (0.9) dificulta la convergencia (pues se disminuye el horizonte de información del que dispone el agente), 
+mientras que un $\gamma$ de 0.99 ofrece el mejor rendimiento, llegando 
+a alcanzar 250 puntos de recompensa media en los últimos episodios.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{resources/discount_factor_dqn.png}
+\caption{Comparativa de recompensa media durante el entrenamiento para diferentes valores de $\gamma$ en DQN aplicado a LunarLander-v3.}
+\label{fig:dqn_gamma_comparativa}
+\end{figure}
 
 \subsection{Análisis Comparativo Global}
 

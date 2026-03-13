@@ -3,7 +3,8 @@
 \input plantillaTeXpracticasRL.sty % Incluir fichero de estilo del máster
 % -----------------------------------------------------
  
-
+\usepackage{natbib}
+\bibliographystyle{apalike} % En lugar de plain
 
 % MODIFICA ESTOS DATOS
 % Incluir el nombre de la obra y los nombres completos de los autores del trabajo, junto con el correo electrónico um.es para cada autor.
@@ -16,7 +17,7 @@ Yago Ibarrola Lapeña 	\\
 Aarón Palomar Peña 	\\
 \texttt{aaron.p.p@um.es}}
 
-
+ 
 
 \begin{document}
 
@@ -32,22 +33,9 @@ Aarón Palomar Peña 	\\
 % Trabajos
 \input{bandido}
 \input{entornos_complejos}
-
-% Bibliografía
-\begin{thebibliography}{9} % El parámetro 9 indica el ancho máximo de la etiqueta
-  \setlength{\itemsep}{0pt} % No tocar. Reduce aún más el espacio entre ítems 
-  \setlength{\parsep}{0pt}  % No tocar. Elimina el espacio adicional entre párrafos dentro de un ítem
-    
-    \bibitem{auer2002} % Para citar usar \cite{auer2002}
-    Auer, P., Cesa-Bianchi, N. \& Fischer, P. (2002). \textit{Finite-time Analysis of the Multiarmed Bandit Problem}. Machine Learning, 47, 235–256. https://doi.org/10.1023/A:1013689704352
-
-    \bibitem{ref1} % Ejemplo genérico
-    Autor, A. (Año). \textit{Título del artículo}. Nombre de la revista, Volumen(Número), páginas.
-
-    \bibitem{ref2} % Ejemplo genérico
-    Autor, B. (Año). \textit{Título del libro}. Editorial.
-    
-\end{thebibliography}
+\nocite{*} 
+\bibliographystyle{plain}
+\bibliography{references}
 
 
 Listar todas las referencias utilizadas en el trabajo, siguiendo un formato bibliográfico estándar de \LaTeX\/ o de alguna asociación (APA, IEEE, etc.). La información obligatoria para que tipo de publicación la puede consultar en \url{https://bibtex.eu/fields/} Se recomienda utilizar un gestor de referencias como Bib\TeX\/ para facilitar la organización de las citas solo si va a poner mucha bibliografía. 
