@@ -15,3 +15,7 @@ Hacer reproducible SARSA (grid search darle seed, ver Aaron)
 Borrar expected sarsa
 
 Describir entorno para lunar lander en tile coding
+
+UCB -> ctrl + f "factor de 10"
+
+descomentar lineas del __init__
