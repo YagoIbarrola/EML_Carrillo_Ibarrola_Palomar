@@ -94,17 +94,17 @@ entornos_complejos/                 # Proyecto: Aprendizaje por refuerzo en ento
 │   │   ├── taxiAgentMontecarloOnPolicy.py
 │   │   ├── taxiAgentQLearning.py
 │   │   └── taxiAgentSARSA.py
-│   ├── lunar_SARSA_Deep_QNet.ipynb
-│   ├── lunar_SARSAsemi.ipynb
-│   ├── lunar_SARSAsemiSA.ipynb
-│   ├── lunarlander_deepqlearning.ipynb
-│   ├── MonteCarloTodasLasVisitas.ipynb
 │   ├── taxi_gif.py                 # Generación de animaciones del entorno Taxi
-│   ├── taxi_montecarlo.ipynb
-│   ├── taxi_QLearning.ipynb
-│   ├── taxi_SARSA.ipynb
 │   └── utils.py                    # Funciones auxiliares
-│
+├── lunar_comparation.ipynb
+├── lunar_SARSA_Deep_QNet.ipynb
+├── lunar_SARSAsemi.ipynb
+├── lunarlander_deepqlearning.ipynb
+├── MonteCarloTodasLasVisitas.ipynb
+├── taxi_comparation.ipynb
+├── taxi_montecarlo.ipynb
+├── taxi_QLearning.ipynb
+├── taxi_SARSA.ipynb
 └── tests/                          # Notebooks de prueba y experimentación
 ```
 
