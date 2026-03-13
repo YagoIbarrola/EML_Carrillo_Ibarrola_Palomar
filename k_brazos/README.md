@@ -48,16 +48,15 @@ k_brazos/
 │   ├── algorithms/           # Implementación de algoritmos
 │   ├── arms/                 # Implementación de brazos
 │   ├── plotting/             # Funciones de visualización
-│   ├── bandit_experiment.ipynb 
-│   ├── comparation_experiment.ipynb
-│   ├── epsilon_greedy.ipynb 
-│   ├── requirements.txt
-│   ├── softmax_experiment.ipynb
-│   ├── ucb.ipynb
 │   └── utils.py
 |── tests/                    # Tests (si procede)
+├── bandit_experiment.ipynb 
+├── comparation_experiment.ipynb
+├── epsilon_greedy.ipynb 
+├── softmax_experiment.ipynb
+└── ucb.ipynb
 ├── main.ipynb                # Notebook principal
-├── README.md
+└── README.md
 ```
 
 ---
