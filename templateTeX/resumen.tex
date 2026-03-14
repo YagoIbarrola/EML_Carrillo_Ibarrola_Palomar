@@ -3,12 +3,27 @@
 % -----------------------------------------------------
 
 % HAZ UN RESUMEN DE TU TRABAJO. ES UN RESUMEN, NO ES UNA INTRODUCCIÓN
-\begin{abstract}    
-    En este documento se presentará uno de los trabajos que puede realizar como proyecto final y que deberán de ser expuestos en público.
+\begin{abstract}
+    Este informe presenta un estudio comparativo de algoritmos de Aprendizaje por Refuerzo 
+    estructurado en tres partes. 
     
-     Recuerde que la experimentación deberá de estar en un repositorio GitHub para poder contrastar lo que aquí explique. En el GitHub puede añadir tantos \textit{notebooks} como considere. Pero aquí, el trabajo documental, ocupará 10 páginas descontadas la portada, el resumen, el índice y la bibliografía.
+    En la primera, se aborda el problema del bandido de $k$-brazos, 
+    evaluando las familias $\epsilon$-Greedy, Softmax y UCB bajo distribuciones de recompensa Normal, 
+    Bernoulli y Binomial. Los resultados muestran la superioridad de UCB1, que alcanza un 99\% de 
+    selección del brazo óptimo con crecimiento logarítmico del \textit{regret}, frente a la 
+    sensibilidad paramétrica de Softmax y la exploración residual de $\epsilon$-Greedy. 
+
+    En la segunda y tercera parte, se extiende el estudio a entornos secuenciales modelados 
+    como Procesos de Decisión de Markov. Sobre el entorno discreto \textbf{Taxi-v3}, se 
+    implementan y comparan métodos tabulares: Montecarlo (on/off-policy), SARSA, Expected-SARSA, 
+    Q-Learning y Double Q-Learning, confirmando la mayor eficiencia de los enfoques \textit{off-policy}. 
+    Para el entorno continuo \textbf{LunarLander-v3}, se demuestra el fracaso de la discretización 
+    mediante \textit{tile coding} y la necesidad de aproximadores neuronales: Deep SARSA logra un 
+    89.7\% de aterrizajes exitosos, mientras que Deep Q-Learning (DQN), apoyado en 
+    \textit{Experience Replay} y \textit{Target Network}, alcanza un 96.7\%, 
+    consolidándose como el algoritmo más robusto y eficiente. 
     
-    El contenido del repositorio y este documento deberán subirse al AV como evidencias del trabajo realizado.
-    
-    Respete las dobles columnas. Si las suprime generará un documento que ocupará más páginas. Con las dobles columnas puede incluir más contenido.
+    El lector podrá encontrar los experimentos realizados explicados y justificados en mayor detalle 
+    en los notebooks que se han desarrollado. Toda la experimentación 
+    es reproducible mediante estos notebooks, alojados en el repositorio de GitHub asociado a este proyecto.
  \end{abstract}

@@ -495,14 +495,14 @@ mientras que On-Policy es mucho más inestable y solo consigue llegar a una long
 
 \subsubsection{Resultados de SARSA y Expected-SARSA}
 
-En cada uno de los dos algoritmos se han realizado los siguientes experiementos:
+En cada uno de los dos algoritmos se han realizado los siguientes experimentos:
 \begin{itemize}
 \item Un ajuste de hiperparámetros de learning rate y número de episodios, para encontrar una buena combinación de estos. 
 En los heatmaps de la Figura~\ref{fig:sarsa_heatmaps} se pueden observar los resultados obtenidos. En ellos se aprecia 
 que, aunque ambos algoritmos alcanzan recompensas similares y muy cercanas a las óptimas en los mejores casos, 
 Expected-SARSA muestra una mayor estabilidad en la convergencia (converge a la política óptima de manera más consistente). 
 En el notebook \texttt{taxi\_SARSA.ipynb} se encuentran resultados adicionales que apoyan esta conclusión.
-\item Se ha relizado un entrenamiento con los parámetros escogidos para cada algoritmo (SARSA: $\alpha = 0.24$, episodios = 7500; 
+\item Se ha realizado un entrenamiento con los parámetros escogidos para cada algoritmo (SARSA: $\alpha = 0.24$, episodios = 7500; 
 Expected-SARSA: $\alpha = 0.24$, episodios = 4000) y se han graficado las recompensas, longitudes de episodio y 
 errores diferenciales. Estas gráficas se pueden ver en la Figura~\ref{fig:sarsa_metrics}. En ellas se observa que ambos 
 algoritmos mejoran conforme avanza el entrenamiento, aunque Expected-SARSA lo hace de manera más rápida. La longitud de 
@@ -599,7 +599,7 @@ En este entorno, se evaluó el algoritmo SARSA Semi-gradiente utilizando una arq
 \label{fig:lunar_metrics}
 \end{figure}
 
-En la Figura~\ref{fig:lunar_metrics} se puede observar la evolución de las métricas principales durante el entrenamiento. A partir de aproximadamente 600 episodios, la recompensa media comienza a acercarse a valores próximos a 200, lo que indica que el agente empieza a realizar aterrizajes exitosos de forma consistente. La longitud de los episodios refleja también este aprendizaje: inicialmente la nave se estrella rápidamente, pero conforme el agente aprende a estabilizar el descenso, los episodios se alargan, y posteriormente vuelven a disminuir para optimizar el uso de combustible. El error TD presenta un pico pronunciado al inicio del entrenamiento (caracterísitco de una primera fase de aprendizaje) y posteriormente evoluciona hacia valores más estables, señal de que el proceso de aprendizaje converge.
+En la Figura~\ref{fig:lunar_metrics} se puede observar la evolución de las métricas principales durante el entrenamiento. A partir de aproximadamente 600 episodios, la recompensa media comienza a acercarse a valores próximos a 200, lo que indica que el agente empieza a realizar aterrizajes exitosos de forma consistente. La longitud de los episodios refleja también este aprendizaje: inicialmente la nave se estrella rápidamente, pero conforme el agente aprende a estabilizar el descenso, los episodios se alargan, y posteriormente vuelven a disminuir para optimizar el uso de combustible. El error TD presenta un pico pronunciado al inicio del entrenamiento (característico de una primera fase de aprendizaje) y posteriormente evoluciona hacia valores más estables, señal de que el proceso de aprendizaje converge.
 
 \paragraph{Arquitectura de la Red Neuronal.}
 Se experimentó con capas ocultas de 32, 64 y 128 neuronas. Aunque incluso las redes pequeñas lograron aterrizajes exitosos, la configuración de \textbf{128 neuronas} obtuvo la menor varianza y la política más robusta, demostrando que la complejidad del aterrizaje requiere una capacidad de representación suficiente para capturar las interacciones entre las 8 variables de estado. Un ejemplo visual del aterrizaje existoso de este modelo se muestra en la Figura~\ref{fig:lunar_success}.
@@ -614,7 +614,7 @@ Se experimentó con capas ocultas de 32, 64 y 128 neuronas. Aunque incluso las r
 
 \subsubsection{Resultados de Deep Q-learning}
 Probamos el algoritmo DQN con la misma arquitectura de red que en SARSA profundo, 
-con tamaño de capa oculta de 64 nueronas. 
+con tamaño de capa oculta de 64 neuronas. 
 
 Volvemos a probar tanto $\epsilon$-greedy como $\epsilon$-decay y obtenemos que 
 no hay una diferencia significativa entre ambos, pues obtienen \textit{Win Rates} similares (93.1\% vs 96.7\%). 

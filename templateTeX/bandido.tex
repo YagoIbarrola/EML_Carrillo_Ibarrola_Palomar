@@ -3,13 +3,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introducción}
-El lector podrá encontrar los experimentos realizados explicados y justificados en mayor detalle 
-en los notebooks que se han desarrollado.
 
 \subsection{Descripción del problema y relevancia}
 El problema del \textbf{Bandido Multibrazo} (o \textit{k-armed bandit}) modela una situación 
 de toma de decisiones en presencia de incertidumbre. En este escenario, 
-un agente debe elegir repetidas veces entre las $k$ palancas o "brazos" de una máquina, donde cada uno ofrece recompensas 
+un agente debe elegir repetidas veces entre las $k$ palancas o ``brazos'' de una máquina, donde cada uno ofrece recompensas 
 que siguen una distribución de probabilidad desconocida para el agente. 
 De esta manera, el objetivo es maximizar la recompensa acumulada a lo largo de un horizonte temporal $T$.
 
@@ -92,9 +90,16 @@ La literatura del aprendizaje por refuerzo clasifica las estrategias de resoluci
 
 Los enfoques clásicos se dividen en:
 \begin{itemize}
-    \item \textbf{Métodos Voraces (Greedy) y $\epsilon$-Greedy:} Son los enfoques más simples, donde el agente alterna entre explotar el conocimiento actual con probabilidad $1-\epsilon$ y explorar aleatoriamente con probabilidad $\epsilon$. Aunque efectivos, no consideran la varianza de las estimaciones.
-    \item \textbf{Métodos de Intervalo de Confianza (UCB):} Basados en el principio de ``optimismo ante la incertidumbre'', estos algoritmos (como UCB1) seleccionan acciones basándose en el límite superior de un intervalo de confianza, favoreciendo acciones poco exploradas de manera determinista.
-    \item \textbf{Métodos de Gradiente y Softmax:} A diferencia de los anteriores, que estiman valores de acción, 
+    \item \textbf{Métodos Voraces (Greedy) y $\epsilon$-Greedy:} Son los enfoques más simples, 
+    donde el agente alterna entre explotar el conocimiento actual con probabilidad $1-\epsilon$ 
+    y explorar aleatoriamente con probabilidad $\epsilon$. Aunque efectivos, no consideran 
+    la varianza de las estimaciones.
+    \item \textbf{Métodos de Intervalo de Confianza (UCB):} Basados en el principio de 
+    ``optimismo ante la incertidumbre'', estos algoritmos (como UCB1) seleccionan 
+    acciones basándose en el límite superior de un intervalo de confianza, favoreciendo
+     acciones poco exploradas de manera determinista.
+    \item \textbf{Métodos de Gradiente y Softmax:} A diferencia de los anteriores, 
+    que estiman valores de acción, 
     estos métodos aprenden una preferencia numérica $H_t(a)$ para cada acción o 
     utilizan una distribución de probabilidad de Boltzmann (Softmax) dependiente de 
     una temperatura $\tau$, permitiendo una selección de cada acción proporcional a su preferencia relativa.
@@ -195,7 +200,7 @@ A diferencia de $\epsilon$-Greedy, el algoritmo Softmax asigna probabilidades de
 proporcionales al valor estimado de cada brazo. Se justifica su inclusión porque representa 
 una estrategia más sofisticada que penaliza las acciones con un rendimiento más pobre, concentrando 
 la exploración en las acciones que son casi tan buenas como la óptima, evitando así probar 
-iteradamente las peores opciones, como sí hace $epsilon$-greedy. La temperatura $\tau$ regula la sensibilidad de estas 
+iteradamente las peores opciones, como sí hace $\epsilon$-greedy. La temperatura $\tau$ regula la sensibilidad de estas 
 probabilidades ante las diferencias en los valores $Q$.
 
 \subsubsection{Pseudocódigo}
@@ -455,7 +460,7 @@ Dado que la configuración de baja temperatura ($\tau = 0.1$) tiende a converger
 óptimos locales debido a su comportamiento voraz, se diseñó un experimento adicional para 
 mitigar este defecto. Se introdujo una fase de \textbf{exploración inicial forzada}, obligando
 al agente a seleccionar cada uno de los $k$ brazos una vez antes de aplicar la política Softmax estándar, al igual
-que se realiza en el algoritmo $epsilon$-greedy. Estos resultados se encuentran en la Figura \ref{fig:softmax_exploracion_inicial}.
+que se realiza en el algoritmo $\epsilon$-greedy. Estos resultados se encuentran en la Figura \ref{fig:softmax_exploracion_inicial}.
 
 \begin{figure}[H]
 \centering

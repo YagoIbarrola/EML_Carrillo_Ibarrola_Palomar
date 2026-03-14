@@ -1,9 +1,0 @@
-README
-
-Falta Pseudocódigo UCB2
-
-
-1.2.2 Muy chatty
-
-Frase inicial sobre el lector revisar
-
