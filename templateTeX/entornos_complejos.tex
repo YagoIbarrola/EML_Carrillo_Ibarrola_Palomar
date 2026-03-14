@@ -233,7 +233,10 @@ siguiente estado, calcula el valor esperado sobre todas las acciones posibles,
 ponderado por la política $\epsilon$-greedy. La actualización se define como:
 
 $$
-Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \alpha \Big[ R + \gamma \sum_{a} \pi(a|S_{t+1}) Q(S_{t+1}, a) - Q(S_t, A_t) \Big]
+\begin{aligned}
+Q(S_t, A_t) &\leftarrow Q(S_t, A_t) + \alpha \Big[ R + \gamma \sum_{a} \pi(a|S_{t+1}) Q(S_{t+1}, a) \\
+&\quad - Q(S_t, A_t) \Big]
+\end{aligned}
 $$
 
 \subsubsection{Algoritmo Q-Learning}
@@ -313,7 +316,6 @@ usando una política $\epsilon$-greedy basada en la función de valor aproximada
 \State $\delta \gets R + \gamma \text{mean}(\mathbf{w}_{A'}[\phi(S')]) - \text{mean}(\mathbf{w}_A[\phi(S)])$
 \State $\mathbf{w}_A[\phi(S)] \gets \mathbf{w}_A[\phi(S)] + \alpha \delta$
 \State $S \gets S', A \gets A'$
-\EndWhile
 \EndFor
 \end{algorithmic}
 \end{algorithm}
@@ -504,17 +506,17 @@ Expected-SARSA: $\alpha = 0.24$, episodios = 4000) y se han graficado las recomp
 errores diferenciales. Estas gráficas se pueden ver en la Figura~\ref{fig:sarsa_metrics}. En ellas se observa que ambos 
 algoritmos mejoran conforme avanza el entrenamiento, aunque Expected-SARSA lo hace de manera más rápida. La longitud de 
 los episodios disminuye a medida que el agente aprende a entregar el pasajero en menos pasos. El error TD muestra que la 
-función de valor se va estabilizando de cara al final del entrenamiento, aunque sin estabilizarse completamente.
+función de valor se va estabilizando de cara al final del entrenamiento, aunque sin estabilizarse completamente. \cite{hernandez2025bandido}
 
-\begin{figure}[H]
+\begin{figure}[H]  
 \centering
-\includegraphics[width=0.45\textwidth]{resources/sarsa_heatmaps.png}
+\includegraphics[width=0.45\textwidth]{resources/heatmaps_taxi_sarsa.png}
 \caption{Heatmaps de recompensa media para diferentes combinaciones de learning rate y número de episodios en SARSA y Expected-SARSA.}
 \label{fig:sarsa_heatmaps}
 \end{figure}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.45\textwidth]{resources/sarsa_metrics.png}
+\includegraphics[width=0.45\textwidth]{resources/metrics_taxi_sarsa.png}
 \caption{Evolución de recompensa media, longitud de episodios y error TD durante el entrenamiento de SARSA y Expected-SARSA.}
 \label{fig:sarsa_metrics}
 \end{figure}
@@ -564,7 +566,7 @@ con el avance del entrenamiento, sino que disminuye. Creemos que esto se debe a 
 observaciones del problema. Para tener grano fino en la representación de los estados, es necesario un número 
 elevado de subdivisiones por dimensión, y el número de tiles crece exponencialmente con las subdivisiones.
 Esto hace que de cara al final del entrenamiento, el agente no haya visitado suficientes estados para aprender 
-una política coherente.
+una política coherente. 
 
 \begin{figure}[H]
 \centering
@@ -627,7 +629,7 @@ una convergencia más rápida como se verá en la sección de análisis comparat
 \end{figure} 
 
 Por último queremos ver la influencia del parámetro de factor de descuento en este problema, para lo cual probamos
-con los valores de $\gamma = 0.9, 0.99, 0.999$.
+con los valores de $\gamma = 0.9, 0.99, 0.999$. Nos basamos en el trabajo de \cite{van2019lunar}.
 
 Los resultados se encuentran en la Figura \ref{fig:dqn_gamma_comparativa}, donde se observa  
 que un $\gamma$ demasiado bajo (0.9) dificulta la convergencia (pues se disminuye el horizonte de información del que dispone el agente), 
@@ -643,9 +645,93 @@ a alcanzar 250 puntos de recompensa media en los últimos episodios.
 
 \subsection{Análisis Comparativo Global}
 
-La siguiente tabla resume los hallazgos principales de los experimentos realizados:
+Tras evaluar los tres enfoques en el entorno continuo \textit{LunarLander-v3}, comparamos su rendimiento
+en la Figura~\ref{fig:lunar_comparativa}, donde se observa claramente la superioridad de DQN frente a 
+SARSA profundo, y el fracaso total de tile coding.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{resources/lunar_comparativa.png}
+\caption{Comparativa de recompensa media durante el entrenamiento entre SARSA con tile coding, SARSA deep y DQN en LunarLander-v3.}
+\label{fig:lunar_comparativa}
+\end{figure}    
 
+
+
+
+\begin{itemize}
+    \item El algoritmo SARSA utilizando \textit{Tile Coding} 
+    fue incapaz de resolver el entorno, obteniendo un \textit{Win Rate} del 0.0\% y recompensas muy negativas. 
+    Esto se debe a la alta dimensionalidad que presenta este entorno, con 6 variables continuas.
+
+    \item Al sustituir la discretización por una 
+    Red Neuronal Artificial con 128 neuronas en sus capas ocultas, logramos un gran avance,
+     alcanzando un \textit{Win Rate} cercano al 90\%.  
+
+    \item DQN ha sido el algoritmo más robusto y 
+    eficiente para este problema de control continuo. Logra la convergencia en etapas más tempranas y alcanza 
+    puntuaciones medias superiores (estabilizándose en torno a los 250 puntos).  
+
+    \item \textbf{Sensibilidad paramétrica:} En las arquitecturas observamos una fuerte 
+    dependencia de los hiperparámetros. Un factor de descuento bajo ($\gamma = 0.9$) 
+    vuelve al agente miope, impidiéndole asociar sus maniobras de estabilización con 
+    la recompensa del aterrizaje final (+100).
+\end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusiones}
 
-Tras el desarrollo e implementación de los distintos algoritmos de aprendizaje por refuerzo, se extraen las siguientes conclusiones:
+A lo largo de este trabajo hemos documentado y contrastado empíricamente la transición desde entornos tabulares discretos hasta espacios continuos que requieren aproximación de funciones. A continuación, presentamos las conclusiones extraídas tras analizar los resultados en \textbf{Taxi-v3} y \textbf{LunarLander-v3}.
+
+\subsection{Resumen de los principales resultados}
+
+En primer lugar, la evaluación en el entorno discreto \textbf{Taxi-v3} nos ha permitido observar 
+el comportamiento de los métodos clásicos. Comprobamos que las variantes \textit{off-policy} tienden 
+a ser más estables y eficientes. Además, \textit{Expected-SARSA} superó a \textit{SARSA} al 
+reducir la varianza en sus actualizaciones. Como cabía esperar, \textit{Q-Learning} convergió más rápido 
+que \textit{Double Q-Learning}, lo que nos indica que, en entornos discretos simples, el coste de 
+dividir las actualizaciones en dos tablas no siempre compensa la mitigación del sesgo de sobreestimación.
+
+Al dar el salto al entorno continuo \textbf{LunarLander-v3}, nos topamos de frente con la conocida 
+``maldición de la dimensionalidad''. Nuestro intento de resolverlo utilizando \textit{SARSA con Tile Coding} 
+fracasó por completo (0.0\% de \textit{Win Rate}), demostrando que la discretización manual de un espacio de 
+8 dimensiones impide al agente visitar suficientes estados para aprender una política útil.
+
+La solución pasó necesariamente por el Aprendizaje Profundo. Al integrar una red neuronal, \textit{Deep SARSA} 
+(\textit{on-policy}) logró resolver el entorno, pero fue \textit{Deep Q-Learning (DQN)} (\textit{off-policy}) 
+el algoritmo que demostró una superioridad indiscutible. La convergencia más rápida y estable de
+ DQN se justifica por dos mecanismos que rompen con las limitaciones tabulares: el uso del \textit{Experience Replay}, 
+ que elimina la fuerte correlación temporal de las observaciones, y la \textit{Target Network}, que estabiliza el 
+ cálculo de los gradientes evitando oscilaciones.
+
+Finalmente, a lo largo de todos los experimentos, comprobamos empíricamente la alta sensibilidad de estos modelos 
+a los hiperparámetros. Vimos cómo un factor de descuento bajo ($\gamma = 0.9$) vuelve miope al agente, impidiéndole 
+planificar el aterrizaje final, y cómo una exploración inicial estructurada ($\epsilon$-decaimiento) resulta 
+necesaria para mapear correctamente las dinámicas del entorno.
+
+\subsection{Limitaciones del estudio y posibles mejoras}
+
+A pesar de haber logrado resolver los entornos planteados, nuestro estudio presenta ciertas limitaciones. 
+En primer lugar, aunque \textbf{LunarLander-v3} tiene un espacio de estados continuo, las acciones que 
+el agente puede tomar siguen siendo discretas. Las arquitecturas basadas en valores Q como DQN no escalan 
+de forma natural a espacios de acción continuos, lo que limitaría su uso directo en problemas reales de 
+robótica de precisión.
+
+Por otro lado, la exploración del espacio de hiperparámetros (tasas de aprendizaje, arquitecturas de 
+red, decaimientos) la realizamos de manera mayoritariamente heurística debido a las limitaciones de 
+capacidad de cómputo, por lo que es posible que las configuraciones utilizadas no sean el óptimo 
+global para estos algoritmos.
+
+\subsection{Líneas futuras de estudio} 
+
+Partiendo de la base empírica establecida en este trabajo, proponemos dos vías principales para continuar y expandir la investigación:
+
+\begin{itemize}
+    \item \textbf{Mitigación del sesgo con Double Deep Q-Learning (DDQN):} Implementar esta extensión 
+    directa de nuestra arquitectura actual. Puesto que el algoritmo DQN estándar tiende a sobreestimar sistemáticamente los valores de las acciones al utilizar la misma red para seleccionar y evaluar, aplicar DDQN nos permitiría desacoplar estas decisiones. Sería de gran interés cuantificar si esta reducción del sesgo acelera y estabiliza aún más la convergencia en el aterrizaje lunar.
+    
+    \item \textbf{Transición a arquitecturas de Actor-Crítico:} Explorar algoritmos que combinan el 
+    gradiente de política con la estimación de valor. A diferencia de enfoques como DQN, que están 
+    limitados estructuralmente a espacios de acción discretos, el paradigma Actor-Crítico nos permitiría 
+    operar de forma nativa con acciones continuas.  Esto abriría la puerta a controlar los motores de 
+    la nave aplicando niveles de empuje graduales en lugar de comandos binarios, acercando la simulación 
+    a un escenario de control robótico real.
+\end{itemize}

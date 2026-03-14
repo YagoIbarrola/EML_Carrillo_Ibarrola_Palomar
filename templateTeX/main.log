@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.10)  13 MAR 2026 12:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.10)  14 MAR 2026 13:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -611,29 +611,7 @@ l.151 \spanishdecimal{.
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-) (/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
-Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip74
-\bibsep=\skip75
-LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count325
-) (./main.aux
-
-LaTeX Warning: Label `fig:softmax_histograma1' multiply defined.
-
-
-LaTeX Warning: Label `fig:softmax_histograma2' multiply defined.
-
-
-LaTeX Warning: Label `fig:softmax_regret' multiply defined.
-
-
-LaTeX Warning: Label `fig:softmax_bernoulli' multiply defined.
-
-
-LaTeX Warning: Label `fig:softmax_exploracion_inicial' multiply defined.
-
-)
+) (./main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
@@ -691,16 +669,16 @@ LaTeX Font Info:    ... okay on input line 22.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count326
+\scratchcounter=\count325
 \scratchdimen=\dimen280
 \scratchbox=\box76
-\nofMPsegments=\count327
-\nofMParguments=\count328
+\nofMPsegments=\count326
+\nofMParguments=\count327
 \everyMPshowfont=\toks50
-\MPscratchCnt=\count329
+\MPscratchCnt=\count328
 \MPscratchDim=\dimen281
-\MPnumerator=\count330
-\makeMPintoPDFobject=\count331
+\MPnumerator=\count329
+\makeMPintoPDFobject=\count330
 \everyMPtoPDFconversion=\toks51
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -717,22 +695,22 @@ Package hyperref Info: Link coloring ON on input line 22.
 
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 26.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 25.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 26.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 25.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 26.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 25.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.26 
+l.25 
       [1
 
 ] (./resumen.tex
@@ -747,7 +725,7 @@ l.14  \end{abstract}
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.51 ...ciÃ³n del capÃ­tulo}{12}{subsection.2.1.4}
+l.49 ...ciÃ³n del capÃ­tulo}{11}{subsection.2.1.4}
                                                   % [1
 
 
@@ -760,65 +738,65 @@ l.51 ...ciÃ³n del capÃ­tulo}{12}{subsection.2.1.4}
 Chapter 1.
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3.
+(hyperref)                removing `math shift' on input line 1.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3.
+(hyperref)                removing `math shift' on input line 1.
 
 
-Underfull \hbox (badness 1092) in paragraph at lines 10--15
+Underfull \hbox (badness 1092) in paragraph at lines 8--13
 \T1/cmr/m/n/10 bajo incertidumbre en entornos estacionarios. En este
  []
 
 
-Underfull \hbox (badness 1424) in paragraph at lines 16--22
+Underfull \hbox (badness 1424) in paragraph at lines 14--20
 \T1/cmr/m/n/10 o explorar otros brazos para recabar más información,
  []
 
 
-Underfull \hbox (badness 6236) in paragraph at lines 27--31
+Underfull \hbox (badness 6236) in paragraph at lines 25--29
 []\T1/cmr/m/n/10 Ejemplos tangibles de estas aplicaciones incluyen la
  []
 
 
-Underfull \hbox (badness 1189) in paragraph at lines 32--34
+Underfull \hbox (badness 1189) in paragraph at lines 30--32
 []\T1/cmr/m/n/10 La motivación principal de este trabajo es comprender
  []
 
-LaTeX Font Info:    Trying to load font information for U+fontawesomefree0 on input line 43.
+LaTeX Font Info:    Trying to load font information for U+fontawesomefree0 on input line 41.
 (/usr/share/texlive/texmf-dist/tex/latex/fontawesome5/ufontawesomefree0.fd)
-Underfull \hbox (badness 2418) in paragraph at lines 43--45
+Underfull \hbox (badness 2418) in paragraph at lines 41--43
 []\T1/cmr/bx/n/10 Implementación de Algoritmos: \T1/cmr/m/n/10 Desarrollar y
  []
 
 
-Underfull \hbox (badness 1024) in paragraph at lines 43--45
+Underfull \hbox (badness 1024) in paragraph at lines 41--43
 \T1/cmr/m/n/10 validar algoritmos representativos de las familias $\OML/cmm/m/it/10 ^^O$\T1/cmr/m/n/10 -
  []
 
 
-Underfull \hbox (badness 2418) in paragraph at lines 50--53
+Underfull \hbox (badness 2418) in paragraph at lines 48--51
 []\T1/cmr/bx/n/10 Estudio de Hiperparámetros: \T1/cmr/m/n/10 Investigar cómo
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--64
+Underfull \hbox (badness 10000) in paragraph at lines 60--62
 \T1/cmr/m/n/10 incluyendo la explicación de los algoritmos
  []
 
 
-Underfull \hbox (badness 1132) in paragraph at lines 76--79
+Underfull \hbox (badness 1132) in paragraph at lines 74--77
 []\T1/cmr/m/n/10 El problema del Bandido de $\OML/cmm/m/it/10 k$\T1/cmr/m/n/10 -brazos se modela como
  []
 
 
-Underfull \hbox (badness 2435) in paragraph at lines 76--79
+Underfull \hbox (badness 2435) in paragraph at lines 74--77
 \T1/cmr/m/n/10 un proceso de decisión secuencial de un solo estado.
  []
 
 
-Underfull \hbox (badness 1325) in paragraph at lines 76--79
+Underfull \hbox (badness 1325) in paragraph at lines 74--77
 \T1/cmr/m/n/10 Formalmente, definimos un conjunto de acciones $\OMS/cmsy/m/n/10 A \OT1/cmr/m/n/10 =
  []
 
@@ -826,37 +804,37 @@ Underfull \hbox (badness 1325) in paragraph at lines 76--79
 
 
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free0.enc}]
-Underfull \hbox (badness 1931) in paragraph at lines 91--92
+Underfull \hbox (badness 1931) in paragraph at lines 89--90
 []\T1/cmr/m/n/10 La literatura del aprendizaje por refuerzo clasifica las
  []
 
 
-Underfull \hbox (badness 2384) in paragraph at lines 96--97
+Underfull \hbox (badness 2384) in paragraph at lines 94--95
 []\T1/cmr/bx/n/10 Métodos de Intervalo de Confianza (UCB):
  []
 
 
-Underfull \hbox (badness 5954) in paragraph at lines 96--97
+Underfull \hbox (badness 5954) in paragraph at lines 94--95
 \T1/cmr/m/n/10 Basados en el principio de ``optimismo ante la
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--97
+Underfull \hbox (badness 10000) in paragraph at lines 94--95
 \T1/cmr/m/n/10 incertidumbre'', estos algoritmos (como UCB1)
  []
 
 
-Underfull \hbox (badness 2617) in paragraph at lines 97--101
+Underfull \hbox (badness 2617) in paragraph at lines 95--99
 \T1/cmr/m/n/10 de los anteriores, que estiman valores de acción,
  []
 
 
-Underfull \hbox (badness 3623) in paragraph at lines 97--101
+Underfull \hbox (badness 3623) in paragraph at lines 95--99
 \T1/cmr/m/n/10 estos métodos aprenden una preferencia numérica
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--109
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 []\T1/cmr/bx/n/10 Distribución Normal: \T1/cmr/m/n/10 Utilizada cuando la
  []
 
@@ -864,151 +842,131 @@ Underfull \hbox (badness 10000) in paragraph at lines 108--109
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \hbox (badness 4048) in paragraph at lines 138--140
+Underfull \hbox (badness 4048) in paragraph at lines 136--138
 \T1/cmr/m/n/10 de la selección. Valores altos de $\OML/cmm/m/it/10 ^^\$ \T1/cmr/m/n/10 tienden a la
  []
 
 [4]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 161.
+(hyperref)                removing `math shift' on input line 159.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\epsilon' on input line 161.
+(hyperref)                removing `\epsilon' on input line 159.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 161.
+(hyperref)                removing `math shift' on input line 159.
 
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 172.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 170.
 
-Underfull \hbox (badness 1442) in paragraph at lines 194--200
+Underfull \hbox (badness 1442) in paragraph at lines 192--198
 []\T1/cmr/m/n/10 A diferencia de $\OML/cmm/m/it/10 ^^O$\T1/cmr/m/n/10 -Greedy, el algoritmo Softmax asigna
  []
 
 
-Underfull \vbox (badness 1701) has occurred while \output is active []
-
-
-Underfull \hbox (badness 1803) in paragraph at lines 224--226
-\T1/cmr/m/n/10 selecciona acciones maximizando una cota superior del
- []
-
-
-Package natbib Warning: Citation `auer2002' on page 5 undefined on input line 228.
+LaTeX Warning: Citation `auer2002' on page 5 undefined on input line 227.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5]
-Underfull \hbox (badness 1325) in paragraph at lines 264--265
-\T1/cmr/m/n/10 evaluar el desempeño de los algoritmos implementados.
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 264--265
-\T1/cmr/m/n/10 estrategias de exploración-explotación bajo diferentes
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 264--265
-\T1/cmr/m/n/10 distribuciones de recompensa y configuraciones de
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 272--273
+Underfull \hbox (badness 10000) in paragraph at lines 273--274
 []\T1/cmr/bx/n/10 Distribución Normal ($\OMS/cmsy/m/n/10 N\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^V; ^^[[]\OT1/cmr/m/n/10 )$\T1/cmr/bx/n/10 ): \T1/cmr/m/n/10 Simula
  []
 
 
-Underfull \hbox (badness 1540) in paragraph at lines 272--273
+Underfull \hbox (badness 1540) in paragraph at lines 273--274
 \T1/cmr/m/n/10 recompensas continuas. Se configuraron $\OML/cmm/m/it/10 k \OT1/cmr/m/n/10 = 10$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 273--274
+Underfull \hbox (badness 10000) in paragraph at lines 274--275
 []\T1/cmr/bx/n/10 Distribución de Bernoulli ($\OMS/cmsy/m/n/10 B\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 p\OT1/cmr/m/n/10 )$\T1/cmr/bx/n/10 ): \T1/cmr/m/n/10 Simula
  []
 
 
-Underfull \hbox (badness 1142) in paragraph at lines 273--274
+Underfull \hbox (badness 1142) in paragraph at lines 274--275
 \T1/cmr/m/n/10 recompensas binarias (éxito/fracaso). Se utilizaron
  []
 
 
-Underfull \hbox (badness 2150) in paragraph at lines 284--288
+Underfull \hbox (badness 2150) in paragraph at lines 285--289
 []\T1/cmr/m/n/10 Para cuantificar la calidad de las estrategias, se han
  []
 
 
-Underfull \hbox (badness 5667) in paragraph at lines 290--291
+Underfull \vbox (badness 3646) has occurred while \output is active []
+
+
+Underfull \hbox (badness 5667) in paragraph at lines 291--292
 []\T1/cmr/bx/n/10 Rechazo Acumulado (\T1/cmr/bx/it/10 Regret\T1/cmr/bx/n/10 ): \T1/cmr/m/n/10 La diferencia
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 295.
+(hyperref)                removing `math shift' on input line 296.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\epsilon' on input line 295.
+(hyperref)                removing `\epsilon' on input line 296.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 295.
+(hyperref)                removing `math shift' on input line 296.
 
 
-Underfull \hbox (badness 2671) in paragraph at lines 306--308
+Underfull \hbox (badness 2671) in paragraph at lines 307--309
 []$\OML/cmm/m/it/10 ^^O \OT1/cmr/m/n/10 = 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 01$ \T1/cmr/bx/n/10 (Exploración baja): \T1/cmr/m/n/10 Introduce una
  []
 
 
-Underfull \hbox (badness 3168) in paragraph at lines 306--308
+Underfull \hbox (badness 3168) in paragraph at lines 307--309
 \T1/cmr/m/n/10 exploración moderada (1% de las veces), lo que
  []
 
 
-Underfull \hbox (badness 4181) in paragraph at lines 309--311
+Underfull \hbox (badness 4181) in paragraph at lines 310--312
 \T1/cmr/m/n/10 rapidez durante las primeras iteraciones, ya que
  []
 
 
-Underfull \hbox (badness 2073) in paragraph at lines 312--316
+Underfull \hbox (badness 2073) in paragraph at lines 313--317
 \T1/cmr/m/n/10 combina una exploración intensiva inicial con una
  []
 
-<resources/egreedy_reward_normal_sigma1.png, id=301, 994.4352pt x 488.5452pt>
+<resources/egreedy_reward_normal_sigma1.png, id=316, 994.4352pt x 488.5452pt>
 File: resources/egreedy_reward_normal_sigma1.png Graphic file (type png)
 <use resources/egreedy_reward_normal_sigma1.png>
-Package pdftex.def Info: resources/egreedy_reward_normal_sigma1.png  used on input line 322.
+Package pdftex.def Info: resources/egreedy_reward_normal_sigma1.png  used on input line 323.
 (pdftex.def)             Requested size: 243.26941pt x 119.51198pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6]
-<resources/egreedy_variance_comparison.png, id=319, 994.4352pt x 488.5452pt>
+<resources/egreedy_variance_comparison.png, id=335, 994.4352pt x 488.5452pt>
 File: resources/egreedy_variance_comparison.png Graphic file (type png)
 <use resources/egreedy_variance_comparison.png>
-Package pdftex.def Info: resources/egreedy_variance_comparison.png  used on input line 348.
+Package pdftex.def Info: resources/egreedy_variance_comparison.png  used on input line 349.
 (pdftex.def)             Requested size: 243.26941pt x 119.51198pt.
 
-Underfull \hbox (badness 1769) in paragraph at lines 359--360
+Underfull \hbox (badness 1769) in paragraph at lines 360--361
 []\T1/cmr/m/n/10 En este entorno, el algoritmo $\OML/cmm/m/it/10 ^^O$\T1/cmr/m/n/10 -decaimiento mostró el
  []
 
-<resources/egreedy_bernoulli_binomial.png, id=321, 994.4352pt x 488.5452pt>
+<resources/egreedy_bernoulli_binomial.png, id=337, 994.4352pt x 488.5452pt>
 File: resources/egreedy_bernoulli_binomial.png Graphic file (type png)
 <use resources/egreedy_bernoulli_binomial.png>
-Package pdftex.def Info: resources/egreedy_bernoulli_binomial.png  used on input line 363.
+Package pdftex.def Info: resources/egreedy_bernoulli_binomial.png  used on input line 364.
 (pdftex.def)             Requested size: 243.26941pt x 119.51198pt.
 
-Underfull \hbox (badness 4556) in paragraph at lines 370--371
+Underfull \hbox (badness 4556) in paragraph at lines 371--372
 [] []\T1/cmr/bx/n/10 Resultados en la distribución Binomial.[] \T1/cmr/m/n/10 En la
  []
 
 
-Underfull \hbox (badness 1681) in paragraph at lines 391--394
+Underfull \hbox (badness 1681) in paragraph at lines 392--395
 \T1/cmr/m/n/10 entre exploración y explotación. No obstante, el
  []
 
@@ -1016,81 +974,86 @@ Underfull \hbox (badness 1681) in paragraph at lines 391--394
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.394     \item \textbf
+l.395     \item \textbf
                        {Temperatura Alta ($\tau=5.0$)}: Al aumentar la tempe...
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.394     \item \textbf
+l.395     \item \textbf
                        {Temperatura Alta ($\tau=5.0$)}: Al aumentar la tempe...
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.394     \item \textbf
+l.395     \item \textbf
                        {Temperatura Alta ($\tau=5.0$)}: Al aumentar la tempe... <./resources/egreedy_reward_normal_sigma1.png> <./resources/egreedy_variance_comparison.png> <./resources/egreedy_bernoulli_binomial.png>]
-Underfull \hbox (badness 1163) in paragraph at lines 394--397
+Underfull \hbox (badness 1163) in paragraph at lines 395--398
 []\T1/cmr/bx/n/10 Temperatura Alta ($\OML/cmm/m/it/10 ^^\ \OT1/cmr/m/n/10 = 5\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 0$\T1/cmr/bx/n/10 )\T1/cmr/m/n/10 : Al aumentar la
  []
 
-<resources/softmax_histograma.png, id=338, 1414.28375pt x 657.45625pt>
+
+Underfull \hbox (badness 1163) in paragraph at lines 395--398
+\T1/cmr/m/n/10 Figura [][]1.5[][], la selección de brazos se centra en el
+ []
+
+<resources/softmax_histograma.png, id=353, 1414.28375pt x 657.45625pt>
 File: resources/softmax_histograma.png Graphic file (type png)
 <use resources/softmax_histograma.png>
-Package pdftex.def Info: resources/softmax_histograma.png  used on input line 400.
+Package pdftex.def Info: resources/softmax_histograma.png  used on input line 401.
 (pdftex.def)             Requested size: 243.26941pt x 113.08026pt.
 
-Underfull \hbox (badness 4120) in paragraph at lines 401--401
+Underfull \hbox (badness 4120) in paragraph at lines 402--402
 []\T1/cmr/m/n/10 Figure 1.4: []Histograma de selección de brazos con
  []
 
 
-Underfull \hbox (badness 7186) in paragraph at lines 401--401
+Underfull \hbox (badness 7186) in paragraph at lines 402--402
 \T1/cmr/m/n/10 distribución Normal para el algoritmo Softmax con
  []
 
-<resources/softmax_histograma2.png, id=339, 1414.28375pt x 634.37pt>
+<resources/softmax_histograma2.png, id=354, 1414.28375pt x 634.37pt>
 File: resources/softmax_histograma2.png Graphic file (type png)
 <use resources/softmax_histograma2.png>
-Package pdftex.def Info: resources/softmax_histograma2.png  used on input line 407.
+Package pdftex.def Info: resources/softmax_histograma2.png  used on input line 408.
 (pdftex.def)             Requested size: 243.26941pt x 109.10951pt.
 
-Underfull \hbox (badness 4120) in paragraph at lines 408--408
+Underfull \hbox (badness 4120) in paragraph at lines 409--409
 []\T1/cmr/m/n/10 Figure 1.5: []Histograma de selección de brazos con
  []
 
 
-Underfull \hbox (badness 7186) in paragraph at lines 408--408
+Underfull \hbox (badness 7186) in paragraph at lines 409--409
 \T1/cmr/m/n/10 distribución Normal para el algoritmo Softmax con
  []
 
 
-Underfull \hbox (badness 1430) in paragraph at lines 412--415
+Underfull \hbox (badness 1430) in paragraph at lines 413--416
 []\T1/cmr/m/n/10 Además, se observó que el regret acumulado crece de
  []
 
-<resources/softmax_regret.png, id=341, 1385.175pt x 682.55pt>
+<resources/softmax_regret.png, id=356, 1385.175pt x 682.55pt>
 File: resources/softmax_regret.png Graphic file (type png)
 <use resources/softmax_regret.png>
-Package pdftex.def Info: resources/softmax_regret.png  used on input line 418.
+Package pdftex.def Info: resources/softmax_regret.png  used on input line 419.
 (pdftex.def)             Requested size: 243.26941pt x 119.86462pt.
 
-Underfull \hbox (badness 1975) in paragraph at lines 429--432
+Underfull \hbox (badness 1975) in paragraph at lines 430--433
 []\T1/cmr/m/n/10 Este fenómeno se atribuye a la naturaleza discreta y
  []
 
-<resources/softmax_bernoulli.png, id=343, 1647.15375pt x 804.00375pt>
+<resources/softmax_bernoulli.png, id=358, 1647.15375pt x 804.00375pt>
 File: resources/softmax_bernoulli.png Graphic file (type png)
 <use resources/softmax_bernoulli.png>
-Package pdftex.def Info: resources/softmax_bernoulli.png  used on input line 444.
+Package pdftex.def Info: resources/softmax_bernoulli.png  used on input line 445.
 (pdftex.def)             Requested size: 243.26941pt x 118.74287pt.
 
-Underfull \hbox (badness 1377) in paragraph at lines 451--456
+Underfull \hbox (badness 1377) in paragraph at lines 452--457
 []\T1/cmr/m/n/10 Dado que la configuración de baja temperatura ($\OML/cmm/m/it/10 ^^\ \OT1/cmr/m/n/10 =
  []
 
-<resources/softmax_exploracion_inicial.png, id=345, 1381.16pt x 678.535pt>
+<resources/softmax_exploracion_inicial.png, id=360, 1381.16pt x 678.535pt>
 File: resources/softmax_exploracion_inicial.png Graphic file (type png)
 <use resources/softmax_exploracion_inicial.png>
-Package pdftex.def Info: resources/softmax_exploracion_inicial.png  used on input line 459.
+Package pdftex.def Info: resources/softmax_exploracion_inicial.png  used on input line 460.
 (pdftex.def)             Requested size: 243.26941pt x 119.51157pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1099,100 +1062,92 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.463 
+l.464 
       
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1.5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.463 
+l.464 
       
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1.6}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.463 
+l.464 
       
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1.7}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.463 
+l.464 
        <./resources/softmax_histograma.png> <./resources/softmax_histograma2.png (PNG copy)> <./resources/softmax_regret.png (PNG copy)> <./resources/softmax_bernoulli.png (PNG copy)>]
-Underfull \hbox (badness 3965) in paragraph at lines 466--467
+Underfull \hbox (badness 3965) in paragraph at lines 467--468
 []\T1/cmr/bx/n/10 Mejora Crítica en $\OML/cmm/m/it/10 ^^\ \OT1/cmr/m/n/10 = 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 1$\T1/cmr/bx/n/10 : \T1/cmr/m/n/10 Esta primera
  []
 
 
-Underfull \hbox (badness 3168) in paragraph at lines 468--469
+Underfull \hbox (badness 3168) in paragraph at lines 469--470
 \T1/cmr/m/n/10 significativas, dado que la propia entropía de la
  []
 
 
-Underfull \hbox (badness 3271) in paragraph at lines 474--474
+Underfull \hbox (badness 3271) in paragraph at lines 475--475
 |[]\T1/cmr/bx/n/12 Resultados: Familia UCB (Upper
  []
 
 
-LaTeX Warning: Reference `fig:ucb_histograma1' on page 9 undefined on input line 483.
-
-
-Underfull \hbox (badness 7963) in paragraph at lines 480--484
+Underfull \hbox (badness 7963) in paragraph at lines 481--485
 []\T1/cmr/bx/n/10 UCB1: \T1/cmr/m/n/10 El agente presenta siempre un buen
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 480--484
+Underfull \hbox (badness 10000) in paragraph at lines 481--485
 \T1/cmr/m/n/10 aprovechamiento de la información previamente
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 480--484
+Underfull \hbox (badness 10000) in paragraph at lines 481--485
 \T1/cmr/m/n/10 adquirida, con una curva de aprendizaje muy
  []
 
 
-Underfull \hbox (badness 1400) in paragraph at lines 480--484
+Underfull \hbox (badness 1400) in paragraph at lines 481--485
 \T1/cmr/m/n/10 suave el equilibrio entre exploración y explotación.
  []
 
+<resources/ucb_histograma.png, id=377, 1381.16pt x 678.535pt>
+File: resources/ucb_histograma.png Graphic file (type png)
+<use resources/ucb_histograma.png>
+Package pdftex.def Info: resources/ucb_histograma.png  used on input line 496.
+(pdftex.def)             Requested size: 243.26941pt x 119.51157pt.
 
-LaTeX Warning: Reference `fig:ucb_histograma2' on page 9 undefined on input line 490.
-
-File: resources/softmax_histograma.png Graphic file (type png)
-<use resources/softmax_histograma.png>
-Package pdftex.def Info: resources/softmax_histograma.png  used on input line 494.
-(pdftex.def)             Requested size: 243.26941pt x 113.08026pt.
-
-Underfull \hbox (badness 4120) in paragraph at lines 495--495
+Underfull \hbox (badness 4120) in paragraph at lines 497--497
 []\T1/cmr/m/n/10 Figure 1.9: []Histograma de selección de brazos con
  []
 
+<resources/ucb2_histograma.png, id=378, 1381.16pt x 678.535pt>
+File: resources/ucb2_histograma.png Graphic file (type png)
+<use resources/ucb2_histograma.png>
+Package pdftex.def Info: resources/ucb2_histograma.png  used on input line 502.
+(pdftex.def)             Requested size: 243.26941pt x 119.51157pt.
 
-Underfull \hbox (badness 7186) in paragraph at lines 495--495
-\T1/cmr/m/n/10 distribución Normal para el algoritmo Softmax con
- []
-
-File: resources/softmax_histograma2.png Graphic file (type png)
-<use resources/softmax_histograma2.png>
-Package pdftex.def Info: resources/softmax_histograma2.png  used on input line 501.
-(pdftex.def)             Requested size: 243.26941pt x 109.10951pt.
-
-Underfull \hbox (badness 2922) in paragraph at lines 502--502
+Underfull \hbox (badness 2922) in paragraph at lines 503--503
 []\T1/cmr/m/n/10 Figure 1.10: []Histograma de selección de brazos con
  []
 
-
-Underfull \hbox (badness 7186) in paragraph at lines 502--502
-\T1/cmr/m/n/10 distribución Normal para el algoritmo Softmax con
- []
-
-
-Underfull \hbox (badness 1430) in paragraph at lines 506--509
-[]\T1/cmr/m/n/10 Además, se observó que el regret acumulado crece de
- []
-
-File: resources/softmax_regret.png Graphic file (type png)
-<use resources/softmax_regret.png>
-Package pdftex.def Info: resources/softmax_regret.png  used on input line 512.
+<resources/ucb_regret.png, id=380, 1385.175pt x 682.55pt>
+File: resources/ucb_regret.png Graphic file (type png)
+<use resources/ucb_regret.png>
+Package pdftex.def Info: resources/ucb_regret.png  used on input line 514.
 (pdftex.def)             Requested size: 243.26941pt x 119.86462pt.
+
+Underfull \hbox (badness 1472) in paragraph at lines 515--515
+[]\T1/cmr/m/n/10 Figure 1.11: []Evolución del regret acumulado para los
+ []
+
+
+Underfull \hbox (badness 8094) in paragraph at lines 519--522
+[]\T1/cmr/m/n/10 Comparando los resultados obtenidos entre distintos
+ []
+
 [9
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1.8}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
@@ -1213,166 +1168,132 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.1.11}) 
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.522 
-       <./resources/softmax_exploracion_inicial.png (PNG copy)>]
-Underfull \hbox (badness 1975) in paragraph at lines 523--526
-[]\T1/cmr/m/n/10 Este fenómeno se atribuye a la naturaleza discreta y
- []
-
-File: resources/softmax_bernoulli.png Graphic file (type png)
-<use resources/softmax_bernoulli.png>
-Package pdftex.def Info: resources/softmax_bernoulli.png  used on input line 538.
-(pdftex.def)             Requested size: 243.26941pt x 118.74287pt.
-
-Underfull \hbox (badness 1377) in paragraph at lines 545--550
-[]\T1/cmr/m/n/10 Dado que la configuración de baja temperatura ($\OML/cmm/m/it/10 ^^\ \OT1/cmr/m/n/10 =
- []
-
-File: resources/softmax_exploracion_inicial.png Graphic file (type png)
-<use resources/softmax_exploracion_inicial.png>
-Package pdftex.def Info: resources/softmax_exploracion_inicial.png  used on input line 553.
-(pdftex.def)             Requested size: 243.26941pt x 119.51157pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \hbox (badness 3965) in paragraph at lines 560--561
-[]\T1/cmr/bx/n/10 Mejora Crítica en $\OML/cmm/m/it/10 ^^\ \OT1/cmr/m/n/10 = 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 1$\T1/cmr/bx/n/10 : \T1/cmr/m/n/10 Esta primera
+       <./resources/softmax_exploracion_inicial.png (PNG copy)> <./resources/ucb_histograma.png (PNG copy)> <./resources/ucb2_histograma.png (PNG copy)> <./resources/ucb_regret.png (PNG copy)>]
+Underfull \hbox (badness 4403) in paragraph at lines 525--526
+\T1/cmr/m/n/10 superior en términos de recompensa promedio y
  []
 
 
-Underfull \hbox (badness 3168) in paragraph at lines 562--563
-\T1/cmr/m/n/10 significativas, dado que la propia entropía de la
+Underfull \hbox (badness 2951) in paragraph at lines 526--528
+\T1/cmr/m/n/10 de este hiperparámetro, lo que puede limitar su
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 571--572
+Underfull \hbox (badness 10000) in paragraph at lines 534--535
 []\T1/cmr/m/n/10 Se realizó un experimento conjunto utilizando una
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 576--577
+Underfull \hbox (badness 10000) in paragraph at lines 539--540
 []\T1/cmr/bx/n/10 Convergencia y selección óptima: \T1/cmr/m/n/10 UCB2
  []
 
 
-Underfull \hbox (badness 1147) in paragraph at lines 578--579
+Underfull \hbox (badness 1147) in paragraph at lines 541--542
 []\T1/cmr/m/n/10 La comparación directa del porcentaje de selección
  []
 
-<resources/global_optimal_selection.png, id=374, 994.4352pt x 488.5452pt>
+<resources/global_optimal_selection.png, id=389, 994.4352pt x 488.5452pt>
 File: resources/global_optimal_selection.png Graphic file (type png)
 <use resources/global_optimal_selection.png>
-Package pdftex.def Info: resources/global_optimal_selection.png  used on input line 582.
+Package pdftex.def Info: resources/global_optimal_selection.png  used on input line 545.
 (pdftex.def)             Requested size: 243.26941pt x 119.51198pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \hbox (badness 4048) in paragraph at lines 551--552
+\T1/cmr/m/n/10 hacia la media del brazo óptimo (9.56 en esta
+ []
+
+
+Underfull \hbox (badness 5802) in paragraph at lines 553--554
+[]\T1/cmr/m/n/10 La evolución de la recompensa promedio puede
+ []
+
+<resources/global_reward_comparison.png, id=391, 994.4352pt x 488.5452pt>
+File: resources/global_reward_comparison.png Graphic file (type png)
+<use resources/global_reward_comparison.png>
+Package pdftex.def Info: resources/global_reward_comparison.png  used on input line 557.
+(pdftex.def)             Requested size: 243.26941pt x 119.51198pt.
+
+Underfull \hbox (badness 3019) in paragraph at lines 558--558
+[]\T1/cmr/m/n/10 Figure 1.13: []Recompensa promedio acumulada en el
+ []
+
+
+Underfull \hbox (badness 2057) in paragraph at lines 563--564
+\T1/cmr/m/n/10 fases, lo que afecta su rendimiento observable en
+ []
+
+<resources/global_regret_comparison.png, id=393, 997.326pt x 491.436pt>
+File: resources/global_regret_comparison.png Graphic file (type png)
+<use resources/global_regret_comparison.png>
+Package pdftex.def Info: resources/global_regret_comparison.png  used on input line 569.
+(pdftex.def)             Requested size: 243.26941pt x 119.86671pt.
+
+Underfull \hbox (badness 7221) in paragraph at lines 570--570
+[]\T1/cmr/m/n/10 Figure 1.14: []Regret acumulado en el experimento
+ []
+
+
+Underfull \hbox (badness 2635) in paragraph at lines 575--579
+\T1/cmr/m/n/10 combinando rápida convergencia, máxima selección
+ []
+
+
+Underfull \hbox (badness 3769) in paragraph at lines 575--579
+\T1/cmr/m/n/10 óptima y bajo regret. UCB1 ofrece resultados
+ []
+
+
+Underfull \hbox (badness 4096) in paragraph at lines 625--626
+\T1/cmr/m/n/10 del bandido de $\OML/cmm/m/it/10 k$\T1/cmr/m/n/10 -brazos bajo distintas distribuciones
+ []
+
+
+Underfull \hbox (badness 3333) in paragraph at lines 625--626
+\T1/cmr/m/n/10 de recompensa, se extraen las siguientes conclusiones
+ []
+
+
+Underfull \vbox (badness 3838) has occurred while \output is active []
 
  [10
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1.12}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.586 
+l.626 
       
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1.13}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.586 
-      ]
-Underfull \hbox (badness 4048) in paragraph at lines 588--589
-\T1/cmr/m/n/10 hacia la media del brazo óptimo (9.56 en esta
- []
-
-
-Underfull \hbox (badness 5802) in paragraph at lines 590--591
-[]\T1/cmr/m/n/10 La evolución de la recompensa promedio puede
- []
-
-<resources/global_reward_comparison.png, id=387, 994.4352pt x 488.5452pt>
-File: resources/global_reward_comparison.png Graphic file (type png)
-<use resources/global_reward_comparison.png>
-Package pdftex.def Info: resources/global_reward_comparison.png  used on input line 594.
-(pdftex.def)             Requested size: 243.26941pt x 119.51198pt.
-
-Underfull \hbox (badness 3019) in paragraph at lines 595--595
-[]\T1/cmr/m/n/10 Figure 1.15: []Recompensa promedio acumulada en el
- []
-
-
-Underfull \hbox (badness 2057) in paragraph at lines 600--601
-\T1/cmr/m/n/10 fases, lo que afecta su rendimiento observable en
- []
-
-<resources/global_regret_comparison.png, id=389, 997.326pt x 491.436pt>
-File: resources/global_regret_comparison.png Graphic file (type png)
-<use resources/global_regret_comparison.png>
-Package pdftex.def Info: resources/global_regret_comparison.png  used on input line 606.
-(pdftex.def)             Requested size: 243.26941pt x 119.86671pt.
-
-Underfull \hbox (badness 7221) in paragraph at lines 607--607
-[]\T1/cmr/m/n/10 Figure 1.16: []Regret acumulado en el experimento
- []
-
-
-Underfull \hbox (badness 2635) in paragraph at lines 612--613
-\T1/cmr/m/n/10 combinando rápida convergencia, máxima selección
- []
-
-
-Underfull \hbox (badness 3769) in paragraph at lines 612--613
-\T1/cmr/m/n/10 óptima y bajo regret. UCB1 ofrece resultados
- []
-
-
-Underfull \hbox (badness 1424) in paragraph at lines 612--613
-\T1/cmr/m/n/10 identificación de brazon óptimo. El esquema con
- []
-
-
-Underfull \hbox (badness 4096) in paragraph at lines 659--660
-\T1/cmr/m/n/10 del bandido de $\OML/cmm/m/it/10 k$\T1/cmr/m/n/10 -brazos bajo distintas distribuciones
- []
-
-
-Underfull \hbox (badness 3333) in paragraph at lines 659--660
-\T1/cmr/m/n/10 de recompensa, se extraen las siguientes conclusiones
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 674--681
+l.626 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.1.14}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.626 
+       <./resources/global_optimal_selection.png> <./resources/global_reward_comparison.png> <./resources/global_regret_comparison.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 640--647
 []\T1/cmr/bx/n/10 Superioridad de los métodos basados en
  []
 
 
-Underfull \hbox (badness 2903) in paragraph at lines 674--681
+Underfull \hbox (badness 2903) in paragraph at lines 640--647
 \T1/cmr/bx/n/10 incertidumbre (UCB): \T1/cmr/m/n/10 Las estrategias UCB1 y
  []
 
 
-Underfull \hbox (badness 2717) in paragraph at lines 674--681
+Underfull \hbox (badness 2717) in paragraph at lines 640--647
 \T1/cmr/m/n/10 UCB2 han demostrado ser las mejores para este
  []
 
 ) (./entornos_complejos.tex
-Underfull \hbox (badness 2617) in paragraph at lines 685--1
+Underfull \hbox (badness 2617) in paragraph at lines 651--1
 \T1/cmr/m/n/10 con incertidumbre, los algoritmos basados en la cota
  []
 
 [11
-pdfTeX warning (ext4): destination with the same identifier (name{figure.1.14}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1 \chapter
-            {Aprendizaje en Entornos Complejos: De MÃ©todos Tabulares a Apro...
-pdfTeX warning (ext4): destination with the same identifier (name{figure.1.15}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1 \chapter
-            {Aprendizaje en Entornos Complejos: De MÃ©todos Tabulares a Apro...
-pdfTeX warning (ext4): destination with the same identifier (name{figure.1.16}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1 \chapter
-            {Aprendizaje en Entornos Complejos: De MÃ©todos Tabulares a Apro... <./resources/global_optimal_selection.png> <./resources/global_reward_comparison.png> <./resources/global_regret_comparison.png>]
+
+]
 Chapter 2.
 
 Underfull \hbox (badness 1342) in paragraph at lines 17--27
@@ -1557,150 +1478,114 @@ Underfull \hbox (badness 10000) in paragraph at lines 209--227
 
  []
 
-
-Overfull \hbox (29.92093pt too wide) detected at line 237
-\OML/cmm/m/it/10 Q\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S[]; A[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10   \OML/cmm/m/it/10 Q\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S[]; A[]\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10 []R \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 ^^M [] ^^Y\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 a\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 S[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 Q\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S[]; a\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 Q\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S[]; A[]\OT1/cmr/m/n/10 )[]
- []
-
 [14]
-Overfull \hbox (5.9779pt too wide) detected at line 249
+Overfull \hbox (5.9779pt too wide) detected at line 252
 \OML/cmm/m/it/10 Q\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S[]; A[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10   \OML/cmm/m/it/10 Q\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S[]; A[]\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10 []R[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 ^^M [] Q\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S[]; a\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 Q\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S[]; A[]\OT1/cmr/m/n/10 )[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 253--271
+Underfull \hbox (badness 10000) in paragraph at lines 256--274
 
  []
 
 
-Underfull \hbox (badness 1681) in paragraph at lines 275--276
+Underfull \hbox (badness 1681) in paragraph at lines 278--279
 \T1/cmr/m/n/10 debido al operador $[]$, que puede seleccionar ruidos
  []
 
 
-Underfull \hbox (badness 1728) in paragraph at lines 291--293
+Underfull \hbox (badness 1728) in paragraph at lines 294--296
 []\T1/cmr/m/n/10 Para el aterrizaje lunar, donde los sensores devuelven
  []
 
-./entornos_complejos.tex:316: Missing number, treated as zero.
-<to be read again> 
-                   \ALG@b@2@EndWhile@0 
-l.316 \EndWhile
-               
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 301--319
+Underfull \hbox (badness 10000) in paragraph at lines 304--321
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 335--354
+Underfull \hbox (badness 10000) in paragraph at lines 337--356
 
  []
 
 [15]
-Underfull \hbox (badness 1708) in paragraph at lines 359--360
+Underfull \hbox (badness 1708) in paragraph at lines 361--362
 \T1/cmr/m/n/10 mediante una red neuronal profunda $[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s; a; \OT1/cmr/bx/n/10 w\OT1/cmr/m/n/10 )$\T1/cmr/m/n/10 . Para
  []
 
 
-Underfull \hbox (badness 1590) in paragraph at lines 359--360
+Underfull \hbox (badness 1590) in paragraph at lines 361--362
 \T1/cmr/m/n/10 garantizar la estabilidad del entrenamiento y evitar la
  []
 
 
-Underfull \hbox (badness 1270) in paragraph at lines 359--360
+Underfull \hbox (badness 1270) in paragraph at lines 361--362
 \T1/cmr/m/n/10 divergencia matemática que suele ocurrir al usar redes
  []
 
 
-Underfull \hbox (badness 4193) in paragraph at lines 359--360
+Underfull \hbox (badness 4193) in paragraph at lines 361--362
 \T1/cmr/m/n/10 neuronales en aprendizaje por refuerzo, este enfoque
  []
 
 
-Underfull \hbox (badness 3375) in paragraph at lines 363--367
+Underfull \hbox (badness 3375) in paragraph at lines 365--369
 \T1/cmr/m/n/10 el aprendizaje, tomamos mini-lotes aleatorios de esta
  []
 
 
-Overfull \hbox (9.94731pt too wide) detected at line 373
+Overfull \hbox (9.94731pt too wide) detected at line 375
 [][][][][]
  []
 
 
-Underfull \hbox (badness 7540) in paragraph at lines 404--405
+Underfull \hbox (badness 7540) in paragraph at lines 406--407
 [] \T1/cmr/m/n/9 Actualizar $\OT1/cmr/bx/n/9 w$ \T1/cmr/m/n/9 minimizando $\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 y \OMS/cmsy/m/n/9 ^^@ []\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 S; A; \OT1/cmr/bx/n/9 w\OT1/cmr/m/n/9 ))[]$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 385--412
+Underfull \hbox (badness 10000) in paragraph at lines 387--414
 
  []
 
 
-Underfull \hbox (badness 1648) in paragraph at lines 427--429
+Underfull \hbox (badness 1648) in paragraph at lines 429--431
 []\T1/cmr/bx/n/10 Taxi-v3 (Tabular). \T1/cmr/m/n/10 Este entorno representa un
  []
 
 [16]
-Underfull \hbox (badness 1394) in paragraph at lines 436--437
+Underfull \hbox (badness 1394) in paragraph at lines 438--439
 []\T1/cmr/m/n/10 Todo el ecosistema experimental se ha desarrollado en
  []
 
 
-Underfull \hbox (badness 1360) in paragraph at lines 442--443
+Underfull \hbox (badness 1360) in paragraph at lines 444--445
 \T1/cmr/m/n/10 progresiva que indique trayectorias más directas al
  []
 
-<resources/mc_comparativa.png, id=459, 1192.455pt x 491.8375pt>
+<resources/mc_comparativa.png, id=470, 1192.455pt x 491.8375pt>
 File: resources/mc_comparativa.png Graphic file (type png)
 <use resources/mc_comparativa.png>
-Package pdftex.def Info: resources/mc_comparativa.png  used on input line 483.
+Package pdftex.def Info: resources/mc_comparativa.png  used on input line 485.
 (pdftex.def)             Requested size: 243.26941pt x 100.33952pt.
 
-Underfull \hbox (badness 2088) in paragraph at lines 488--490
+Underfull \hbox (badness 2088) in paragraph at lines 490--492
 []\T1/cmr/m/n/10 Los resultados muestran que Montecarlo On-Policy no
  []
 
 
-Underfull \hbox (badness 1102) in paragraph at lines 502--503
-[]\T1/cmr/m/n/10 Se compararon los algoritmos Q-Learning y Double Q-
- []
+LaTeX Warning: Citation `hernandez2025bandido' on page 17 undefined on input line 509.
 
-
-Underfull \hbox (badness 1189) in paragraph at lines 505--507
-[] []\T1/cmr/bx/n/10 Optimización de Hiperparámetros (Grid Search).[]
- []
-
-<resources/QLearningvsDoubleQLearning.png, id=461, 850.6179pt x 354.123pt>
-File: resources/QLearningvsDoubleQLearning.png Graphic file (type png)
-<use resources/QLearningvsDoubleQLearning.png>
-Package pdftex.def Info: resources/QLearningvsDoubleQLearning.png  used on input line 515.
-(pdftex.def)             Requested size: 243.26941pt x 101.27191pt.
-
-Underfull \hbox (badness 1616) in paragraph at lines 516--516
-[]\T1/cmr/m/n/10 Figure 2.2: []Comparación de recompensa acumulada y
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 512--518
-[] []\T1/cmr/bx/n/10 Q-Learning vs. Double Q-Learning.[] \T1/cmr/m/n/10 Aunque
- []
-
-
-Underfull \hbox (badness 7186) in paragraph at lines 512--518
-\T1/cmr/m/n/10 teóricamente Double Q-Learning mitiga el sesgo de
- []
-
-
-Underfull \hbox (badness 1226) in paragraph at lines 512--518
-\T1/cmr/m/n/10 sobreestimación, en este entorno discreto los resultados
- []
-
+<resources/heatmaps_taxi_sarsa.png, id=473, 1752.5475pt x 2358.8125pt>
+File: resources/heatmaps_taxi_sarsa.png Graphic file (type png)
+<use resources/heatmaps_taxi_sarsa.png>
+Package pdftex.def Info: resources/heatmaps_taxi_sarsa.png  used on input line 513.
+(pdftex.def)             Requested size: 243.26941pt x 327.42409pt.
+<resources/metrics_taxi_sarsa.png, id=474, 859.2903pt x 354.123pt>
+File: resources/metrics_taxi_sarsa.png Graphic file (type png)
+<use resources/metrics_taxi_sarsa.png>
+Package pdftex.def Info: resources/metrics_taxi_sarsa.png  used on input line 519.
+(pdftex.def)             Requested size: 243.26941pt x 100.25066pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1708,135 +1593,366 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 pdfTeX warning (ext4): destination with the same identifier (name{table.2.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.519 
-      
+l.522 \end{figure}
+                  
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.519 
-       <./resources/mc_comparativa.png (PNG copy)>]
-Underfull \hbox (badness 1661) in paragraph at lines 520--521
-[]\T1/cmr/m/n/10 La Figura [][]2.2[][] muestra la evolución de la recompensa
+l.522 \end{figure}
+                   <./resources/mc_comparativa.png (PNG copy)>]
+Underfull \hbox (badness 1102) in paragraph at lines 526--527
+[]\T1/cmr/m/n/10 Se compararon los algoritmos Q-Learning y Double Q-
  []
 
-<resources/taxi_politica_final_qlearning.png, id=480, 410.03188pt x 259.46938pt>
+
+Underfull \hbox (badness 1189) in paragraph at lines 529--531
+[] []\T1/cmr/bx/n/10 Optimización de Hiperparámetros (Grid Search).[]
+ []
+
+<resources/QLearningvsDoubleQLearning.png, id=491, 850.6179pt x 354.123pt>
+File: resources/QLearningvsDoubleQLearning.png Graphic file (type png)
+<use resources/QLearningvsDoubleQLearning.png>
+Package pdftex.def Info: resources/QLearningvsDoubleQLearning.png  used on input line 539.
+(pdftex.def)             Requested size: 243.26941pt x 101.27191pt.
+
+Underfull \hbox (badness 1616) in paragraph at lines 540--540
+[]\T1/cmr/m/n/10 Figure 2.4: []Comparación de recompensa acumulada y
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 536--542
+[] []\T1/cmr/bx/n/10 Q-Learning vs. Double Q-Learning.[] \T1/cmr/m/n/10 Aunque
+ []
+
+
+Underfull \hbox (badness 7186) in paragraph at lines 536--542
+\T1/cmr/m/n/10 teóricamente Double Q-Learning mitiga el sesgo de
+ []
+
+
+Underfull \hbox (badness 1226) in paragraph at lines 536--542
+\T1/cmr/m/n/10 sobreestimación, en este entorno discreto los resultados
+ []
+
+
+Underfull \hbox (badness 1661) in paragraph at lines 544--545
+[]\T1/cmr/m/n/10 La Figura [][]2.4[][] muestra la evolución de la recompensa
+ []
+
+<resources/taxi_politica_final_qlearning.png, id=494, 410.03188pt x 259.46938pt>
 File: resources/taxi_politica_final_qlearning.png Graphic file (type png)
 <use resources/taxi_politica_final_qlearning.png>
-Package pdftex.def Info: resources/taxi_politica_final_qlearning.png  used on input line 526.
+Package pdftex.def Info: resources/taxi_politica_final_qlearning.png  used on input line 550.
 (pdftex.def)             Requested size: 243.26941pt x 153.94473pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 531--531
+Underfull \hbox (badness 10000) in paragraph at lines 555--555
 |[]\T1/cmr/bx/n/12 Resultados en Entorno Continuo:
  []
 
 
-Underfull \hbox (badness 3838) in paragraph at lines 534--534
-|\T1/cmr/bx/n/10 Resultados de SARSA Semi-gradiente con red
+Underfull \hbox (badness 1418) in paragraph at lines 557--570
+\T1/cmr/m/n/10 la combinación ganadora es probablemente fruto de la
  []
 
 
-Underfull \hbox (badness 1147) in paragraph at lines 535--536
-[]\T1/cmr/m/n/10 En este entorno, se evaluó el algoritmo SARSA Semi-
- []
-
-
-Underfull \hbox (badness 2753) in paragraph at lines 535--536
-\T1/cmr/m/n/10 gradiente utilizando una arquitectura de red neuronal
- []
-
-
-Underfull \hbox (badness 1005) in paragraph at lines 540--541
-[]\T1/cmr/bx/n/10 Sensibilidad a $\OML/cmm/m/it/10 $\T1/cmr/m/n/10 : A diferencia del caso tabular,
- []
-
-<resources/lunar_epsilon_decaimiento_graficas.png, id=482, 859.2903pt x 354.123pt>
-File: resources/lunar_epsilon_decaimiento_graficas.png Graphic file (type png)
-<use resources/lunar_epsilon_decaimiento_graficas.png>
-Package pdftex.def Info: resources/lunar_epsilon_decaimiento_graficas.png  used on input line 545.
-(pdftex.def)             Requested size: 243.26941pt x 100.25066pt.
-
-Underfull \hbox (badness 3568) in paragraph at lines 546--546
-[]\T1/cmr/m/n/10 Figure 2.4: []Métricas de entrenamiento (Recompensa,
- []
-
-<resources/lunar_aterrizaje_existoso.png, id=485, 449.17813pt x 301.125pt>
-File: resources/lunar_aterrizaje_existoso.png Graphic file (type png)
-<use resources/lunar_aterrizaje_existoso.png>
-Package pdftex.def Info: resources/lunar_aterrizaje_existoso.png  used on input line 557.
-(pdftex.def)             Requested size: 243.26941pt x 163.08293pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 5091) has occurred while \output is active []
 
  [18
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.561 
+l.570 
       
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.561 
+l.570 
       
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.561 
-       <./resources/QLearningvsDoubleQLearning.png> <./resources/taxi_politica_final_qlearning.png> <./resources/lunar_epsilon_decaimiento_graficas.png>]
-<resources/dqn_lunar_epsilon_decaimiento_graficas.png, id=501, 859.2903pt x 354.123pt>
-File: resources/dqn_lunar_epsilon_decaimiento_graficas.png Graphic file (type png)
-<use resources/dqn_lunar_epsilon_decaimiento_graficas.png>
-Package pdftex.def Info: resources/dqn_lunar_epsilon_decaimiento_graficas.png  used on input line 576.
-(pdftex.def)             Requested size: 243.26941pt x 100.25066pt.
-
-Underfull \hbox (badness 3568) in paragraph at lines 577--577
-[]\T1/cmr/m/n/10 Figure 2.6: []Métricas de entrenamiento (Recompensa,
- []
-
-
-Underfull \hbox (badness 1616) in paragraph at lines 584--588
-[]\T1/cmr/m/n/10 Los resultados se encuentran en la Figura [][]2.7[][], donde
- []
-
-
-Underfull \hbox (badness 1122) in paragraph at lines 584--588
-\T1/cmr/m/n/10 se observa que un $\OML/cmm/m/it/10 ^^M$ \T1/cmr/m/n/10 demasiado bajo (0.9) dificulta la
- []
-
-<resources/discount_factor_dqn.png, id=503, 1020.81375pt x 550.055pt>
-File: resources/discount_factor_dqn.png Graphic file (type png)
-<use resources/discount_factor_dqn.png>
-Package pdftex.def Info: resources/discount_factor_dqn.png  used on input line 591.
-(pdftex.def)             Requested size: 243.26941pt x 131.08424pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-)
-No file main.bbl.
-
-Underfull \hbox (badness 2368) in paragraph at lines 603--39
-\T1/cmr/m/n/10 de aprendizaje por refuerzo, se extraen las siguientes
- []
-
-
-Package natbib Warning: There were undefined citations.
-
-[19
+l.570 
+      
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2.5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.44 \end{document}
-                   
+l.570 
+       <./resources/heatmaps_taxi_sarsa.png> <./resources/metrics_taxi_sarsa.png> <./resources/QLearningvsDoubleQLearning.png> <./resources/taxi_politica_final_qlearning.png>]
+
+LaTeX Warning: File `resources/tilecoding_heatmaps.png' not found on input line 573.
+
+
+./entornos_complejos.tex:573: Package pdftex.def Error: File `resources/tilecoding_heatmaps.png' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.573 ...width]{resources/tilecoding_heatmaps.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 3977) in paragraph at lines 574--574
+\T1/cmr/m/n/10 combinaciones de número de episodios y número de
+ []
+
+
+LaTeX Warning: File `resources/tilecoding_metrics.png' not found on input line 579.
+
+
+./entornos_complejos.tex:579: Package pdftex.def Error: File `resources/tilecoding_metrics.png' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.579 ...twidth]{resources/tilecoding_metrics.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 3838) in paragraph at lines 584--584
+|\T1/cmr/bx/n/10 Resultados de SARSA Semi-gradiente con red
+ []
+
+
+Underfull \hbox (badness 1147) in paragraph at lines 585--586
+[]\T1/cmr/m/n/10 En este entorno, se evaluó el algoritmo SARSA Semi-
+ []
+
+
+Underfull \hbox (badness 2753) in paragraph at lines 585--586
+\T1/cmr/m/n/10 gradiente utilizando una arquitectura de red neuronal
+ []
+
+
+Underfull \hbox (badness 1005) in paragraph at lines 590--591
+[]\T1/cmr/bx/n/10 Sensibilidad a $\OML/cmm/m/it/10 $\T1/cmr/m/n/10 : A diferencia del caso tabular,
+ []
+
+<resources/lunar_epsilon_decaimiento_graficas.png, id=512, 1193.45876pt x 491.8375pt>
+File: resources/lunar_epsilon_decaimiento_graficas.png Graphic file (type png)
+<use resources/lunar_epsilon_decaimiento_graficas.png>
+Package pdftex.def Info: resources/lunar_epsilon_decaimiento_graficas.png  used on input line 595.
+(pdftex.def)             Requested size: 243.26941pt x 100.24947pt.
+
+Underfull \hbox (badness 3568) in paragraph at lines 596--596
+[]\T1/cmr/m/n/10 Figure 2.8: []Métricas de entrenamiento (Recompensa,
+ []
+
+
+Underfull \vbox (badness 1642) has occurred while \output is active []
+
+ [19
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2.6}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.44 \end{document}
-                   
+l.601 
+      
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2.7}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.44 \end{document}
-                    <./resources/lunar_aterrizaje_existoso.png> <./resources/dqn_lunar_epsilon_decaimiento_graficas.png> <./resources/discount_factor_dqn.png>] (./main.aux)
+l.601 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.8}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.601 
+       <./resources/lunar_epsilon_decaimiento_graficas.png (PNG copy)>]
+<resources/lunar_aterrizaje_existoso.png, id=524, 449.17813pt x 301.125pt>
+File: resources/lunar_aterrizaje_existoso.png Graphic file (type png)
+<use resources/lunar_aterrizaje_existoso.png>
+Package pdftex.def Info: resources/lunar_aterrizaje_existoso.png  used on input line 607.
+(pdftex.def)             Requested size: 243.26941pt x 163.08293pt.
+<resources/dqn_lunar_epsilon_decaimiento_graficas.png, id=526, 859.2903pt x 354.123pt>
+File: resources/dqn_lunar_epsilon_decaimiento_graficas.png Graphic file (type png)
+<use resources/dqn_lunar_epsilon_decaimiento_graficas.png>
+Package pdftex.def Info: resources/dqn_lunar_epsilon_decaimiento_graficas.png  used on input line 626.
+(pdftex.def)             Requested size: 243.26941pt x 100.25066pt.
+
+Underfull \hbox (badness 2181) in paragraph at lines 627--627
+[]\T1/cmr/m/n/10 Figure 2.10: []Métricas de entrenamiento (Recompensa,
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+LaTeX Warning: Citation `van2019lunar' on page 20 undefined on input line 632.
+
+
+Underfull \hbox (badness 1014) in paragraph at lines 634--638
+[]\T1/cmr/m/n/10 Los resultados se encuentran en la Figura [][]2.11[][], donde
+ []
+
+
+Underfull \hbox (badness 1122) in paragraph at lines 634--638
+\T1/cmr/m/n/10 se observa que un $\OML/cmm/m/it/10 ^^M$ \T1/cmr/m/n/10 demasiado bajo (0.9) dificulta la
+ []
+
+<resources/discount_factor_dqn.png, id=528, 1020.81375pt x 550.055pt>
+File: resources/discount_factor_dqn.png Graphic file (type png)
+<use resources/discount_factor_dqn.png>
+Package pdftex.def Info: resources/discount_factor_dqn.png  used on input line 641.
+(pdftex.def)             Requested size: 243.26941pt x 131.08424pt.
+
+LaTeX Warning: File `resources/lunar_comparativa.png' not found on input line 653.
+
+
+./entornos_complejos.tex:653: Package pdftex.def Error: File `resources/lunar_comparativa.png' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.653 ...xtwidth]{resources/lunar_comparativa.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 1810) in paragraph at lines 648--656
+[]\T1/cmr/m/n/10 Tras evaluar los tres enfoques en el entorno continuo
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 648--656
+\T1/cmr/m/it/10 LunarLander-v3\T1/cmr/m/n/10 , comparamos su rendimiento en la
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [20
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.9}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.657 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.10}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.657 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.11}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.657 
+       <./resources/lunar_aterrizaje_existoso.png> <./resources/dqn_lunar_epsilon_decaimiento_graficas.png> <./resources/discount_factor_dqn.png>]
+Underfull \hbox (badness 2334) in paragraph at lines 666--669
+\T1/cmr/m/n/10 Artificial con 128 neuronas en sus capas ocultas,
+ []
+
+
+Underfull \hbox (badness 2512) in paragraph at lines 674--678
+[]\T1/cmr/bx/n/10 Sensibilidad paramétrica: \T1/cmr/m/n/10 En las arquitecturas
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 674--678
+\T1/cmr/m/n/10 observamos una fuerte dependencia de los
+ []
+
+
+Underfull \hbox (badness 3323) in paragraph at lines 674--678
+\T1/cmr/m/n/10 vuelve al agente miope, impidiéndole asociar sus
+ []
+
+
+Underfull \hbox (badness 1635) in paragraph at lines 674--678
+\T1/cmr/m/n/10 maniobras de estabilización con la recompensa del
+ []
+
+
+Underfull \hbox (badness 5970) in paragraph at lines 682--683
+[]\T1/cmr/m/n/10 A lo largo de este trabajo hemos documentado y
+ []
+
+
+Underfull \hbox (badness 1975) in paragraph at lines 682--683
+\T1/cmr/m/n/10 contrastado empíricamente la transición desde entornos
+ []
+
+
+Underfull \vbox (badness 1242) has occurred while \output is active []
+
+
+Underfull \hbox (badness 1325) in paragraph at lines 693--697
+[]\T1/cmr/m/n/10 Al dar el salto al entorno continuo \T1/cmr/bx/n/10 LunarLander-v3\T1/cmr/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 1127) in paragraph at lines 698--704
+\T1/cmr/m/n/10 (\T1/cmr/m/it/10 off-policy\T1/cmr/m/n/10 ) el algoritmo que demostró una superioridad
+ []
+
+
+Underfull \hbox (badness 7081) in paragraph at lines 705--709
+[]\T1/cmr/m/n/10 Finalmente, a lo largo de todos los experimentos,
+ []
+
+
+Underfull \hbox (badness 1406) in paragraph at lines 710--710
+|[]\T1/cmr/bx/n/12 Limitaciones del estudio y posibles
+ []
+
+
+Underfull \hbox (badness 3590) in paragraph at lines 728--730
+\T1/cmr/bx/n/10 (DDQN): \T1/cmr/m/n/10 Implementar esta extensión directa de
+ []
+
+
+Underfull \hbox (badness 1360) in paragraph at lines 728--730
+\T1/cmr/m/n/10 desacoplar estas decisiones. Sería de gran interés
+ []
+
+[21
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.12}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.730 
+      ]
+Underfull \hbox (badness 3078) in paragraph at lines 731--737
+[]\T1/cmr/bx/n/10 Transición a arquitecturas de Actor-Crítico:
+ []
+
+
+Underfull \hbox (badness 1902) in paragraph at lines 731--737
+\T1/cmr/m/n/10 Explorar algoritmos que combinan el gradiente de
+ []
+
+
+Underfull \hbox (badness 1360) in paragraph at lines 731--737
+\T1/cmr/m/n/10 política con la estimación de valor. A diferencia
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 731--737
+\T1/cmr/m/n/10 de enfoques como DQN, que están limitados
+ []
+
+
+Underfull \hbox (badness 1622) in paragraph at lines 731--737
+\T1/cmr/m/n/10 estructuralmente a espacios de acción discretos, el
+ []
+
+
+Underfull \hbox (badness 1540) in paragraph at lines 731--737
+\T1/cmr/m/n/10 acercando la simulación a un escenario de control
+ []
+
+)
+No file main.bbl.
+[22
+
+] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -1846,24 +1962,24 @@ L3 programming layer <2024-01-22>
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: D448097969EA49B649976E39FE4CA29D;8751.
+(rerunfilecheck)             Checksum: 51B5C166B2FD1253DEA3539BEBC58DA3;9501.
  ) 
 Here is how much of TeX's memory you used:
- 27150 strings out of 476064
- 505945 string characters out of 5792853
+ 26958 strings out of 476064
+ 507128 string characters out of 5792853
  1951975 words of memory out of 5000000
- 48536 multiletter control sequences out of 15000+600000
+ 48343 multiletter control sequences out of 15000+600000
  595215 words of font info for 138 fonts, out of 8000000 for 9000
  81 hyphenation exceptions out of 8191
- 84i,12n,87p,941b,607s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/fontawesome5/FontAwesome5Free-Solid.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbi1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on main.pdf (22 pages, 2417793 bytes).
+ 84i,12n,87p,941b,601s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/fontawesome5/FontAwesome5Free-Solid.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbi1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on main.pdf (25 pages, 3383598 bytes).
 PDF statistics:
- 717 PDF objects out of 1000 (max. 8388607)
- 578 compressed objects within 6 object streams
- 173 named destinations out of 1000 (max. 500000)
- 439 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 750 PDF objects out of 1000 (max. 8388607)
+ 603 compressed objects within 7 object streams
+ 178 named destinations out of 1000 (max. 500000)
+ 488 words of extra memory for PDF output out of 10000 (max. 10000000)
 

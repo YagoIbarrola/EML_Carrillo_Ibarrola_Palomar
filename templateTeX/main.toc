@@ -38,10 +38,8 @@
 \contentsline {paragraph}{Resultados distintos en la distribución de Bernoulli}{8}{paragraph*.19}%
 \contentsline {subsubsection}{Experimento Adicional: Impacto de la Exploración Inicial}{8}{subsubsection*.20}%
 \contentsline {subsection}{\numberline {1.4.4}Resultados: Familia UCB (Upper Confidence Bound)}{9}{subsection.1.4.4}%
-\contentsline {paragraph}{Resultados distintos en la distribución de Bernoulli}{9}{paragraph*.21}%
-\contentsline {subsubsection}{Experimento Adicional: Impacto de la Exploración Inicial}{10}{subsubsection*.22}%
 \contentsline {subsection}{\numberline {1.4.5}Análisis Comparativo Global}{10}{subsection.1.4.5}%
-\contentsline {subsubsection}{Discusión de Resultados}{10}{subsubsection*.23}%
+\contentsline {subsubsection}{Discusión de Resultados}{10}{subsubsection*.21}%
 \contentsline {section}{\numberline {1.5}Conclusiones}{11}{section.1.5}%
 \contentsline {chapter}{\numberline {2}Aprendizaje en Entornos Complejos: De Métodos Tabulares a Aproximaciones}{12}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Introducción}{12}{section.2.1}%
@@ -54,44 +52,48 @@
 \contentsline {subsection}{\numberline {2.2.2}Enfoques existentes y estado del arte}{13}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}Contexto y aplicaciones específicas}{13}{subsection.2.2.3}%
 \contentsline {subsection}{\numberline {2.2.4}Métodos utilizados}{13}{subsection.2.2.4}%
-\contentsline {subsubsection}{Aprendizaje por Diferencias Temporales (TD)}{13}{subsubsection*.24}%
-\contentsline {subsubsection}{Control con Aproximación de Funciones}{13}{subsubsection*.25}%
+\contentsline {subsubsection}{Aprendizaje por Diferencias Temporales (TD)}{13}{subsubsection*.22}%
+\contentsline {subsubsection}{Control con Aproximación de Funciones}{13}{subsubsection*.23}%
 \contentsline {section}{\numberline {2.3}Algoritmos}{13}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Algoritmos Tabulares (Entorno Taxi-v3)}{13}{subsection.2.3.1}%
-\contentsline {subsubsection}{Algoritmo de Montecarlo: On-Policy y Off-Policy}{13}{subsubsection*.26}%
-\contentsline {paragraph}{Montecarlo On-Policy}{14}{paragraph*.27}%
+\contentsline {subsubsection}{Algoritmo de Montecarlo: On-Policy y Off-Policy}{13}{subsubsection*.24}%
+\contentsline {paragraph}{Montecarlo On-Policy}{14}{paragraph*.25}%
+\contentsline {paragraph}{Pseudocódigo}{14}{paragraph*.26}%
+\contentsline {paragraph}{Montecarlo Off-Policy}{14}{paragraph*.27}%
 \contentsline {paragraph}{Pseudocódigo}{14}{paragraph*.28}%
-\contentsline {paragraph}{Montecarlo Off-Policy}{14}{paragraph*.29}%
-\contentsline {paragraph}{Pseudocódigo}{14}{paragraph*.30}%
-\contentsline {subsubsection}{Algoritmos SARSA y Expected-SARSA}{14}{subsubsection*.31}%
-\contentsline {paragraph}{SARSA}{14}{paragraph*.32}%
-\contentsline {paragraph}{Pseudocódigo}{14}{paragraph*.33}%
-\contentsline {paragraph}{Expected-SARSA}{14}{paragraph*.34}%
-\contentsline {subsubsection}{Algoritmo Q-Learning}{15}{subsubsection*.35}%
-\contentsline {paragraph}{Pseudocódigo}{15}{paragraph*.36}%
-\contentsline {subsubsection}{Algoritmo Double Q-Learning}{15}{subsubsection*.37}%
+\contentsline {subsubsection}{Algoritmos SARSA y Expected-SARSA}{14}{subsubsection*.29}%
+\contentsline {paragraph}{SARSA}{14}{paragraph*.30}%
+\contentsline {paragraph}{Pseudocódigo}{14}{paragraph*.31}%
+\contentsline {paragraph}{Expected-SARSA}{14}{paragraph*.32}%
+\contentsline {subsubsection}{Algoritmo Q-Learning}{15}{subsubsection*.33}%
+\contentsline {paragraph}{Pseudocódigo}{15}{paragraph*.34}%
+\contentsline {subsubsection}{Algoritmo Double Q-Learning}{15}{subsubsection*.35}%
 \contentsline {subsection}{\numberline {2.3.2}Algoritmos de Aproximación (Entorno LunarLander-v3)}{15}{subsection.2.3.2}%
-\contentsline {subsubsection}{SARSA Semi-gradiente con Tile Coding}{15}{subsubsection*.38}%
+\contentsline {subsubsection}{SARSA Semi-gradiente con Tile Coding}{15}{subsubsection*.36}%
+\contentsline {paragraph}{Pseudocódigo}{15}{paragraph*.37}%
+\contentsline {subsubsection}{SARSA Semi-gradiente con Redes Neuronales}{15}{subsubsection*.38}%
 \contentsline {paragraph}{Pseudocódigo}{15}{paragraph*.39}%
-\contentsline {subsubsection}{SARSA Semi-gradiente con Redes Neuronales}{15}{subsubsection*.40}%
-\contentsline {paragraph}{Pseudocódigo}{15}{paragraph*.41}%
-\contentsline {subsubsection}{Deep Q-Learning (DQN) con Replay Buffer}{16}{subsubsection*.42}%
-\contentsline {paragraph}{Pseudocódigo}{16}{paragraph*.43}%
+\contentsline {subsubsection}{Deep Q-Learning (DQN) con Replay Buffer}{16}{subsubsection*.40}%
+\contentsline {paragraph}{Pseudocódigo}{16}{paragraph*.41}%
 \contentsline {section}{\numberline {2.4}Evaluación y Experimentos}{16}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}Configuración Experimental}{16}{subsection.2.4.1}%
-\contentsline {subsubsection}{Entornos de Prueba}{16}{subsubsection*.44}%
-\contentsline {subsubsection}{Herramientas y Reproducibilidad}{17}{subsubsection*.45}%
-\contentsline {subsubsection}{Métricas de Desempeño}{17}{subsubsection*.46}%
+\contentsline {subsubsection}{Entornos de Prueba}{16}{subsubsection*.42}%
+\contentsline {subsubsection}{Herramientas y Reproducibilidad}{17}{subsubsection*.43}%
+\contentsline {subsubsection}{Métricas de Desempeño}{17}{subsubsection*.44}%
 \contentsline {subsection}{\numberline {2.4.2}Resultados en Entorno Tabular: Taxi-v3}{17}{subsection.2.4.2}%
-\contentsline {subsubsection}{Resultados de Montecarlo}{17}{subsubsection*.47}%
-\contentsline {subsubsection}{Resultados de Q-learning}{17}{subsubsection*.48}%
-\contentsline {paragraph}{Optimización de Hiperparámetros (Grid Search).}{17}{paragraph*.49}%
-\contentsline {paragraph}{Q-Learning vs. Double Q-Learning.}{17}{paragraph*.50}%
+\contentsline {subsubsection}{Resultados de Montecarlo}{17}{subsubsection*.45}%
+\contentsline {subsubsection}{Resultados de SARSA y Expected-SARSA}{17}{subsubsection*.46}%
+\contentsline {subsubsection}{Resultados de Q-learning}{18}{subsubsection*.47}%
+\contentsline {paragraph}{Optimización de Hiperparámetros (Grid Search).}{18}{paragraph*.48}%
+\contentsline {paragraph}{Q-Learning vs. Double Q-Learning.}{18}{paragraph*.49}%
 \contentsline {subsection}{\numberline {2.4.3}Resultados en Entorno Continuo: LunarLander-v3}{18}{subsection.2.4.3}%
-\contentsline {subsubsection}{Resultados de SARSA Semi-gradiente con tile coding}{18}{subsubsection*.51}%
-\contentsline {subsubsection}{Resultados de SARSA Semi-gradiente con red neuronal}{18}{subsubsection*.52}%
-\contentsline {paragraph}{Impacto de la Exploración y el Aprendizaje.}{18}{paragraph*.53}%
-\contentsline {paragraph}{Arquitectura de la Red Neuronal.}{18}{paragraph*.54}%
-\contentsline {subsubsection}{Resultados de Deep Q-learning}{19}{subsubsection*.55}%
-\contentsline {subsection}{\numberline {2.4.4}Análisis Comparativo Global}{19}{subsection.2.4.4}%
-\contentsline {section}{\numberline {2.5}Conclusiones}{19}{section.2.5}%
+\contentsline {subsubsection}{Resultados de SARSA Semi-gradiente con tile coding}{19}{subsubsection*.50}%
+\contentsline {subsubsection}{Resultados de SARSA Semi-gradiente con red neuronal}{19}{subsubsection*.51}%
+\contentsline {paragraph}{Impacto de la Exploración y el Aprendizaje.}{19}{paragraph*.52}%
+\contentsline {paragraph}{Arquitectura de la Red Neuronal.}{20}{paragraph*.53}%
+\contentsline {subsubsection}{Resultados de Deep Q-learning}{20}{subsubsection*.54}%
+\contentsline {subsection}{\numberline {2.4.4}Análisis Comparativo Global}{20}{subsection.2.4.4}%
+\contentsline {section}{\numberline {2.5}Conclusiones}{21}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Resumen de los principales resultados}{21}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Limitaciones del estudio y posibles mejoras}{21}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}Líneas futuras de estudio}{21}{subsection.2.5.3}%

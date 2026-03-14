@@ -1,5 +1,3 @@
-% MODIFICA EL CONTENIDO QUE VIENE A CONTINUACIÓN DE ACUERDO A TU TRABAJO
-
 \chapter{Problema del Bandido de $k$-brazos}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -28,7 +26,7 @@ Ejemplos tangibles de estas aplicaciones incluyen
 la \textbf{optimización de campañas de publicidad online} (donde se modela la tasa de clics 
 o CTR mediante distribuciones de Bernoulli), la \textbf{personalización de recomendaciones} 
 en plataformas de streaming , o la \textbf{asignación de promociones} en aplicaciones de \textit{delivery}.
-
+ 
 La motivación principal de este trabajo es comprender cómo diferentes estrategias algorítmicas y 
 distribuciones de recompensa afectan al rendimiento de los agentes en este entorno.
 
@@ -139,18 +137,18 @@ Este método selecciona acciones basándose en probabilidades calculadas mediant
 donde el parámetro de temperatura $\tau$ regula la aleatoriedad de la selección. Valores altos de $\tau$ tienden a la equiprobabilidad (exploración pura), mientras que $\tau \to 0$ tiende a una política voraz (explotación pura).
 
 \subsubsection{Algoritmo UCB1 (Upper Confidence Bound)}
-El algoritmo UCB1 evita la aleatoriedad explícita y selecciona acciones maximizando una cota superior de confianza:
+El algoritmo UCB1 selecciona acciones maximizando una cota superior de confianza, expresada como suma del valor estimado $Q_t(a)$ y un término de exploración:
 \begin{equation}
     A_t = \operatorname{argmax}_a \left[ Q_t(a) + c \sqrt{\frac{\ln t}{N_t(a)}} \right]
 \end{equation}
 donde $N_t(a)$ es el número de veces que la acción $a$ ha sido seleccionada y $c$ es una constante que controla el grado de exploración. Este término adicional fuerza la exploración de brazos poco visitados a medida que $t$ aumenta.
 
 \subsubsection{Algoritmo UCB2}
-Como extensión del anterior, se ha implementado el algoritmo UCB2, el cual introduce una estructura de \textbf{épocas} para mejorar la eficiencia de la exploración. A diferencia de UCB1, que reevalúa la decisión en cada paso $t$, UCB2 selecciona un brazo y lo mantiene activo durante un intervalo de tiempo determinado por una función de crecimiento geométrico:
+Como extensión del anterior, se ha implementado el algoritmo UCB2, el cual introduce una estructura de \textbf{épocas} para mejorar la eficiencia de la exploración. A diferencia de UCB1, que reevalúa la decisión en cada paso $t$, UCB2 selecciona un brazo y lo mantiene activo durante un intervalo de tiempo:
 \begin{equation}
     \tau(r) = \lceil (1+\alpha)^r \rceil
 \end{equation}
-donde $\alpha > 0$ es un parámetro que regula el incremento de las épocas. Esta estrategia reduce la frecuencia de cambio entre brazos y permite obtener teóricamente mejores cotas de rechazo asintótico al amortizar el coste de exploración en intervalos más largos.
+donde $\alpha > 0$ es un parámetro que regula el incremento de las épocas. Esta estrategia reduce la frecuencia de cambio entre brazos y permite obtener teóricamente mejores cotas de rechazo asintótico.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -221,8 +219,9 @@ probabilidades ante las diferencias en los valores $Q$.
 \subsection{Algoritmo UCB1 (Upper Confidence Bound)}
 
 \subsubsection{Descripción y Justificación}
-El algoritmo UCB1 se no utiliza aleatoriedad, sino que selecciona acciones maximizando una cota superior 
-del intervalo de confianza. La inclusión del algoritmo UCB1 y su variante UCB2 en este estudio comparativo  se justifica por dos factores críticos:
+El algoritmo UCB1 selecciona acciones maximizando una cota superior del intervalo de confianza. 
+La inclusión del algoritmo UCB1 y su variante UCB2 en este estudio comparativo  se justifica por 
+dos factores críticos:
 
 \begin{itemize}
     \item \textbf{Garantías de Convergencia:} Auer et al. (2002) \cite{auer2002}  demostraron que UCB1 garantiza una cota 
@@ -261,7 +260,9 @@ del intervalo de confianza. La inclusión del algoritmo UCB1 y su variante UCB2 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Evaluación y Experimentos}
 
-En este capítulo se detallan las pruebas realizadas para evaluar el desempeño de los algoritmos implementados. El objetivo es analizar cómo se comportan las distintas estrategias de exploración-explotación bajo diferentes distribuciones de recompensa y configuraciones de hiperparámetros.
+En este capítulo se detallan las pruebas realizadas para evaluar los 
+algoritmos implementados. El objetivo es analizar cómo estos se comportan 
+bajo distintas distribuciones de recompensa y configuraciones de hiperparámetros.
 
 \subsection{Configuración Experimental}
 
@@ -481,89 +482,51 @@ Para todas las distribuciones, se observó que:
     con una curva de aprendizaje muy pronunciada. La variación de $C$ modifica de manera suave el equilibrio entre 
     exploración y explotación. Con $C=2.0$, el agente se comporta de manera más exploradora, mientras que con $C=0.5$
     se vuelve más voraz, como se puede observar en la Figura \ref{fig:ucb_histograma1}.
-    \item \textbf{UCB2}: También es un algoritmo muy eficaz, alcanzando en rendimientos similares y en algunos casos 
-    superiores a UCB1. Al trabajar con épocas, los agentes presentan un comportamiento oscilatorio entre explotación 
-    del brazo óptimo y exploración de brazos subóptimos, que depende del parámetro $\alpha$. El valor $\alpha=0.1$ 
-    mostró el mejor rendimiento en nuestros experimentos, seguido usualmente por $\alpha=0.001$. Sin embargo, para el 
-    valor intermedio de $\alpha=0.01$ las oscilaciones mencionadas tenían un periodo de orden de magnitud similar al 
-    horizonte temporal del experimento, lo que causaba una caída considerable en el rendimiento en la mitad de cada 
-    ejecución, como se puede observar en la Figura \ref{fig:ucb_histograma2}. 
+    \item \textbf{UCB2}: También es un algoritmo muy eficaz, alcanzando rendimientos similares a UCB1. Al trabajar con 
+    épocas, los agentes presentan un comportamiento oscilatorio entre explotación del brazo óptimo y exploración de 
+    brazos subóptimos, controlado por el parámetro $\alpha$. El valor $\alpha=0.1$ mostró el mejor rendimiento en 
+    nuestros experimentos, seguido por $\alpha=0.001$. Sin embargo, para el valor intermedio de $\alpha=0.01$ las 
+    oscilaciones mencionadas tenían un periodo de orden de magnitud similar al horizonte temporal del experimento, 
+    lo que causaba una caída considerable en el rendimiento en la mitad de cada ejecución, como se puede observar 
+    en la Figura \ref{fig:ucb_histograma2}. 
 \end{itemize}
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.45\textwidth]{resources/softmax_histograma.png}
-\caption{Histograma de selección de brazos con distribución Normal para el algoritmo Softmax con temperatura $tau = 0.1$.}
-\label{fig:softmax_histograma1}
-\end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.45\textwidth]{resources/softmax_histograma2.png}
-\caption{Histograma de selección de brazos con distribución Normal para el algoritmo Softmax con temperatura $tau = 5.0$.}
-\label{fig:softmax_histograma2}
+\includegraphics[width=0.45\textwidth]{resources/ucb_histograma.png}
+\caption{Histograma de selección de brazos con distribución Normal.}
+\label{fig:ucb_histograma1}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{resources/ucb2_histograma.png}
+\caption{Histograma de selección de brazos con distribución Normal para distintos parámetros en el algoritmo UCB2.}
+\label{fig:ucb_histograma2}
 \end{figure}
 
-Además, se observó que el regret acumulado crece de manera lineal para todas las distribuciones, a diferencia de 
-los algoritmos de la familia UCB que presentan un crecimiento logarítmico. Esto lo podemos ver por ejemplo para la 
-distribución Normal en la Figura \ref{fig:softmax_regret}, pero es un comportamiento que se repite para las otras distribuciones.
+También se ha comprobado empíricamente que el regret acumulado crece de manera logarítmica para ambas variantes (aunque 
+para algunos valores de $\alpha$ en UCB2 no se aprecia claramente a esta escala), lo que es consistente con las garantías 
+teóricas de estos algoritmos. Esto puede verse en la Figura \ref{fig:ucb_regret} para el experimento con distribución Normal, 
+pero es un comportamiento que se repite para las otras configuraciones.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.45\textwidth]{resources/softmax_regret.png}
-\caption{Evolución del regret acumulado para el algoritmo Softmax con distribución Normal.}
-\label{fig:softmax_regret}
+\includegraphics[width=0.45\textwidth]{resources/ucb_regret.png}
+\caption{Evolución del regret acumulado para los algoritmos UCB1 y UCB2 con distribución Normal.}
+\label{fig:ucb_regret}
 \end{figure}
 
-\paragraph{Resultados distintos en la distribución de Bernoulli}
-Al analizar los resultados en la distribución de Bernoulli , se detectó una anomalía 
-positiva en el rendimiento de la temperatura baja ($\tau=0.1$). A diferencia del caso Normal, 
-donde $\tau=0.1$ fallaba estrepitosamente, en el entorno binario su rendimiento mejoró notablemente, 
-acercándose al de $\tau=5.0$.
-
-Este fenómeno se atribuye a la naturaleza discreta y penalizadora de la distribución 
-Bernoulli (recompensas de 0 o 10).
-\begin{enumerate}
-    \item Cuando el algoritmo voraz ($\tau=0.1$) selecciona un brazo subóptimo y recibe una recompensa de 0 
-    (fracaso), el promedio estimado de dicho brazo cae drásticamente.
-    \item Debido a la baja temperatura, esta caída en el valor $Q$ reduce la probabilidad de selección del 
-    brazo a casi cero de forma inmediata.
-    \item Los ``ceros'' actúan como un mecanismo de seguridad que fuerza al algoritmo a abandonar los óptimos 
-    locales y seguir explorando, mitigando el riesgo de estancamiento típico de las políticas voraces.
-\end{enumerate}
-
-Esto se puede ver en la gráfica de la Figura \ref{fig:softmax_bernoulli} donde se observa que la 
-recompensa promedio obtenida con $\tau=0.1$ es muy similar a la obtenida con $\tau=5.0$:
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.45\textwidth]{resources/softmax_bernoulli.png}
-\caption{Evolución de la recompensa promedio para el algoritmo Softmax con distribución de Bernoulli.}
-\label{fig:softmax_bernoulli}
-\end{figure}
-
-\subsubsection{Experimento Adicional: Impacto de la Exploración Inicial}
-
-Dado que la configuración de baja temperatura ($\tau = 0.1$) tiende a converger prematuramente a 
-óptimos locales debido a su comportamiento voraz, se diseñó un experimento adicional para 
-mitigar este defecto. Se introdujo una fase de \textbf{exploración inicial forzada}, obligando
-al agente a seleccionar cada uno de los $k$ brazos una vez antes de aplicar la política Softmax estándar, al igual
-que se realiza en el algoritmo $epsilon$-greedy. Estos resultados se encuentran en la Figura \ref{fig:softmax_exploracion_inicial}.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.45\textwidth]{resources/softmax_exploracion_inicial.png}
-\caption{Evolución del porcentaje de selección del brazo óptimo para el algoritmo Softmax con distribución Normal con fase de exploración inicial forzada.}
-\label{fig:softmax_exploracion_inicial}
-\end{figure}
+Comparando los resultados obtenidos entre distintos experimentos, observamos que en el experimento Binomial fueron muy similares 
+a los obtenidos en el Normal, mientras que con Bernoulli las recompensas acumuladas son más bajas y los regrets suben considerablemente, 
+por la mayor dificultad del problema.
 
 \textbf{Resultados obtenidos:}
 \begin{itemize}
-    \item \textbf{Mejora Crítica en $\tau=0.1$:} Esta primera pasada transformó radicalmente el rendimiento de esta configuración. Al garantizar una estimación inicial de todas las medias, el agente pudo identificar y explotar el brazo óptimo casi inmediatamente.
-    \item \textbf{Aceleración de la Convergencia:} Se observó una reducción drástica en el tiempo de estabilización del algoritmo, pasando de aproximadamente 3000 pasos (en la versión estándar) a converger cerca de los 500 pasos.
-    \item \textbf{Impacto Marginal en $\tau \ge 1.0$:} Para temperaturas medias y altas, la exploración inicial no aportó mejoras significativas, dado que la propia entropía de la distribución de Gibbs con estos valores ya garantiza una exploración suficiente por sí misma.
+    \item Ambas variantes de UCB demostraron un rendimiento superior en términos de recompensa promedio y porcentaje de selección del brazo óptimo, superando a las familias $\epsilon$-Greedy y Softmax.
+    \item La elección adecuada $\alpha$ para UCB2, es crucial para obtener un buen rendimiento con este algoritmo. A pesar de que sus cotas asintóticas son las mejores, en las duraciones de experimento que hemos usado es un 
+    algoritmo delicado y muy sensible a la configuración de este hiperparámetro, lo que puede limitar su aplicabilidad práctica.
+    \item UCB1 mostró un rendimiento robusto y consistente en todas las configuraciones, con variaciones suaves al modificar el parámetro $C$.
 \end{itemize}
-
-Este experimento confirma que las políticas casi-voraces ($\tau \to 0$) son viables y altamente eficientes si se combinan
-con una fase de exploración inicial que garantice una cobertura mínima de todas las acciones.
 
 
 \subsection{Análisis Comparativo Global}
@@ -609,7 +572,10 @@ Se realizó un experimento conjunto utilizando una distribución Normal con $\mu
     \end{figure}
 
 
-    \item \textbf{Conclusión:} En este experimento concreto, UCB2 se posiciona como la estrategia más eficiente y robusta, combinando rápida convergencia, máxima selección óptima y bajo regret. UCB1 ofrece resultados prácticamente equivalentes. Softmax y $\epsilon$-Greedy con $\epsilon$ pequeño son competitivos en recompensa promedio, pero estructuralmente menos eficientes en términos de identificación de brazon óptimo. El esquema con decaimiento resulta más sensible al horizonte temporal considerado.
+    \item \textbf{Conclusión:} En este experimento concreto, UCB2 se posiciona como la estrategia más eficiente y robusta, combinando rápida convergencia, máxima selección óptima y bajo regret. UCB1 ofrece resultados prácticamente equivalentes. Softmax y $\epsilon$-Greedy con $\epsilon$ pequeño son competitivos en recompensa promedio, pero menos eficientes en términos de identificación del brazo óptimo. 
+    El esquema con decaimiento resulta más sensible al horizonte temporal considerado, pues necesitaría como 
+    ya hemos comentado un horizonte mayor para superar su coste inicial de exploración y alcanzar el mismo 
+    rendimiento que los otros algoritmos.
 \end{itemize}
 
 
@@ -667,9 +633,9 @@ A partir del análisis experimental realizado sobre el problema del bandido de $
     
     \item \textbf{Dependencia paramétrica y estancamiento en Softmax:} El algoritmo Softmax es muy sensible a 
     la selección de su temperatura $\tau$. Temperaturas bajas ($\tau=0.1$) provocan una convergencia prematura hacia 
-    óptimos locales debido a ser prácticamente voraz. Este defecto solo logra mitigarse de forma natural en entornos 
-    binarios muy penalizadores (como la distribución de Bernoulli) o forzando explícitamente una pasada de 
-    exploración inicial empírica en el algoritmo. 
+    óptimos locales debido a ser prácticamente voraz. Este defecto solo logra mitigarse de forma natural en entornos
+     muy penalizadores (como la distribución de Bernoulli) o forzando explícitamente una pasada de 
+    exploración inicial en el algoritmo. 
     
     \item \textbf{Superioridad de los métodos basados en incertidumbre (UCB):} Las estrategias UCB1 y 
     UCB2 han demostrado ser las mejores para este problema. Al balancear automáticamente la 
