@@ -17,7 +17,16 @@ Yago Ibarrola Lapeña 	\\
 Aarón Palomar Peña 	\\
 \texttt{aaron.p.p@um.es}}
 
- 
+ % Importamos el paquete para habilitar los enlaces interactivos
+\usepackage{hyperref}
+
+% Configuramos los colores de los enlaces (opcional)
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+    citecolor=black,
+    linkcolor=black
+}
 
 \begin{document}
 % Carátula
@@ -33,7 +42,7 @@ Aarón Palomar Peña 	\\
 \input{bandido} 
 \input{entornos_complejos}
 \nocite{*}
-\bibliographystyle{plain}
+\bibliographystyle{plainurl}
 \bibliography{references} 
 
 

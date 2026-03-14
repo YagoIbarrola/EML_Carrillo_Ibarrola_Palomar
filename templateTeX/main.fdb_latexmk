@@ -1,15 +1,15 @@
 # Fdb version 4
-["bibtex main"] 1773524094.45057 "main.aux" "main.bbl" "main" 1773524101.76673 0
-  "./references.bib" 1773509103 3170 b32cd7e13d2476d952f6daf7431d314c ""
-  "c:/texlive/2025/texmf-dist/bibtex/bst/base/plain.bst" 1765643523 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "main.aux" 1773524099 25985 b65558fa384c02e1eebc39a4c31d1712 "pdflatex"
+["bibtex main"] 1773529872.6278 "main.aux" "main.bbl" "main" 1773529880.49257 0
+  "./references.bib" 1773529403 3466 db003fdb0491795f42e7e7457cbd002a ""
+  "c:/texlive/2025/texmf-dist/bibtex/bst/urlbst/plainurl.bst" 1765651557 33495 46cfb45e24a877059f9f7e142c7fc61c ""
+  "main.aux" 1773529878 26074 bbb51e27e0b44ef55a38b1d2d96c22d5 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1773524095.21305 "c:/Users/Usuario/OneDrive/Desktop/MASTER/2do CUATRI/EML/Practicas/EML_MASTER/templateTeX/main.tex" "main.pdf" "main" 1773524101.76757 0
-  "bandido.tex" 1773517074 44380 e9aa47055ecb465ca6fc8e6b9d09a6d7 ""
-  "c:/Users/Usuario/OneDrive/Desktop/MASTER/2do CUATRI/EML/Practicas/EML_MASTER/templateTeX/main.tex" 1773509103 1039 1a6367ef029e609944ea509a031beb39 ""
+["pdflatex"] 1773529873.45908 "c:/Users/Usuario/OneDrive/Desktop/MASTER/2do CUATRI/EML/Practicas/EML_MASTER/templateTeX/main.tex" "main.pdf" "main" 1773529880.49341 0
+  "bandido.tex" 1773529737 44293 ae40121a6fc0ad562e07facb08307dbd ""
+  "c:/Users/Usuario/OneDrive/Desktop/MASTER/2do CUATRI/EML/Practicas/EML_MASTER/templateTeX/main.tex" 1773529793 1286 36d125545e5b6403198d7e7f3b7c250d ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1765644083 2971 def0b6c1f0b107b3b936def894055589 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free0.enc" 1765645581 3083 a707712f77b073b3833e4b1334a30e99 ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1765645599 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -263,12 +263,12 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1765695986 5587484 30eee748fa419a911c40b0c750dd21ba ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1765696375 3635703 0578cdd5b38e16a7ea7424e84c115dc9 ""
   "c:/texlive/2025/texmf.cnf" 1765695917 713 e69b156964470283e0530f5060668171 ""
-  "entornos_complejos.tex" 1773524021 48421 828b4598c8a790abda4dab6b634ffddc ""
-  "main.aux" 1773524099 25985 b65558fa384c02e1eebc39a4c31d1712 "pdflatex"
-  "main.bbl" 1773524095 2123 d978cd174acf3963bb262e74b428e620 "bibtex main"
-  "main.out" 1773524099 9501 5bc416beea78cabe153b64a225761909 "pdflatex"
-  "main.tex" 1773509103 1039 1a6367ef029e609944ea509a031beb39 ""
-  "main.toc" 1773524099 8733 46976fe463626846a180135af6163f40 "pdflatex"
+  "entornos_complejos.tex" 1773529403 48421 981eed247fd8de8155de30eaafa141c8 ""
+  "main.aux" 1773529878 26074 bbb51e27e0b44ef55a38b1d2d96c22d5 "pdflatex"
+  "main.bbl" 1773529873 2730 2d740ce03b63851dd684839ad8cf5d7f "bibtex main"
+  "main.out" 1773529878 9501 5bc416beea78cabe153b64a225761909 "pdflatex"
+  "main.tex" 1773529793 1286 36d125545e5b6403198d7e7f3b7c250d ""
+  "main.toc" 1773529878 8733 56e7857476e225b5dae01015622e463c "pdflatex"
   "plantillaTeXpracticasRL.sty" 1773144819 4597 342132a865d09360d082621229071722 ""
   "resources/QLearningvsDoubleQLearning.png" 1773144819 78539 16f78b82bff2d15fad17efdeb310b72c ""
   "resources/discount_factor_dqn.png" 1773406094 84362 5899a6d90f2bfcc45c4f5a17d4098934 ""
@@ -297,7 +297,7 @@
   "resources/ucb2_recompensas.png" 1773509103 216849 0fae492a8374be189a3adbb2d2bae869 ""
   "resources/ucb_bernoulli_regret.png" 1773514364 115926 a6b5ca557cea375266fe309154715dd2 ""
   "resources/ucb_regret.png" 1773509103 96645 890875108818af342dd8f74a903f07e4 ""
-  "resumen.tex" 1771072818 1009 c183fa027263b77ea7623b0c6c803f33 ""
+  "resumen.tex" 1773529864 2017 93d31c51bdb4c7f560b83513f5de1952 ""
   (generated)
   "main.aux"
   "main.log"
