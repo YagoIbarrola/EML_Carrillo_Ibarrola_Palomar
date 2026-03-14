@@ -4,9 +4,9 @@
 
 \subsection{Descripción del problema y relevancia}
 En esta segunda parte, nos centramos en el estudio de entornos secuenciales, 
-donde la toma de decisiones no se limita a una única acción, sino que se extiende a lo largo del tiempo. 
+donde el entorno no es estático, sino que evoluciona en función de las acciones del agente. 
 Estos entornos, formalizados como Procesos de Decisión de Markov (MDP), representan un desafío
-en el campo del Aprendizaje por Refuerzo (RL) debido a la necesidad de planificar a largo 
+en el campo del Aprendizaje por Refuerzo debido a la necesidad de planificar a largo 
 plazo y manejar espacios de estados infinitos.
 
 Este tipo de técnicas tienen una gran relevancia debido a su aplicabilidad
@@ -496,17 +496,19 @@ mientras que On-Policy es mucho más inestable y solo consigue llegar a una long
 \subsubsection{Resultados de SARSA y Expected-SARSA}
 
 En cada uno de los dos algoritmos se han realizado los siguientes experiementos:
-
-Un ajuste de hiperparámetros de learning rate y número de episodios, para encontrar una buena combinación de estos. 
+\begin{itemize}
+\item Un ajuste de hiperparámetros de learning rate y número de episodios, para encontrar una buena combinación de estos. 
 En los heatmaps de la Figura~\ref{fig:sarsa_heatmaps} se pueden observar los resultados obtenidos. En ellos se aprecia 
 que, aunque ambos algoritmos alcanzan recompensas similares y muy cercanas a las óptimas en los mejores casos, 
-Expected-SARSA muestra una mayor estabilidad en la convergencia (converge a la política óptima de manera más consistente).
-Se ha relizado un entrenamiento con los parámetros escogidos para cada algoritmo (SARSA: $\alpha = 0.24$, episodios = 7500; 
+Expected-SARSA muestra una mayor estabilidad en la convergencia (converge a la política óptima de manera más consistente). 
+En el notebook \texttt{taxi\_SARSA.ipynb} se encuentran resultados adicionales que apoyan esta conclusión.
+\item Se ha relizado un entrenamiento con los parámetros escogidos para cada algoritmo (SARSA: $\alpha = 0.24$, episodios = 7500; 
 Expected-SARSA: $\alpha = 0.24$, episodios = 4000) y se han graficado las recompensas, longitudes de episodio y 
 errores diferenciales. Estas gráficas se pueden ver en la Figura~\ref{fig:sarsa_metrics}. En ellas se observa que ambos 
 algoritmos mejoran conforme avanza el entrenamiento, aunque Expected-SARSA lo hace de manera más rápida. La longitud de 
 los episodios disminuye a medida que el agente aprende a entregar el pasajero en menos pasos. El error TD muestra que la 
 función de valor se va estabilizando de cara al final del entrenamiento, aunque sin estabilizarse completamente. \cite{hernandez2025bandido}
+\end{itemize}
 
 \begin{figure}[H]  
 \centering
@@ -571,7 +573,7 @@ una política coherente.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.45\textwidth]{resources/tilecoding_heatmaps.png}
-\caption{Heatmaps de recompensa media para diferentes combinaciones de número de episodios y número de subdivisiones por dimensión en SARSA Semi-gradiente con tile coding.}
+\caption{Heatmap de recompensa media para diferentes combinaciones de número de episodios y número de subdivisiones por dimensión en SARSA Semi-gradiente con tile coding.}
 \label{fig:tilecoding_heatmaps}
 \end{figure}
 \begin{figure}[H]

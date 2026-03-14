@@ -1,23 +1,9 @@
 README
 
-Ver 2 apuntes en epsilon greedy y no usar plural
-
-RECOMENDACIÓN DE PROFESOR: epsilon decaimiento no PONERLO A 0.0
-
-No sé si pondría que UCB2 es el más robusto en las conclusiones, es un poco rarete y tiquismiquis.
 Falta Pseudocódigo UCB2
-Faltan figuras UCB
 
-clone y cosas de *colab* ver que hacer con ellas
 
-Hacer reproducible SARSA (grid search darle seed, ver Aaron)
+1.2.2 Muy chatty
 
-Borrar expected sarsa
+Frase inicial sobre el lector revisar
 
-Describir entorno para lunar lander en tile coding
-
-UCB -> ctrl + f "factor de 10"
-
-descomentar lineas del __init__
-
-Poner ganador de semi TC en comparativa

@@ -3,37 +3,39 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introducción}
+El lector podrá encontrar los experimentos realizados explicados y justificados en mayor detalle 
+en los notebooks que se han desarrollado.
 
 \subsection{Descripción del problema y relevancia}
-El problema del \textbf{Bandido Multibrazo} (o \textit{k-armed bandit}) modela una situación clásica 
-de toma de decisiones secuencial bajo incertidumbre en entornos estacionarios. En este escenario, 
-un agente se enfrenta a una máquina con $k$ palancas o "brazos", donde cada uno ofrece una recompensa 
-que sigue una distribución de probabilidad desconocida para el agente. 
+El problema del \textbf{Bandido Multibrazo} (o \textit{k-armed bandit}) modela una situación 
+de toma de decisiones en presencia de incertidumbre. En este escenario, 
+un agente debe elegir repetidas veces entre las $k$ palancas o "brazos" de una máquina, donde cada uno ofrece recompensas 
+que siguen una distribución de probabilidad desconocida para el agente. 
 De esta manera, el objetivo es maximizar la recompensa acumulada a lo largo de un horizonte temporal $T$.
 
-La relevancia de este problema radica en que se trata de un caso fundamental en el campo del Aprendizaje por Refuerzo, 
-sirviendo como ejemplo básico del \textbf{dilema de la Exploración-Explotación}.
+Este problema es un caso de estudio fundamental en el campo del Aprendizaje por Refuerzo, 
+por ser un ejemplo básico del \textbf{dilema de la Exploración-Explotación}.
 El agente debe decidir continuamente entre explotar el brazo que cree que ofrece 
 la mayor recompensa (basándose en su conocimiento actual) o explorar otros brazos 
 para recabar más información, arriesgándose a obtener recompensas menores a corto plazo pero 
 con la posibilidad de descubrir opciones óptimas a largo plazo.
 
 \subsection{Motivación del trabajo}
-El estudio del bandido de $k$-brazos es crucial no solo como base teórica para comprender 
-problemas más complejos, sino por su aplicabilidad directa en problemas del mundo real.
+El estudio del bandido de $k$-brazos es importante, tanto como base teórica para comprender 
+problemas más complejos, como por su aplicabilidad en múltiples y variados problemas del mundo real.
 
-Ejemplos tangibles de estas aplicaciones incluyen 
+Ejemplos de estas aplicaciones incluyen 
 la \textbf{optimización de campañas de publicidad online} (donde se modela la tasa de clics 
 o CTR mediante distribuciones de Bernoulli), la \textbf{personalización de recomendaciones} 
-en plataformas de streaming , o la \textbf{asignación de promociones} en aplicaciones de \textit{delivery}.
+en plataformas de streaming, o la \textbf{asignación de promociones} en aplicaciones de compra online.
  
-La motivación principal de este trabajo es comprender cómo diferentes estrategias algorítmicas y 
+La motivación principal de este trabajo es comprender cómo diferentes algoritmos y 
 distribuciones de recompensa afectan al rendimiento de los agentes en este entorno.
 
 
 
 \subsection{Objetivos del informe}
-El objetivo principal de este informe técnico es realizar un estudio comparativo riguroso de 
+El objetivo principal de este informe técnico es realizar un estudio comparativo de 
 diferentes familias de algoritmos de aprendizaje por refuerzo aplicados al 
 problema del bandido de $k$-brazos. Los objetivos específicos son:
 
@@ -216,11 +218,11 @@ probabilidades ante las diferencias en los valores $Q$.
 \end{algorithmic}
 \end{algorithm}
 
-\subsection{Algoritmo UCB1 (Upper Confidence Bound)}
+\subsection{Algoritmos UCB (Upper Confidence Bound)}
 
 \subsubsection{Descripción y Justificación}
 El algoritmo UCB1 selecciona acciones maximizando una cota superior del intervalo de confianza. 
-La inclusión del algoritmo UCB1 y su variante UCB2 en este estudio comparativo  se justifica por 
+La inclusión del algoritmo UCB1 y su variante UCB2 en este estudio comparativo se justifica por 
 dos factores críticos:
 
 \begin{itemize}
@@ -481,27 +483,27 @@ Para todas las distribuciones, se observó que:
     \item \textbf{UCB1:} El agente presenta siempre un buen aprovechamiento de la información previamente adquirida, 
     con una curva de aprendizaje muy pronunciada. La variación de $C$ modifica de manera suave el equilibrio entre 
     exploración y explotación. Con $C=2.0$, el agente se comporta de manera más exploradora, mientras que con $C=0.5$
-    se vuelve más voraz, como se puede observar en la Figura \ref{fig:ucb_histograma1}.
+    se vuelve más voraz, como se puede observar en la Figura \ref{fig:ucb1_recompensas}.
     \item \textbf{UCB2}: También es un algoritmo muy eficaz, alcanzando rendimientos similares a UCB1. Al trabajar con 
     épocas, los agentes presentan un comportamiento oscilatorio entre explotación del brazo óptimo y exploración de 
     brazos subóptimos, controlado por el parámetro $\alpha$. El valor $\alpha=0.1$ mostró el mejor rendimiento en 
     nuestros experimentos, seguido por $\alpha=0.001$. Sin embargo, para el valor intermedio de $\alpha=0.01$ las 
     oscilaciones mencionadas tenían un periodo de orden de magnitud similar al horizonte temporal del experimento, 
     lo que causaba una caída considerable en el rendimiento en la mitad de cada ejecución, como se puede observar 
-    en la Figura \ref{fig:ucb_histograma2}. 
+    en la Figura \ref{fig:ucb2_recompensas}. 
 \end{itemize}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.45\textwidth]{resources/ucb_histograma.png}
-\caption{Histograma de selección de brazos con distribución Normal.}
-\label{fig:ucb_histograma1}
+\includegraphics[width=0.45\textwidth]{resources/ucb1_recompensas.png}
+\caption{Evolución de las recompensas para el algoritmo UCB1 con distribución Normal para distintos parámetros.}
+\label{fig:ucb1_recompensas}
 \end{figure}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.45\textwidth]{resources/ucb2_histograma.png}
-\caption{Histograma de selección de brazos con distribución Normal para distintos parámetros en el algoritmo UCB2.}
-\label{fig:ucb_histograma2}
+\includegraphics[width=0.45\textwidth]{resources/ucb2_recompensas.png}
+\caption{Evolución de las recompensas para el algoritmo UCB2 con distribución Normal para distintos parámetros.}
+\label{fig:ucb2_recompensas}
 \end{figure}
 
 También se ha comprobado empíricamente que el regret acumulado crece de manera logarítmica para ambas variantes (aunque 
@@ -517,13 +519,19 @@ pero es un comportamiento que se repite para las otras configuraciones.
 \end{figure}
 
 Comparando los resultados obtenidos entre distintos experimentos, observamos que en el experimento Binomial fueron muy similares 
-a los obtenidos en el Normal, mientras que con Bernoulli las recompensas acumuladas son más bajas y los regrets suben considerablemente, 
-por la mayor dificultad del problema.
+a los obtenidos en el Normal, mientras que con Bernoulli las recompensas acumuladas son más bajas y los regrets suben considerablemente, incluso cuadruplicándose en algunos casos,
+por la mayor dificultad del problema. El regret acumulado para UCB1 y UCB2 con distribución de Bernoulli se muestra en la Figura \ref{fig:ucb_bernoulli_regret}.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{resources/ucb_bernoulli_regret.png}
+\caption{Evolución del regret acumulado para los algoritmos UCB1 y UCB2 con distribución de Bernoulli.}
+\label{fig:ucb_bernoulli_regret}
+\end{figure}
 
 \textbf{Resultados obtenidos:}
 \begin{itemize}
     \item Ambas variantes de UCB demostraron un rendimiento superior en términos de recompensa promedio y porcentaje de selección del brazo óptimo, superando a las familias $\epsilon$-Greedy y Softmax.
-    \item La elección adecuada $\alpha$ para UCB2, es crucial para obtener un buen rendimiento con este algoritmo. A pesar de que sus cotas asintóticas son las mejores, en las duraciones de experimento que hemos usado es un 
+    \item La elección adecuada $\alpha$ para UCB2, es crucial para obtener un buen rendimiento con este algoritmo. A pesar de que sus cotas asintóticas son las mejores, con las duraciones de experimento que hemos usado es un 
     algoritmo delicado y muy sensible a la configuración de este hiperparámetro, lo que puede limitar su aplicabilidad práctica.
     \item UCB1 mostró un rendimiento robusto y consistente en todas las configuraciones, con variaciones suaves al modificar el parámetro $C$.
 \end{itemize}
@@ -536,7 +544,7 @@ Se realizó un experimento conjunto utilizando una distribución Normal con $\mu
 \subsubsection{Discusión de Resultados}
 
 \begin{itemize}
-    \item \textbf{Convergencia y selección óptima:} UCB2 mostró el mejor comportamiento global, alcanzando aproximadamente un 99\% de selección del brazo óptimo, seguido muy de cerca por UCB1 (98\%). Ambos métodos presentan una convergencia rápida y estable gracias a su exploración dirigida basada en incertidumbre. Softmax (95\%) y $\epsilon=0.01$ (89\%) mantienen una exploración residual constante, lo que limita su convergencia al 100\%. A $\epsilon$-decaimiento (91\%) le ocurre lo mismo, y además, su elevada exploración inicial disminuye su recompensa promedio al principio.
+    \item \textbf{Convergencia y selección óptima:} UCB1 mostró el mejor comportamiento global, alcanzando aproximadamente un 99\% de selección del brazo óptimo, seguido muy de cerca por UCB2 (98\%). Ambos métodos presentan una convergencia rápida y estable gracias a su exploración dirigida basada en incertidumbre. Softmax (95\%) y $\epsilon=0.01$ (89\%) mantienen una exploración residual constante, lo que limita su convergencia al 100\%. A $\epsilon$-decaimiento (91\%) le ocurre lo mismo, y además, su elevada exploración inicial disminuye su recompensa promedio al principio.
 
     La comparación directa del porcentaje de selección óptima se presenta en la Figura~\ref{fig:global_optimal_selection}.
 
@@ -572,7 +580,7 @@ Se realizó un experimento conjunto utilizando una distribución Normal con $\mu
     \end{figure}
 
 
-    \item \textbf{Conclusión:} En este experimento concreto, UCB2 se posiciona como la estrategia más eficiente y robusta, combinando rápida convergencia, máxima selección óptima y bajo regret. UCB1 ofrece resultados prácticamente equivalentes. Softmax y $\epsilon$-Greedy con $\epsilon$ pequeño son competitivos en recompensa promedio, pero menos eficientes en términos de identificación del brazo óptimo. 
+    \item \textbf{Conclusión:} En este experimento concreto, UCB1 se posiciona como la estrategia más eficiente y robusta, combinando rápida convergencia, máxima selección óptima y bajo regret. UCB2 ofrece resultados prácticamente equivalentes, aunque algo más inestables. Softmax y $\epsilon$-Greedy con $\epsilon$ pequeño son competitivos en recompensa promedio, pero menos eficientes en términos de identificación del brazo óptimo. 
     El esquema con decaimiento resulta más sensible al horizonte temporal considerado, pues necesitaría como 
     ya hemos comentado un horizonte mayor para superar su coste inicial de exploración y alcanzar el mismo 
     rendimiento que los otros algoritmos.
@@ -640,7 +648,7 @@ A partir del análisis experimental realizado sobre el problema del bandido de $
     \item \textbf{Superioridad de los métodos basados en incertidumbre (UCB):} Las estrategias UCB1 y 
     UCB2 han demostrado ser las mejores para este problema. Al balancear automáticamente la 
     exploración y la explotación sin depender de decaimientos manuales, logran estabilizarse 
-    rápidamente. En el análisis global comparativo, UCB2 se posicionó como la estrategia óptima, 
+    rápidamente. En el análisis global comparativo, UCB1 se posicionó como la estrategia óptima, 
     rozando un 99\% de precisión en la selección del brazo correcto y minimizando el \textit{regret} 
     acumulado con un crecimiento logarítmico, lo cual confirma en la práctica las garantías 
     teóricas establecidas en la literatura.
@@ -649,5 +657,5 @@ A partir del análisis experimental realizado sobre el problema del bandido de $
 
 
 En definitiva, se concluye que, para entornos estacionarios con incertidumbre, los algoritmos basados 
-en la cota superior de confianza (especialmente UCB2 gracias a su optimización mediante épocas) 
-superan sistemáticamente a los métodos basados en probabilidad pura o exploración aleatoria constante.
+en la cota superior de confianza (especialmente UCB1) superan sistemáticamente a los métodos basados 
+en probabilidad pura o exploración aleatoria constante.

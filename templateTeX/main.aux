@@ -1,10 +1,14 @@
 \relax 
-\providecommand\babel@aux[2]{}
+\providecommand \babel@aux [2]{\global \let \babel@toc \@gobbletwo }
 \@nameuse{bbl@beforestart}
+\catcode `"\active 
+\catcode `<\active 
+\catcode `>\active 
+\@nameuse{es@quoting}
 \providecommand\hyper@newdestlabel[2]{}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
-\babel@aux{nil}{}
+\babel@aux{spanish}{}
 \@writefile{toc}{\contentsline {chapter}{\numberline {1}Problema del Bandido de $k$-brazos}{3}{chapter.1}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -33,7 +37,7 @@
 \@writefile{toc}{\contentsline {subsubsection}{Descripción y Justificación}{5}{subsubsection*.9}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{Pseudocódigo}{5}{subsubsection*.10}\protected@file@percent }
 \@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Algoritmo Softmax}}{5}{algorithm.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.3}Algoritmo UCB1 (Upper Confidence Bound)}{5}{subsection.1.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.3}Algoritmos UCB (Upper Confidence Bound)}{5}{subsection.1.3.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{Descripción y Justificación}{5}{subsubsection*.11}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{Pseudocódigo}{6}{subsubsection*.12}\protected@file@percent }
 \@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Algoritmo UCB1}}{6}{algorithm.3}\protected@file@percent }
@@ -66,20 +70,22 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {1.8}{\ignorespaces Evolución del porcentaje de selección del brazo óptimo para el algoritmo Softmax con distribución Normal con fase de exploración inicial forzada.}}{9}{figure.1.8}\protected@file@percent }
 \newlabel{fig:softmax_exploracion_inicial}{{1.8}{9}{Evolución del porcentaje de selección del brazo óptimo para el algoritmo Softmax con distribución Normal con fase de exploración inicial forzada}{figure.1.8}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.4.4}Resultados: Familia UCB (Upper Confidence Bound)}{9}{subsection.1.4.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1.9}{\ignorespaces Histograma de selección de brazos con distribución Normal.}}{9}{figure.1.9}\protected@file@percent }
-\newlabel{fig:ucb_histograma1}{{1.9}{9}{Histograma de selección de brazos con distribución Normal}{figure.1.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.10}{\ignorespaces Histograma de selección de brazos con distribución Normal para distintos parámetros en el algoritmo UCB2.}}{9}{figure.1.10}\protected@file@percent }
-\newlabel{fig:ucb_histograma2}{{1.10}{9}{Histograma de selección de brazos con distribución Normal para distintos parámetros en el algoritmo UCB2}{figure.1.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.9}{\ignorespaces Evolución de las recompensas para el algoritmo UCB1 con distribución Normal para distintos parámetros.}}{9}{figure.1.9}\protected@file@percent }
+\newlabel{fig:ucb1_recompensas}{{1.9}{9}{Evolución de las recompensas para el algoritmo UCB1 con distribución Normal para distintos parámetros}{figure.1.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.10}{\ignorespaces Evolución de las recompensas para el algoritmo UCB2 con distribución Normal para distintos parámetros.}}{9}{figure.1.10}\protected@file@percent }
+\newlabel{fig:ucb2_recompensas}{{1.10}{9}{Evolución de las recompensas para el algoritmo UCB2 con distribución Normal para distintos parámetros}{figure.1.10}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.11}{\ignorespaces Evolución del regret acumulado para los algoritmos UCB1 y UCB2 con distribución Normal.}}{9}{figure.1.11}\protected@file@percent }
 \newlabel{fig:ucb_regret}{{1.11}{9}{Evolución del regret acumulado para los algoritmos UCB1 y UCB2 con distribución Normal}{figure.1.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.12}{\ignorespaces Evolución del regret acumulado para los algoritmos UCB1 y UCB2 con distribución de Bernoulli.}}{10}{figure.1.12}\protected@file@percent }
+\newlabel{fig:ucb_bernoulli_regret}{{1.12}{10}{Evolución del regret acumulado para los algoritmos UCB1 y UCB2 con distribución de Bernoulli}{figure.1.12}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.4.5}Análisis Comparativo Global}{10}{subsection.1.4.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{Discusión de Resultados}{10}{subsubsection*.21}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1.12}{\ignorespaces Porcentaje de selección del brazo óptimo en el experimento comparativo global.}}{10}{figure.1.12}\protected@file@percent }
-\newlabel{fig:global_optimal_selection}{{1.12}{10}{Porcentaje de selección del brazo óptimo en el experimento comparativo global}{figure.1.12}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.13}{\ignorespaces Recompensa promedio acumulada en el experimento comparativo global.}}{10}{figure.1.13}\protected@file@percent }
-\newlabel{fig:global_reward}{{1.13}{10}{Recompensa promedio acumulada en el experimento comparativo global}{figure.1.13}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.14}{\ignorespaces Regret acumulado en el experimento comparativo global.}}{10}{figure.1.14}\protected@file@percent }
-\newlabel{fig:global_regret}{{1.14}{10}{Regret acumulado en el experimento comparativo global}{figure.1.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.13}{\ignorespaces Porcentaje de selección del brazo óptimo en el experimento comparativo global.}}{10}{figure.1.13}\protected@file@percent }
+\newlabel{fig:global_optimal_selection}{{1.13}{10}{Porcentaje de selección del brazo óptimo en el experimento comparativo global}{figure.1.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.14}{\ignorespaces Recompensa promedio acumulada en el experimento comparativo global.}}{10}{figure.1.14}\protected@file@percent }
+\newlabel{fig:global_reward}{{1.14}{10}{Recompensa promedio acumulada en el experimento comparativo global}{figure.1.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.15}{\ignorespaces Regret acumulado en el experimento comparativo global.}}{10}{figure.1.15}\protected@file@percent }
+\newlabel{fig:global_regret}{{1.15}{10}{Regret acumulado en el experimento comparativo global}{figure.1.15}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.5}Conclusiones}{11}{section.1.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {chapter}{\numberline {2}Aprendizaje en Entornos Complejos: De Métodos Tabulares a Aproximaciones}{12}{chapter.2}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
@@ -150,16 +156,16 @@
 \newlabel{fig:taxi_policy}{{2.5}{18}{Representación visual de la política óptima para el agente Q-Learning en el entorno Taxi-v3}{figure.2.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Resultados en Entorno Continuo: LunarLander-v3}{18}{subsection.2.4.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{Resultados de SARSA Semi-gradiente con tile coding}{19}{subsubsection*.50}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2.6}{\ignorespaces Heatmaps de recompensa media para diferentes combinaciones de número de episodios y número de subdivisiones por dimensión en SARSA Semi-gradiente con tile coding.}}{19}{figure.2.6}\protected@file@percent }
-\newlabel{fig:tilecoding_heatmaps}{{2.6}{19}{Heatmaps de recompensa media para diferentes combinaciones de número de episodios y número de subdivisiones por dimensión en SARSA Semi-gradiente con tile coding}{figure.2.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.6}{\ignorespaces Heatmap de recompensa media para diferentes combinaciones de número de episodios y número de subdivisiones por dimensión en SARSA Semi-gradiente con tile coding.}}{19}{figure.2.6}\protected@file@percent }
+\newlabel{fig:tilecoding_heatmaps}{{2.6}{19}{Heatmap de recompensa media para diferentes combinaciones de número de episodios y número de subdivisiones por dimensión en SARSA Semi-gradiente con tile coding}{figure.2.6}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.7}{\ignorespaces Evolución de recompensa media, longitud de episodios y error TD durante el entrenamiento de SARSA Semi-gradiente con tile coding.}}{19}{figure.2.7}\protected@file@percent }
 \newlabel{fig:tilecoding_metrics}{{2.7}{19}{Evolución de recompensa media, longitud de episodios y error TD durante el entrenamiento de SARSA Semi-gradiente con tile coding}{figure.2.7}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Resultados de SARSA Semi-gradiente con red neuronal}{19}{subsubsection*.51}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Impacto de la Exploración y el Aprendizaje.}{19}{paragraph*.52}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2.8}{\ignorespaces Métricas de entrenamiento (Recompensa, Longitud y Error TD) bajo la política de decaimiento lineal en LunarLander-v3 con Deep-SARSA.}}{19}{figure.2.8}\protected@file@percent }
 \newlabel{fig:lunar_metrics}{{2.8}{19}{Métricas de entrenamiento (Recompensa, Longitud y Error TD) bajo la política de decaimiento lineal en LunarLander-v3 con Deep-SARSA}{figure.2.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Arquitectura de la Red Neuronal.}{19}{paragraph*.53}\protected@file@percent }
 \citation{van2019lunar}
-\@writefile{toc}{\contentsline {paragraph}{Arquitectura de la Red Neuronal.}{20}{paragraph*.53}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2.9}{\ignorespaces Fotograma de un aterrizaje exitoso realizado por el agente SARSA profundo con red de 128 neuronas.}}{20}{figure.2.9}\protected@file@percent }
 \newlabel{fig:lunar_success}{{2.9}{20}{Fotograma de un aterrizaje exitoso realizado por el agente SARSA profundo con red de 128 neuronas}{figure.2.9}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Resultados de Deep Q-learning}{20}{subsubsection*.54}\protected@file@percent }
@@ -168,13 +174,24 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {2.11}{\ignorespaces Comparativa de recompensa media durante el entrenamiento para diferentes valores de $\gamma $ en DQN aplicado a LunarLander-v3.}}{20}{figure.2.11}\protected@file@percent }
 \newlabel{fig:dqn_gamma_comparativa}{{2.11}{20}{Comparativa de recompensa media durante el entrenamiento para diferentes valores de $\gamma $ en DQN aplicado a LunarLander-v3}{figure.2.11}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.4}Análisis Comparativo Global}{20}{subsection.2.4.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2.12}{\ignorespaces Comparativa de recompensa media durante el entrenamiento entre SARSA con tile coding, SARSA deep y DQN en LunarLander-v3.}}{21}{figure.2.12}\protected@file@percent }
-\newlabel{fig:lunar_comparativa}{{2.12}{21}{Comparativa de recompensa media durante el entrenamiento entre SARSA con tile coding, SARSA deep y DQN en LunarLander-v3}{figure.2.12}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.5}Conclusiones}{21}{section.2.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Resumen de los principales resultados}{21}{subsection.2.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}Limitaciones del estudio y posibles mejoras}{21}{subsection.2.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.3}Líneas futuras de estudio}{21}{subsection.2.5.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.12}{\ignorespaces Comparativa de recompensa media durante el entrenamiento entre SARSA con tile coding, SARSA deep y DQN en LunarLander-v3.}}{20}{figure.2.12}\protected@file@percent }
+\newlabel{fig:lunar_comparativa}{{2.12}{20}{Comparativa de recompensa media durante el entrenamiento entre SARSA con tile coding, SARSA deep y DQN en LunarLander-v3}{figure.2.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}Conclusiones}{20}{section.2.5}\protected@file@percent }
 \citation{*}
 \bibstyle{plain}
 \bibdata{references}
-\gdef \@abspage@last{25}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Resumen de los principales resultados}{21}{subsection.2.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}Limitaciones del estudio y posibles mejoras}{21}{subsection.2.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.3}Líneas futuras de estudio}{21}{subsection.2.5.3}\protected@file@percent }
+\bibcite{repo2025carrillo_ibarrola_palomar}{1}
+\bibcite{gemini2026}{2}
+\bibcite{hernandez2025bandido}{3}
+\bibcite{hernandez2025control}{4}
+\bibcite{hernandez2025td}{5}
+\bibcite{hernandez2025montecarlo}{6}
+\bibcite{hernandez2025prediccion}{7}
+\bibcite{repo2025eml_approximate}{8}
+\bibcite{repo2025eml_k_bandit}{9}
+\bibcite{repo2025eml_tabular}{10}
+\bibcite{van2019lunar}{11}
+\gdef \@abspage@last{24}

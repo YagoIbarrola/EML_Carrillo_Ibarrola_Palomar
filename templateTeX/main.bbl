@@ -1,0 +1,63 @@
+\begin{thebibliography}{10}
+
+\bibitem{repo2025carrillo_ibarrola_palomar}
+Gin{\'e}s Carrillo, Yago Ibarrola, and Aar{\'o}n Palomar.
+\newblock Eml\_carrillo\_ibarrola\_palomar.
+\newblock Repositorio de GitHub, 2025.
+
+\bibitem{gemini2026}
+{Google}.
+\newblock Gemini 3.1 pro.
+\newblock LLM, 2026.
+
+\bibitem{hernandez2025bandido}
+Luis~Daniel Hern{\'a}ndez~Molinero.
+\newblock Aprendizaje por refuerzo: Bandido multibrazo.
+\newblock Diapositivas de clase, 2025.
+\newblock M{\'a}ster en Inteligencia Artificial, Universidad de Murcia.
+
+\bibitem{hernandez2025control}
+Luis~Daniel Hern{\'a}ndez~Molinero.
+\newblock Aprendizaje por refuerzo: Control on policy con aproximaciones.
+\newblock Diapositivas de clase, 2025.
+\newblock M{\'a}ster en Inteligencia Artificial, Universidad de Murcia.
+
+\bibitem{hernandez2025td}
+Luis~Daniel Hern{\'a}ndez~Molinero.
+\newblock Aprendizaje por refuerzo: M{\'e}todos de diferencias temporales.
+\newblock Diapositivas de clase, 2025.
+\newblock M{\'a}ster en Inteligencia Artificial, Universidad de Murcia.
+
+\bibitem{hernandez2025montecarlo}
+Luis~Daniel Hern{\'a}ndez~Molinero.
+\newblock Aprendizaje por refuerzo: M{\'e}todos de monte carlo.
+\newblock Diapositivas de clase, 2025.
+\newblock M{\'a}ster en Inteligencia Artificial, Universidad de Murcia.
+
+\bibitem{hernandez2025prediccion}
+Luis~Daniel Hern{\'a}ndez~Molinero.
+\newblock Aprendizaje por refuerzo: Predicci{\'o}n on policy con aproximaciones.
+\newblock Diapositivas de clase, 2025.
+\newblock M{\'a}ster en Inteligencia Artificial, Universidad de Murcia.
+
+\bibitem{repo2025eml_approximate}
+Luis~Daniel Hern{\'a}ndez~Molinero.
+\newblock eml\_approximate.
+\newblock Repositorio de GitHub, 2025.
+
+\bibitem{repo2025eml_k_bandit}
+Luis~Daniel Hern{\'a}ndez~Molinero.
+\newblock eml\_k\_bandit.
+\newblock Repositorio de GitHub, 2025.
+
+\bibitem{repo2025eml_tabular}
+Luis~Daniel Hern{\'a}ndez~Molinero.
+\newblock eml\_tabular.
+\newblock Repositorio de GitHub, 2025.
+
+\bibitem{van2019lunar}
+Le~Hoang Van.
+\newblock Solving lunar lander with deep q-network.
+\newblock {\em Proyecto independiente / Informe de estudiante}, 2019.
+
+\end{thebibliography}
