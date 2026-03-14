@@ -141,11 +141,10 @@ class SemiGradientSarsaDeepAgent(Agent):
         env = self.env
         # Temporarily disable exploration for testing
         old_epsilon = self.epsilon
-        self.epsilon = 0.01  # Pure exploitation
+        self.epsilon = 0.00  # Pure exploitation
 
         for t in range(num_episodes):
-            seed = num_episodes*2 + t
-            obs, _ = env.reset(seed=seed)
+            obs, _ = env.reset()
             episode_reward = 0
             done = False
 
