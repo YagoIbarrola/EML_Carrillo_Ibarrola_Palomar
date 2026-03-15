@@ -55,45 +55,44 @@
 \contentsline {subsubsection}{Aprendizaje por Diferencias Temporales (TD)}{13}{subsubsection*.22}%
 \contentsline {subsubsection}{Control con Aproximación de Funciones}{13}{subsubsection*.23}%
 \contentsline {section}{\numberline {2.3}Algoritmos}{13}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Algoritmos Tabulares (Entorno Taxi-v3)}{13}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.1}Algoritmos Tabulares (Taxi-v3)}{13}{subsection.2.3.1}%
 \contentsline {subsubsection}{Algoritmo de Montecarlo: On-Policy y Off-Policy}{13}{subsubsection*.24}%
 \contentsline {paragraph}{Montecarlo On-Policy}{14}{paragraph*.25}%
-\contentsline {paragraph}{Pseudocódigo}{14}{paragraph*.26}%
-\contentsline {paragraph}{Montecarlo Off-Policy}{14}{paragraph*.27}%
-\contentsline {paragraph}{Pseudocódigo}{14}{paragraph*.28}%
-\contentsline {subsubsection}{Algoritmos SARSA y Expected-SARSA}{14}{subsubsection*.29}%
-\contentsline {paragraph}{SARSA}{14}{paragraph*.30}%
-\contentsline {paragraph}{Pseudocódigo}{14}{paragraph*.31}%
-\contentsline {paragraph}{Expected-SARSA}{14}{paragraph*.32}%
-\contentsline {subsubsection}{Algoritmo Q-Learning}{15}{subsubsection*.33}%
-\contentsline {paragraph}{Pseudocódigo}{15}{paragraph*.34}%
-\contentsline {subsubsection}{Algoritmo Double Q-Learning}{15}{subsubsection*.35}%
+\contentsline {paragraph}{Montecarlo Off-Policy}{14}{paragraph*.26}%
+\contentsline {subsubsection}{Algoritmos SARSA y Expected-SARSA}{14}{subsubsection*.27}%
+\contentsline {paragraph}{SARSA}{14}{paragraph*.28}%
+\contentsline {paragraph}{Pseudocódigo}{14}{paragraph*.29}%
+\contentsline {paragraph}{Expected-SARSA}{14}{paragraph*.30}%
+\contentsline {subsubsection}{Algoritmo Q-Learning}{14}{subsubsection*.31}%
+\contentsline {paragraph}{Pseudocódigo}{14}{paragraph*.32}%
+\contentsline {subsubsection}{Algoritmo Double Q-Learning}{15}{subsubsection*.33}%
 \contentsline {subsection}{\numberline {2.3.2}Algoritmos de Aproximación (Entorno LunarLander-v3)}{15}{subsection.2.3.2}%
-\contentsline {subsubsection}{SARSA Semi-gradiente con Tile Coding}{15}{subsubsection*.36}%
+\contentsline {subsubsection}{SARSA Semi-gradiente con Tile Coding}{15}{subsubsection*.34}%
+\contentsline {paragraph}{Pseudocódigo}{15}{paragraph*.35}%
+\contentsline {subsubsection}{SARSA Semi-gradiente con Redes Neuronales}{15}{subsubsection*.36}%
 \contentsline {paragraph}{Pseudocódigo}{15}{paragraph*.37}%
-\contentsline {subsubsection}{SARSA Semi-gradiente con Redes Neuronales}{15}{subsubsection*.38}%
-\contentsline {paragraph}{Pseudocódigo}{15}{paragraph*.39}%
-\contentsline {subsubsection}{Deep Q-Learning (DQN) con Replay Buffer}{16}{subsubsection*.40}%
-\contentsline {paragraph}{Pseudocódigo}{16}{paragraph*.41}%
+\contentsline {subsubsection}{Deep Q-Learning (DQN) con Replay Buffer}{15}{subsubsection*.38}%
+\contentsline {paragraph}{Pseudocódigo}{16}{paragraph*.39}%
 \contentsline {section}{\numberline {2.4}Evaluación y Experimentos}{16}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}Configuración Experimental}{16}{subsection.2.4.1}%
-\contentsline {subsubsection}{Entornos de Prueba}{16}{subsubsection*.42}%
-\contentsline {subsubsection}{Herramientas y Reproducibilidad}{17}{subsubsection*.43}%
-\contentsline {subsubsection}{Métricas de Desempeño}{17}{subsubsection*.44}%
-\contentsline {subsection}{\numberline {2.4.2}Resultados en Entorno Tabular: Taxi-v3}{17}{subsection.2.4.2}%
-\contentsline {subsubsection}{Resultados de Montecarlo}{17}{subsubsection*.45}%
-\contentsline {subsubsection}{Resultados de SARSA y Expected-SARSA}{17}{subsubsection*.46}%
-\contentsline {subsubsection}{Resultados de Q-learning}{18}{subsubsection*.47}%
-\contentsline {paragraph}{Optimización de Hiperparámetros (Grid Search).}{18}{paragraph*.48}%
-\contentsline {paragraph}{Q-Learning vs. Double Q-Learning.}{18}{paragraph*.49}%
-\contentsline {subsection}{\numberline {2.4.3}Resultados en Entorno Continuo: LunarLander-v3}{18}{subsection.2.4.3}%
-\contentsline {subsubsection}{Resultados de SARSA Semi-gradiente con tile coding}{19}{subsubsection*.50}%
-\contentsline {subsubsection}{Resultados de SARSA Semi-gradiente con red neuronal}{19}{subsubsection*.51}%
-\contentsline {paragraph}{Impacto de la Exploración y el Aprendizaje.}{19}{paragraph*.52}%
-\contentsline {paragraph}{Arquitectura de la Red Neuronal.}{19}{paragraph*.53}%
-\contentsline {subsubsection}{Resultados de Deep Q-learning}{20}{subsubsection*.54}%
-\contentsline {subsection}{\numberline {2.4.4}Análisis Comparativo Global}{20}{subsection.2.4.4}%
-\contentsline {section}{\numberline {2.5}Conclusiones}{20}{section.2.5}%
+\contentsline {subsubsection}{Entornos de Prueba}{16}{subsubsection*.40}%
+\contentsline {subsubsection}{Herramientas y Reproducibilidad}{16}{subsubsection*.41}%
+\contentsline {subsubsection}{Métricas de Desempeño}{16}{subsubsection*.42}%
+\contentsline {subsection}{\numberline {2.4.2}Resultados en Entorno Tabular: Taxi-v3}{16}{subsection.2.4.2}%
+\contentsline {subsubsection}{Resultados de Montecarlo}{16}{subsubsection*.43}%
+\contentsline {subsubsection}{Resultados de SARSA y Expected-SARSA}{17}{subsubsection*.44}%
+\contentsline {subsubsection}{Resultados de Q-learning}{18}{subsubsection*.45}%
+\contentsline {paragraph}{Optimización de Hiperparámetros (Grid Search).}{18}{paragraph*.46}%
+\contentsline {paragraph}{Q-Learning vs. Double Q-Learning.}{18}{paragraph*.47}%
+\contentsline {subsection}{\numberline {2.4.3}Análisis Comparativo Global: Taxi-v3}{18}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.4}Resultados en Entorno Continuo: LunarLander-v3}{19}{subsection.2.4.4}%
+\contentsline {subsubsection}{Resultados de SARSA Semi-gradiente con tile coding}{19}{subsubsection*.48}%
+\contentsline {subsubsection}{Resultados de SARSA Semi-gradiente con red neuronal}{19}{subsubsection*.49}%
+\contentsline {paragraph}{Impacto de la Exploración y el Aprendizaje.}{19}{paragraph*.50}%
+\contentsline {paragraph}{Arquitectura de la Red Neuronal.}{19}{paragraph*.51}%
+\contentsline {subsubsection}{Resultados de Deep Q-learning}{20}{subsubsection*.52}%
+\contentsline {subsection}{\numberline {2.4.5}Análisis Comparativo Global: LunarLander-v3}{20}{subsection.2.4.5}%
+\contentsline {section}{\numberline {2.5}Conclusiones}{21}{section.2.5}%
 \contentsline {subsection}{\numberline {2.5.1}Resumen de los principales resultados}{21}{subsection.2.5.1}%
 \contentsline {subsection}{\numberline {2.5.2}Limitaciones del estudio y posibles mejoras}{21}{subsection.2.5.2}%
 \contentsline {subsection}{\numberline {2.5.3}Líneas futuras de estudio}{21}{subsection.2.5.3}%

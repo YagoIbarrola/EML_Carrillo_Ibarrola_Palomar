@@ -109,7 +109,7 @@ problemas planteados en los entornos \textbf{Taxi-v3} y \textbf{LunarLander}.
 Para cada algoritmo, se presenta una descripción formal, su implementación y 
 las consideraciones técnicas relevantes.
 
-\subsection{Algoritmos Tabulares (Entorno Taxi-v3)}
+\subsection{Algoritmos Tabulares (Taxi-v3)}
 
 En esta sección se detallan las estrategias aplicadas al entorno discreto, donde es 
 posible mantener una estructura de datos de tipo tabla para representar $Q$.
@@ -126,18 +126,16 @@ variantes fundamentales para resolver el entorno: On-Policy y Off-Policy.
 
 En la variante On-Policy, evaluamos y mejoramos la misma política que utilizamos para tomar 
 decisiones en el entorno. En nuestro experimento, empleamos una política $\epsilon$-greedy con $\epsilon$ decaimiento lineal, 
-hasta alcanzar un valor mínimo.
-
-La regla de actualización para el valor de la acción $A_t$ en el estado $S_t$ se define como:
+hasta alcanzar un valor mínimo. La regla de actualización para el valor de la acción $A_t$ en el estado $S_t$ se define como:
 
 $$
 Q(S_t, A_t) \leftarrow Q(S_t, A_t) 
 + \frac{1}{N(S_t, A_t)} \Big[ G_t - Q(S_t, A_t) \Big]
 $$
 
-Donde $N(S_t, A_t)$ representa el contador histórico de visitas para ese par, el cual actúa como una tasa de aprendizaje decreciente.
+Donde $N(S_t, A_t)$ representa el contador de visitas para ese par, el cual actúa como una tasa de aprendizaje decreciente.
 
-\paragraph{Pseudocódigo}\mbox{}\\
+
 \begin{algorithm}[H]
 \caption{Montecarlo On-Policy para Taxi-v3}
 \begin{algorithmic}[1]
@@ -163,16 +161,15 @@ Nuestro objetivo es evaluar una política determinista y óptima ($\pi$),
 mientras interactuamos con el entorno utilizando una política de comportamiento 
 exploratoria ($b$), como $\epsilon$-greedy. Para compensar esta discrepancia en la 
 distribución de las trayectorias, aplicamos el método de Muestreo por Importancia (Importance Sampling), 
-ponderando los retornos empíricos según la probabilidad relativa de las acciones.
-
-La actualización utiliza un acumulador de pesos $C(S_t, A_t)$ y un factor de importancia $W$:
+ponderando los retornos empíricos según la probabilidad relativa de las acciones. La actualización utiliza un acumulador de pesos $C(S_t, A_t)$ y un factor de importancia $W$:
 
 $$
 Q(S_t, A_t) \leftarrow Q(S_t, A_t) 
 + \frac{W}{C(S_t, A_t)} \Big[ G_t - Q(S_t, A_t) \Big]
 $$
 
-\paragraph{Pseudocódigo}\mbox{}\\
+
+
 \begin{algorithm}[H]
 \caption{Montecarlo Off-Policy (Muestreo por Importancia) para Taxi-v3}
 \begin{algorithmic}[1]
@@ -181,7 +178,7 @@ $$
 \State Inicializar $Q(s, a) \gets 0$ y $C(s, a) \gets 0$
 \State Inicializar política objetivo $\pi(s) \gets \arg\max_a Q(s, a)$
 \For{cada episodio}
-\State Generar un episodio usando la política de comportamiento $b$ ($\epsilon$-greedy)
+\State Generar un episodio usando política de comportamiento $b$ %($\epsilon$-greedy)
 \State $G \gets 0$, $W \gets 1$
 \For{cada paso $t$ del episodio, recorrido en orden inverso}
 \State $G \gets \gamma G + R_{t+1}$
@@ -189,7 +186,7 @@ $$
 \State $Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \frac{W}{C(S_t, A_t)} [G - Q(S_t, A_t)]$
 \State $\pi(S_t) \gets \arg\max_a Q(S_t, a)$
 \If{$A_t \neq \pi(S_t)$}
-\State \textbf{break} \Comment{Divergimos entre políticas, finalizamos la actualización}
+\State \textbf{break} \Comment{Políticas divergen, detener actualización}
 \EndIf
 \State $W \gets W \frac{1}{b(A_t | S_t)}$
 \EndFor
@@ -206,7 +203,7 @@ cada acción tomada, sin necesidad de esperar al final del episodio.
 En SARSA, la actualización del valor de la acción $A_t$ en el estado $S_t$ se basa en 
 la acción realmente seleccionada en el siguiente estado $S_{t+1}$.
 
-\paragraph{Pseudocódigo}\mbox{}\\
+\paragraph{Pseudocódigo}\mbox{}
 \begin{algorithm}[H]
 \caption{SARSA para Taxi-v3}
 \begin{algorithmic}[1]
@@ -232,13 +229,13 @@ Expected-SARSA es una variante que, en lugar de usar la acción seleccionada en 
 siguiente estado, calcula el valor esperado sobre todas las acciones posibles, 
 ponderado por la política $\epsilon$-greedy. La actualización se define como:
 
-$$
+{\footnotesize
+\[
 \begin{aligned}
-Q(S_t, A_t) &\leftarrow Q(S_t, A_t) + \alpha \Big[ R + \gamma \sum_{a} \pi(a|S_{t+1}) Q(S_{t+1}, a) \\
-&\quad - Q(S_t, A_t) \Big]
+Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \alpha \Big[ R + \gamma \sum_{a} \pi(a|S_{t+1}) Q(S_{t+1}, a) - Q(S_t, A_t) \Big]
 \end{aligned}
-$$
-
+\]
+}
 \subsubsection{Algoritmo Q-Learning}
 
 Es uno de los algoritmos de aprendizaje por refuerzo más utilizados. Su uso se justifica por sus garantías teóricas de convergencia hacia la política óptima $\pi^*$, siempre que todos los pares estado-acción sean suficientemente explorados. En nuestro experimento, se utiliza una política $\epsilon$-greedy con decaimiento lineal para equilibrar la exploración inicial del mapa del taxi con la explotación de las rutas más cortas.
@@ -253,7 +250,7 @@ $$
 
 Donde $\alpha$ es la tasa de aprendizaje y $\gamma$ el factor de descuento.
 
-\paragraph{Pseudocódigo}\mbox{}\\
+\paragraph{Pseudocódigo}\mbox{}
 \begin{algorithm}[H]
 \caption{Q-Learning para Taxi-v3}
 \begin{algorithmic}[1]
@@ -275,18 +272,15 @@ Donde $\alpha$ es la tasa de aprendizaje y $\gamma$ el factor de descuento.
 
 \subsubsection{Algoritmo Double Q-Learning}
 
-Q-Learning tiende a sobreestimar los valores de las acciones debido al operador $\max$, que puede seleccionar ruidos (positivos) en lugar de valores reales. Double Q-Learning desacopla la selección de la acción de su evaluación utilizando dos tablas, $Q_1$ y $Q_2$. Sirve para reducir la varianza en el aprendizaje y obtener una política más estable.
+Q-Learning tiende a sobreestimar los valores de las acciones debido al operador $\max$, que puede seleccionar ruidos (positivos) en lugar de valores reales. Double Q-Learning desacopla la selección de la acción de su evaluación utilizando dos tablas, $Q_1$ y $Q_2$. Sirve para reducir la varianza en el aprendizaje y obtener una política más estable. Con probabilidad del $50\%$, actualizamos $Q_1$ usando $Q_2$ para evaluar el siguiente estado (y viceversa para actualizar $Q_2$):
 
-Con probabilidad del $50\%$, actualizamos $Q_1$ usando $Q_2$ para evaluar el siguiente estado:
-
-$$
-Q_1(S, A) \leftarrow Q_1(S, A) +
-$$
-$$
-+ \alpha \left( R + \gamma Q_2(S', \operatorname{argmax}_a Q_1(S', a)) - Q_1(S, A) \right)
-$$
-
-(Y viceversa para actualizar $Q_2$).
+{\footnotesize
+\[
+\begin{aligned}
+Q_1(S, A) \leftarrow Q_1(S, A) + \alpha \left( R + \gamma Q_2(S', \operatorname{argmax}_a Q_1(S', a)) - Q_1(S, A) \right)
+\end{aligned}
+\]
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Algoritmos de Aproximación (Entorno LunarLander-v3)}
@@ -301,7 +295,7 @@ una partición del espacio de observaciones. Las observaciones continuas se
 representan mediante un vector de caracteristicas, y se elige la siguiente acción 
 usando una política $\epsilon$-greedy basada en la función de valor aproximada.
 
-\paragraph{Pseudocódigo}\mbox{}\\
+\paragraph{Pseudocódigo}\mbox{}
 \begin{algorithm}[H]
 \caption{SARSA Semi-gradiente con Tile Coding para LunarLander-v3}
 \begin{algorithmic}[1]
@@ -334,7 +328,8 @@ $$
 $$
 donde $\delta$ es el error TD de SARSA. 
 
-\paragraph{Pseudocódigo}\mbox{}\\
+
+\paragraph{Pseudocódigo}\mbox{}
 \begin{algorithm}[H]
 \caption{SARSA Semi-gradiente Deep}
 \begin{algorithmic}[1]
@@ -367,14 +362,28 @@ correlación temporal entre estados consecutivos. El objetivo es minimizar el
 error cuadrático medio (MSE) entre las predicciones de la red local y los 
 objetivos TD calculados por la red objetivo, cuyos pesos $\mathbf{w}^-$ se actualizan de la siguiente manera:
 
-\begin{equation}
-\begin{aligned}
-\mathcal{L}(\mathbf{w}) &= \mathbb{E}_{(S, A, R, S') \sim U(D)} \Bigg[ \bigg( R + \gamma \max_{a'} \hat{q}(S', a', \mathbf{w}^-) \cdot (1 - \text{done}) \\
-&\quad - \hat{q}(S, A, \mathbf{w}) \bigg)^2 \Bigg]
-\end{aligned}
-\end{equation}
+% \begin{equation*}
+% \begin{aligned}
+% \mathcal{L}(\mathbf{w}) &= \mathbb{E}_{(S, A, R, S') \sim U(D)} \Bigg[ \bigg( R + \gamma \max_{a'} \hat{q}(S', a', \mathbf{w}^-) \cdot (1 - \text{done}) \\
+% &\quad - \hat{q}(S, A, \mathbf{w}) \bigg)^2 \Bigg]
+% \end{aligned}
+% \end{equation*}
 
-Siendo $U(D)$ la distribución uniforme sobre el replay buffer $D$.
+\begin{equation*}
+y = R + \gamma \max_{a'} \hat{q}(S', a', \mathbf{w}^-) (1-\text{done})
+\end{equation*}
+
+\begin{equation*}
+\mathcal{L}(\mathbf{w}) =
+\mathbb{E}_{(S,A,R,S') \sim U(D)}
+\left[
+\left(
+y - \hat{q}(S,A,\mathbf{w})
+\right)^2
+\right]
+\end{equation*}
+
+Siendo $U(D)$ la distribución uniforme en el replay buffer $D$.
 
 La actualización de los pesos de la red local se realiza mediante el descenso de gradiente, y posteriormente, los pesos de la red objetivo se actualizan suavemente (\textit{soft-update}) usando un parámetro $\tau$:
 
@@ -384,7 +393,7 @@ $$
 
 
 
-\paragraph{Pseudocódigo}\mbox{}\\
+\paragraph{Pseudocódigo}\mbox{}
 \begin{algorithm}[H]
 \caption{Deep Q-Learning con Replay Buffer}
 \begin{algorithmic}[1]
@@ -512,7 +521,7 @@ función de valor se va estabilizando de cara al final del entrenamiento, aunque
 
 \begin{figure}[H]  
 \centering
-\includegraphics[width=0.45\textwidth]{resources/heatmaps_taxi_sarsa.png}
+\includegraphics[width=0.35\textwidth]{resources/heatmaps_taxi_sarsa.png}
 \caption{Heatmaps de recompensa media para diferentes combinaciones de learning rate y número de episodios en SARSA y Expected-SARSA.}
 \label{fig:sarsa_heatmaps}
 \end{figure}
@@ -546,13 +555,69 @@ Aunque teóricamente Double Q-Learning mitiga el sesgo de sobreestimación, en e
 La Figura~\ref{fig:q_vs_double} muestra la evolución de la recompensa promedio durante el entrenamiento. Se observa que, tras una fase inicial con recompensas muy negativas debido a la exploración aleatoria, el agente mejora progresivamente hasta estabilizarse alrededor de los 750 episodios. En paralelo, la longitud de los episodios disminuye, indicando que el agente aprende a completar la tarea en menos pasos. La estabilización del error TD confirma que las estimaciones de la función Q han convergido hacia una política estable.
 
 En fase de test, ambos lograron un \textit{Win Rate} superior al 99.5\%. La Figura~\ref{fig:taxi_policy} ilustra la política final aprendida por el agente Q-Learning, donde se observa cómo el taxi ha optimizado las rutas de recogida y entrega en los puntos clave del mapa.
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.45\textwidth]{resources/taxi_politica_final_qlearning.png}
+\includegraphics[width=0.35\textwidth]{resources/taxi_politica_final_qlearning.png}
 \caption{Representación visual de la política óptima para el agente Q-Learning en el entorno Taxi-v3.}
 \label{fig:taxi_policy}
 \end{figure}
+
+\subsection{Análisis Comparativo Global: Taxi-v3}
+
+Tras evaluar los tres enfoques, comparamos su rendimiento
+en la Figura~\ref{fig:taxi_comparativa}. En ella se observan claramente las diferencias en velocidad
+de convergencia y estabilidad entre los algoritmos basados en Diferencias Temporales y el
+método Montecarlo.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{resources/taxi_comparativa.png}
+\caption{Comparativa de recompensa media, longitud de episodios y error TD durante el entrenamiento entre Montecarlo Off-Policy, Expected SARSA y Q-Learning en Taxi-v3.}
+\label{fig:taxi_comparativa}
+\end{figure}
+
+\begin{itemize}
+
+\item El algoritmo \textbf{Montecarlo Off-Policy} fue el más lento en aprender.
+Aunque finalmente alcanza un rendimiento razonable, necesita del orden de \textit{10000 episodios}
+para estabilizarse. Esto se debe a que los métodos Montecarlo únicamente actualizan los valores
+al finalizar cada episodio completo, lo que introduce una gran varianza en las estimaciones,
+especialmente en las primeras fases del entrenamiento cuando la política es prácticamente aleatoria. No obstante, con un número suficiente de episodios, puede competir con los métodos TD.
+
+\item \textbf{Expected SARSA} mostró un comportamiento mucho más estable que Montecarlo.
+Al tratarse de un método basado en TD, actualiza los valores
+de acción en cada paso utilizando información del siguiente estado. Esto reduce la varianza
+y permite aprender políticas eficaces en torno a \textit{4000 episodios}. Además, al utilizar
+la esperanza sobre la política $\epsilon$-greedy en lugar del operador máximo, su curva de
+aprendizaje es más suave y estable.
+
+\item \textbf{Q-Learning} fue el algoritmo más eficiente en términos de velocidad de convergencia.
+Gracias a su naturaleza \textit{off-policy} y al uso del operador máximo
+($\max_{a'} Q(s',a')$), aprende una aproximación a la política óptima en apenas
+\textit{2000 episodios}. Su capacidad de actualizar las estimaciones paso a paso mediante
+\textit{bootstrapping} le permite aprovechar mejor la información disponible y acelerar
+considerablemente el proceso de aprendizaje.
+
+% \item \textbf{Eficiencia de muestreo:} La principal diferencia observada es la eficiencia
+% de los métodos TD frente a Montecarlo. En el entorno Taxi-v3 existen penalizaciones por
+% cada paso ($-1$) y recompensas finales positivas cuando el pasajero es entregado correctamente.
+% Los algoritmos TD pueden propagar estas recompensas gradualmente hacia estados anteriores
+% durante el episodio, mientras que Montecarlo debe esperar al retorno final, lo que ralentiza
+% considerablemente la convergencia.
+
+\end{itemize}
+
+En conclusión, para entornos discretos y de tamaño moderado como \textit{Taxi-v3},
+los algoritmos basados en \textbf{Diferencias Temporales}, especialmente \textbf{Q-Learning},
+resultan más eficientes que los métodos Montecarlo, tanto en velocidad de aprendizaje
+como en estabilidad durante el entrenamiento.
 
 \subsection{Resultados en Entorno Continuo: LunarLander-v3}
 \subsubsection{Resultados de SARSA Semi-gradiente con tile coding}
@@ -561,7 +626,7 @@ comenzamos realizando una búsqueda de hiperparámetros para encontrar la mejor 
 episodios frente al número de subdivisiones por dimensión continua. En la Figura~\ref{fig:tilecoding_heatmaps} 
 se pueden observar los resultados obtenidos, donde se aprecia que todas las combinaciones dan muy malos 
 resultados. Tras seleccionar la mejor combinación (a sabiendas de que la combinación ganadora es probablemente 
-fruto de la aleatoriedad, más que de los valores de los hiperparámetros), se realizó un entrenamiento con esta 
+fruto de la aleatoriedad), se realizó un entrenamiento con esta 
 configuración y se graficaron las métricas de recompensa, longitud de episodios y error TD. Estas gráficas se 
 pueden ver en la Figura~\ref{fig:tilecoding_metrics}. En ella se observa que la recompensa no solo no mejora 
 con el avance del entrenamiento, sino que disminuye. Creemos que esto se debe a la alta dimensionalidad de las 
@@ -572,8 +637,8 @@ una política coherente.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.45\textwidth]{resources/tilecoding_heatmaps.png}
-\caption{Heatmap de recompensa media para diferentes combinaciones de número de episodios y número de subdivisiones por dimensión en SARSA Semi-gradiente con tile coding.}
+\includegraphics[width=0.35\textwidth]{resources/tilecoding_heatmaps.png}
+\caption{Heatmap de recompensa media para diferentes combinaciones de número de episodios y subdivisiones por dimensión en SARSA Semi-gradiente con tile coding.}
 \label{fig:tilecoding_heatmaps}
 \end{figure}
 \begin{figure}[H]
@@ -645,7 +710,7 @@ a alcanzar 250 puntos de recompensa media en los últimos episodios.
 \label{fig:dqn_gamma_comparativa}
 \end{figure}
 
-\subsection{Análisis Comparativo Global}
+\subsection{Análisis Comparativo Global: LunarLander-v3}
 
 Tras evaluar los tres enfoques en el entorno continuo \textit{LunarLander-v3}, comparamos su rendimiento
 en la Figura~\ref{fig:lunar_comparativa}, donde se observa claramente la superioridad de DQN frente a 
@@ -676,7 +741,7 @@ SARSA profundo, y el fracaso total de tile coding.
     \item \textbf{Sensibilidad paramétrica:} En las arquitecturas observamos una fuerte 
     dependencia de los hiperparámetros. Un factor de descuento bajo ($\gamma = 0.9$) 
     vuelve al agente miope, impidiéndole asociar sus maniobras de estabilización con 
-    la recompensa del aterrizaje final (+100).
+    la recompensa del aterrizaje final (+100). Asimismo, aumentar la tasa de aprendizaje o disminuir el número de neuronas deteriora en gran medida la convergencia.
 \end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusiones}

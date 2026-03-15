@@ -79,9 +79,9 @@ En cada paso de tiempo discreto $t = 1, 2, \dots, T$, el agente selecciona una a
 recibe una recompensa numérica $R_t$. Esta recompensa proviene de una distribución de probabilidad 
 asociada al brazo seleccionado, $\mathcal{P}_a$, tal que $R_t \sim \mathcal{P}_{A_t}$. 
 El valor esperado de la recompensa para una acción $a$ se denota como:
-\begin{equation}
+\begin{equation*}
     q(a) = \mathbb{E}[R_t | A_t = a] 
-\end{equation}
+\end{equation*}
 
 El objetivo del agente es maximizar la recompensa total acumulada a lo largo del horizonte temporal $T$.
 
@@ -118,43 +118,43 @@ Para abordar el problema planteado, se han implementado y comparado tres familia
 
 \subsubsection{Algoritmo $\epsilon$-Greedy}
 Este método mantiene estimaciones $Q_t(a)$ del valor de cada brazo mediante promedios muestrales. La regla de selección de acción es:
-\begin{equation}
+\begin{equation*}
     A_t = \begin{cases}
     \operatorname{argmax}_a Q_t(a) & \text{con probabilidad } 1 - \epsilon \\
     \text{acción aleatoria} & \text{con probabilidad } \epsilon
     \end{cases}
-\end{equation}
+\end{equation*}
 Se han realizado experimentos variando $\epsilon$ para analizar su impacto en la convergencia.
 
 
 
 \subsubsection{Algoritmo $\epsilon$-decaimiento}
 Como variante del anterior, se ha implementado una versión de $\epsilon$-Greedy con decaimiento inversamente proporcional al tiempo, lo que permite una exploración más intensa en las etapas iniciales y una mayor explotación a medida que se acumula información:
-\begin{equation}
+\begin{equation*}
     \epsilon_t = \max\left(\epsilon_{min}, \frac{\epsilon_0}{1 + \lambda_{decay} t}\right)
-\end{equation}
+\end{equation*}
 donde $\epsilon_0$ es el valor inicial de exploración, $\lambda_{decay}$ controla la velocidad de decaimiento y $\epsilon_{min}$ garantiza un nivel mínimo de exploración a largo plazo.
 
 
 \subsubsection{Algoritmo Softmax (Distribución de Gibbs)}
 Este método selecciona acciones basándose en probabilidades calculadas mediante una distribución de Boltzmann. La probabilidad de seleccionar la acción $a$ en el tiempo $t$ viene dada por:
-\begin{equation}
+\begin{equation*}
     \pi_t(a) = \frac{e^{Q_t(a)/\tau}}{\sum_{b=1}^{k} e^{Q_t(b)/\tau}}
-\end{equation}
+\end{equation*}
 donde el parámetro de temperatura $\tau$ regula la aleatoriedad de la selección. Valores altos de $\tau$ tienden a la equiprobabilidad (exploración pura), mientras que $\tau \to 0$ tiende a una política voraz (explotación pura).
 
 \subsubsection{Algoritmo UCB1 (Upper Confidence Bound)}
 El algoritmo UCB1 selecciona acciones maximizando una cota superior de confianza, expresada como suma del valor estimado $Q_t(a)$ y un término de exploración:
-\begin{equation}
+\begin{equation*}
     A_t = \operatorname{argmax}_a \left[ Q_t(a) + c \sqrt{\frac{\ln t}{N_t(a)}} \right]
-\end{equation}
+\end{equation*}
 donde $N_t(a)$ es el número de veces que la acción $a$ ha sido seleccionada y $c$ es una constante que controla el grado de exploración. Este término adicional fuerza la exploración de brazos poco visitados a medida que $t$ aumenta.
 
 \subsubsection{Algoritmo UCB2}
 Como extensión del anterior, se ha implementado el algoritmo UCB2, el cual introduce una estructura de \textbf{épocas} para mejorar la eficiencia de la exploración. A diferencia de UCB1, que reevalúa la decisión en cada paso $t$, UCB2 selecciona un brazo y lo mantiene activo durante un intervalo de tiempo:
-\begin{equation}
+\begin{equation*}
     \tau(r) = \lceil (1+\alpha)^r \rceil
-\end{equation}
+\end{equation*}
 donde $\alpha > 0$ es un parámetro que regula el incremento de las épocas. Esta estrategia reduce la frecuencia de cambio entre brazos y permite obtener teóricamente mejores cotas de rechazo asintótico.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
